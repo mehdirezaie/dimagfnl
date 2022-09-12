@@ -1,0 +1,42 @@
+\documentclass[fleqn, usenatbib]{mnras}
+\usepackage{style}                                          % the settings are all here 
+
+\title[Fancy]{Fancy and Awesome Title}
+\input{sections/authorlist}
+
+% Don't touch these lines
+\begin{document}
+\label{firstpage}
+\pagerange{\pageref{firstpage}--\pageref{lastpage}}
+\maketitle
+
+
+\input{sections/abstract}
+
+% Select between one and six entries from the list of approved keywords.
+% Don't make up new ones.
+\begin{keywords}
+Awesome keywords: Perfect
+\end{keywords}
+
+
+%%%%%%%%%%%%%%%%% BODY OF PAPER 
+\input{sections/introduction}
+\input{sections/data}
+\input{sections/methodology}
+\input{sections/results}
+\input{sections/conclusion}
+\input{sections/acknowledgement}
+\input{sections/dataavailability}
+
+% references
+\bibliographystyle{mnras}
+\bibliography{refs} 
+\appendix
+\input{sections/extra}
+
+
+% % % Don't change these lines
+\bsp	% typesetting comment
+\label{lastpage}
+\end{document}
