@@ -72,13 +72,13 @@ The integral of the galaxy density contrast $\delta$ on the footprint is bound t
 \label{ssec:characterization}
 We use the diagnostic presented in \mr{Rezaie et al 2021} based on cross power spectrum of galaxy density field and imaging maps to quantify the significance of imaging systematic effects. Taking $C^{g,x}_{\ell}$ as the cross power spectrum between galaxy density contrast field and imaging map, one can normalize this quantity by auto power spectrum of imaging map itself:
 \begin{equation}
-C_{x, \ell} = \frac{(C^{g,x}_{\ell})^{2}}{C^{x,x}_{\ell}},
+\hat{C}_{x, \ell} = \frac{(\hat{C}^{g,x}_{\ell})^{2}}{\hat{C}^{x,x}_{\ell}},
 \end{equation}
 and then construct a vector from cross spectra against all other imaging maps:
 \begin{equation}
-C_{X, \ell} = [C_{x_{1}, \ell}, C_{x_{2}, \ell}, C_{x_{3}, \ell}, ..., C_{x_{9}, \ell}].
+\hat{C}_{X, \ell} = [\hat{C}_{x_{1}, \ell}, \hat{C}_{x_{2}, \ell}, \hat{C}_{x_{3}, \ell}, ..., \hat{C}_{x_{9}, \ell}].
 \end{equation}
-Finally, cross power spectrum $\chi^{2}$ can be defined as,
+The mean and standard deviation of $\hat{C}_{X, \ell}$ for 1000 mocks with and without $\fnl$ are shown in Fig. \ref{fig:clxmock}.  Finally, cross power spectrum $\chi^{2}$ can be defined as,
 \begin{equation}
 \chi^{2} = C^{T}_{X, \ell} C^{-1} C_{X, \ell},
 \end{equation}
