@@ -26,7 +26,7 @@ where $^{*}$ represents the complex conjugate. Then, the angular power spectrum 
 \begin{equation}\label{eq:pusedocell}
         \hat{C}_{\ell} = \frac{1}{2\ell +1} \sum_{m=-\ell}^{\ell} \hat{a}_{\ell m} \hat{a}^{*}_{\ell m}.
 \end{equation}
-In order to extract $\hat{a}_{\ell m}$  and compute the angular power spectrum, $C_{\ell}$, we make use of the ANAFAST function from HEALPix \citep{gorski2005healpix} with the third order iteration of the quadrature to increase the accuracy\footnote{We refer the reader to \url{https://healpix.sourceforge.io/pdf/subroutines.pdf}, p. 104-105.}. Due to the survey geometry implicit in the summation over the non-empty pixels and explicit in $f_{\rm pix, i}$, our estimator does not return an unbiased estimate of power spectrum, and thus the same effect must be accounted in the modeling of power spectrum.\\ 
+In order to extract $\hat{a}_{\ell m}$  and compute the angular power spectrum, $C_{\ell}$, we make use of the ANAFAST function from HEALPix \citep{gorski2005healpix} with the third order iteration of the quadrature to increase the accuracy\footnote{We refer the reader to \url{https://healpix.sourceforge.io/pdf/subroutines.pdf}, p. 104-105.}. Due to the survey geometry implicit in the summation over the non-empty pixels and explicit in $f_{\rm pix, i}$, our estimator does not return an unbiased estimate of power spectrum, and thus the same effect must be accounted in the modeling of power spectrum. We ignore $\ell=0$ and $2$ and bin spectra with $\Delta \ell=10$ up to $\ell_{\rm max}=$\\ 
 
 \subsection{Modeling Power Spectrum}
 The projected angular power spectrum of galaxies in the presence of redshift space distortions and local primordial non-Gaussianity is related to the 3D linear power spectrum $P(k)$ and shotnoise $N_{\rm shot}$ by \citep[see, e.g.,][]{slosar2008constraints},
@@ -84,15 +84,16 @@ The mean and standard deviation of $\hat{C}_{X, \ell}$ for 1000 mocks with and w
 \end{equation}
 where covariance matrix $C = < C_{X, \ell} C_{X, \ell'} >$ is constructed from mocks without systematic effects. This statistics is measured for every mock realization with the leave-one-out technique to construct a histogram, which is then compared to the $\chi^{2}$ value observed from the DR9. 
 
-\begin{figure}
+\begin{figure*}
 \centering
-\includegraphics[width=0.45\textwidth]{clx_mocks.pdf}
+\includegraphics[width=0.95\textwidth]{clx_mocks.pdf}
 \caption{Normalized cross power spectrum of mocks. Top: mean cross spectrum. Bottom: standard deviation.}\label{fig:clxmock}
-\end{figure}
+\end{figure*}
 
 \begin{figure}
 \centering
 \includegraphics[width=0.45\textwidth]{chi2test.pdf}
 \caption{Cross power spectrum $\chi^{2}$ diagnostic. The DR9 value is quoted and the histograms are constructed from 1000 realizations of mocks with $\fnl=0$ and $100$.}
 \end{figure}
+
 

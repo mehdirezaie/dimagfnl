@@ -1,159 +1,53 @@
 \section{Results}\label{sec:results}
 
-%This section presents the analyses for the characterization of systematic error and the treatment of spurious fluctuations with various cleaning approaches. We compare the measured power spectra before and after accounting for imaging systematic effects with various linear and nonlinear cleaning methods. In the end, we present the clustering analysis of the EZmock realizations in order to assess the impact of systematic treatments on the measured power spectrum and how one can account for such effect in theoretical modeling.
-%
-%\subsection{Method Benchmarks}
-%
-%\subsubsection{Linear vs Nonlinear Treatment}\label{subsec:linvsnonlin}
-%
-%Our series of tests begin with applying various linear and nonlinear cleaning methods to the main sample of quasars in the NGC region. To conduct a fair comparison, the same set of the four known maps are employed as the input templates. We use the Mean Squared Error and the Poisson Negative Log-Likelihood as two alternatives for the cost function. When using PNLL as the cost function, \textit{Softplus} is applied to the output to satisfy the boundary condition $\lambda > 0$. We also experiment with a nonlinear model without the learning rate annealing to test the sensitivity of training to local minima.
-%
-%Fig. \ref{fig:nbarmethods} shows the mean density contrast as a function of Galactic extinction in the top panel and the measured power spectrum in the bottom panel, after applying different cleaning methods. The 1$\sigma$ uncertainty is shown via the grey shades and is constructed from the null EZmock realizations. Linear-MSE here is  equivalent to the standard treatment except that the cost function of the former is based on the pixelated density while the latter is based on the binned density. This figure illustrates that our implementations of linear-MSE and linear-PNLL yield similar residual fluctuations to that of the standard treatment. This result implies that with linear regression, adopting the Poisson statistics does not help. Interestingly, the residual fluctuations are reduced substantially after accounting for non-linearities by the hidden layers in the \textit{NN-MSE} and \textit{NN-PNLL} architectures. We also find that turning off the learning rate cycling does not hugely impact the neural network performance (\textit{NN-PNLL-lr}) with marginal effect on the power spectrum, which proves the robustness of the pipeline against local minima and saddle points. This test shows that the most substantial improvement in the measured power spectrum is enabled by accounting for nonlinear systematic effects using the neural network-based methods and then by adopting PNLL in the cost function. Interestingly, our linear cleaning method yields a lower clustering power than the standard linear approach. This test demonstrates that cost function needs to be defined accurately for different levels of model complexity; the choice of PNLL over MSE makes more substantial difference for the NN approach compared with the linear model.
-%
-%\begin{figure}
-%    \centering
-%    \includegraphics[width=0.45\textwidth]{figures/eboss_512_nbarlinnn_ngc.pdf} 
-%    \caption[Mean density and power spectrum of eBOSS quasars for different methods.]{\textit{Top}: Mean density contrast of the NGC main sample against Galactic extinction after applying various mitigation techniques, including linear with MSE, linear with PNLL, NN with MSE, NN with PNLL, and NN with PNLL but without learning rate annealing (NN-PNLL-lr). All methods use the \textit{known} set of imaging maps.  \textit{Bottom}: Monopole of the NGC main sample after applying the same techniques.  The shades represent 1$\sigma$ statistical uncertainty constructed from the null EZmock realizations.}
-%    \label{fig:nbarmethods}
-%\end{figure}
-%
-%\subsubsection{Stellar Density from Gaia DR2}\label{subsec:nstar}
-%The quality of the selection function derived from a template-based cleaning method relies on the available input templates. We may fail to properly eliminate spurious fluctuations if a primary imaging map is missed or our available imaging maps are not completely representing the underlying systematic effects. In this test, we experiment with the available SDSS and non-SDSS imaging maps to find the optimal number of crucial imaging maps, which one would need to explain the residual trends in the mean density contrast. As mentioned before, the standard cleaning approach uses only four maps, i.e., Galactic extinction, depth in g band, sky brightness in i band, and seeing in i band.
-%
-%
-%\begin{figure}
-%    \centering
-%    \includegraphics[width=0.45\textwidth]{figures/eboss_512_nbarnstar_ngc.pdf}
-%    \caption[Mean density and power spectrum of eBOSS quasars for different templates.]{\textit{Top}: Mean density contrast of the NGC main sample against the Gaia stellar density after accounting for systematics using different combinations of imaging templates \textit{Bottom}: Monopole power spectrum of the NGC main sample for the same techniques. The shades represent 1$\sigma$ statistical uncertainty constructed from the null EZmock realizations.}
-%    \label{fig:nbarnstar}
-%\end{figure}
-%
-%
-%Fig. \ref{fig:nbarnstar} top panel shows the mean density contrast against the Gaia stellar density from \cite{gaia2018} after training a neural network with various combinations of the imaging maps using PNLL as the cost function. We also plot the measured density contrast after the standard treatment (\textit{standard}) as our reference for comparison. The measured monopole power spectrum is shown in the bottom panel. This exercise illustrates that the four known maps are not sufficient to eliminate the systematic trend in the mean density against the Gaia stellar map. We also show that incorporating the SDSS stellar map (\textit{NN known+sdss}) and even all of the SDSS maps (\textit{NN all sdss}) are not adequate to obtain satisfactory cleaning. On the other hand, we note that \textit{NN all sdss} performs as well as \textit{Lin Gaia}, implying that the nonlinear nature of NN can mitigate the effect of the missing input to some extent. Interestingly, adding the SDSS stellar map to the four known maps impacts the result adversely, especially on the low density end of the Gaia DR2 stars. This result might mean that the SDSS stellar density map is not a proper proxy of the stellar contamination effect in the regions with a lower stellar density. This test indicates that the Gaia DR2 stellar map is proved pivotal to perform a robust cleaning of data, that is consistent with the statistical tests of the mocks. For comparison, we apply the linear model with MSE and the additional Gaia map (\textit{LIN known+gaia}), and obtain a total chi-squared value of $\chi^{2}=196.9$ which is still significant (see Table \ref{tab:chi2methods}). This test demonstrates that capabilities of linear treatment is limited even after including the Gaia map, and the nonlinear treatment is crucial, not  only when we know the proper set of the input templates a priori, but also when we do not know. 
-%
-%\subsubsection{Redshift Slicing and Pixel Resolution}\label{subsec:slicing}
-%
-%The effects of imaging systematics on target density might vary along the line of sight, and alter the slope of the redshift distribution of quasars as well as its overall magnitude. This effect can be ideally investigated by slicing the sample into smaller redshift bins to construct a 3D selection function of imaging systematics. However, further splitting the sample increases the sparsity and makes it difficult to separate the effects of imaging systematics and noise. Thus, we begin with splitting the main sample in the NGC with $\textsc{nside}=512$ into $0.8<z<1.5$ and $1.5<z<2.2$ and then we perform regression on each slice separately. We use PNLL as the cost function with the four known maps and the Gaia stellar map as input. Fig. \ref{fig:nbarsplit} compares the mean density contrast as a function of depth in g band (\textit{top}) and the measured monopole power spectrum (\textit{bottom}) after this treatment (\textit{NN 512-2z}) with that of the standard method and the neural network, trained on $0.8<z<2.2$ with \nside=512 (\textit{NN 512-1z}). This plot demonstrates that there is no evidence for redshift-dependent systematic effects due to imaging.
-%
-%\begin{figure}
-%    \centering
-%    \includegraphics[width=0.45\textwidth]{figures/eboss_512_nbarzsplit_ngc.pdf}
-%    \caption[Mean density and power spectrum of eBOSS quasars for different resolutions.]{\textit{Top}: Mean density contrast of the NGC main sample against depth in the g-band after training the neural network methods with two redshift slices with \nside=512 (\textit{NN-512-2z}), one redshift slice with \nside=256 (\textit{NN-256-1z}), and one redshift slice with \nside=512 (\textit{NN-512-1z}). \textit{Bottom}: Monopole power spectrum after the same techniques. The shades represent 1$\sigma$ statistical uncertainty constructed from the null EZmock realizations.}
-%    \label{fig:nbarsplit}
-%\end{figure}
-%
-%
-%We also train the neural network with coarser imaging templates in \nside=256 on $0.8<z<2.2$ (\textit{NN 256-1z}). The mean density contrast and measured power spectrum after this treatment are shown in Fig. \ref{fig:nbarsplit} in the top and bottom panels, respectively. The mean density contrast histogram is computed against the depth template in \nside=512 and indicates noticeable residual variations from zero in the regions at low and high \textit{depth-g}. This test demonstrates that the systematic weights obtained in the lower resolution cannot properly reduce the trends in the higher resolution. As a caveat, if the top panel was drawn against the depth template in \nside=256, we would have gotten a reasonable performance of NN-256. The bottom figure shows the resulting power spectrum accounting for the effects in all 17 imaging maps. We find a reasonable stability against the varied pixel resolutions and choose NN-512 as our default.
-%
-%The total $\chi^{2}$ of the mean density residuals for various systematic treatment methods are summarized in Table \ref{tab:chi2methods}. The $\chi^{2}$ value is $1344.9$ before correcting for systematic effects. After using the linear cleaning techniques, the $\chi^{2}$ value drops below $220$. The non-linear approach lowers the error below 200, and changing the cost function from MSE to PNLL improves the performance even further by returning a value around $170$, which is less than what is observed in the null EZmock realizations. As a comparison, purely cosmological signal without systematics, estimated from the null EZmocks, returns the $\chi^{2}$ value of 178.
-%
-%\begin{table}
-%    \centering
-%    \caption[Total chi-squared value of eBOSS quasars for various methods.]{Total $\chi^{2}$ of the mean density residuals of the main sample in the NGC after various mitigation configurations. The chi-squared value before accounting for imaging systematics is $1344.9$, which is much larger than the 95-th quantile observed in the null EZmocks, i.e., $178$.}
-%    \resizebox{0.46\textwidth}{!}{
-%    \begin{tabular}{c|lcccc}
-%    \hline 
-%    & && \textit{templates} && \\
-%    \cline{3-6}
-%    \nside-\textit{Split}&& \textit{known} &	\textit{known+SDSS} &	\textit{all SDSS} &	\textit{known+Gaia} \\
-%    \hline 
-%    \multirow{6}{*}{512-$1z$}
-%                                       & standard &218.1 &- &-&-\\
-%                                       & linear-mse &213.5&-&-&196.9\\
-%                                       & linear-pnll &210.2&-&-&-\\
-%                                       & nn-mse &194.6&-&-&- \\
-%                                       & nn-pnll-lr &\textbf{168.99}&-&-&- \\
-%                                       & nn-pnll &\textbf{163.97}&184.6&\textbf{153.9}& \textbf{151.7}\\
-%    \hline
-%    512-$2z$ &	nn-pnll &	- & - & - & \textbf{165.5}\\
-%    \hline
-%    256-$1z$ & nn-pnll & - & - & - & 217.6\\
-%    \end{tabular}
-%    }
-%    \label{tab:chi2methods}
-%\end{table}
-%
-%
-%\subsection{Significance of Residual Fluctuations}\label{subsec:sigreserror}
-%For testing the significance of residual systematics, and as our default NN approach, we focus on the neural network method trained with PNLL and cyclic learning rate on the DR16 sample covering $0.8<z<2.2$ with the five imaging maps as input features. From the previous analyses, see Table \ref{tab:chi2methods}, we identify this configuration as the optimal approach. 
-%
-%\begin{figure*}
-%  \centering
-%  \includegraphics[width=0.99\textwidth]{figures/nnbar_main_known.pdf}
-%  \caption[Density of eBOSS quasars as a function of imaging properties.]{Density contrast of the main sample as a function of the primary imaging properties in the NGC (top) and SGC (bottom) before and after accounting for systematic effects using the standard method or neural network. The error-bars are estimated from the null EZmocks and used to calculate the $\chi^{2}$ of the mean density residuals against each imaging property.}
-%  \label{fig:data_nbar}
-%\end{figure*}
-%
-%Fig. \ref{fig:data_nbar} illustrates the observed density contrast of the DR16 quasars as a function of imaging properties for the NGC (top) and SGC (bottom). Respectively from left to right, the imaging quantities are the Gaia DR2 stellar density, Galactic extinction, sky brightness in i band, depth in g band, and seeing in i band. Each panel is annotated with the residual squared errors that are calculated against a zero model as the ground truth\footnote{We assume that the density contrast must be zero when averaged over many pixels in the absence of imaging systematics.}. The error bars are obtained from the EZmock catalogues. We observe the biggest variation is against the extinction for about $8\%$ with $\chi^{2}/{\rm dof}=374.95/8$ in the NGC and $15\%$ against depth-g with $\chi^{2}/{\rm dof}=828.74/8$ in the SGC. Interestingly, the neural network treatment is capable of modeling and removing the non-linear effects in the sample. On the other hand, the standard treatment leaves a significant chi-squared value against the extinction with $\chi^{2}/{\rm dof}=37.25/8$ in the NGC.
-%
-%\begin{table}
-%    \centering
-%    \caption[Total $\chi^{2}$ for eBOSS quasars for North and South Galactic caps.]{Total $\chi^{2}$ of the mean density residuals for the main and high-z samples, before and after mitigation, and the 95-th percentile of null EZmocks. The null EZmock covariance matrix is used to calculate these statistics.}
-%    \begin{tabular}{c|ccccc}
-%    & & Noweight & Standard & NN & 95-th \%\\
-%    \hline 
-%    \multirow{2}{*}{\textbf{NGC}} & $0.8<z<2.2$ & 1344.9 & 218.1 & 151.7 & 178.0\\
-%                                  & $2.2<z<3.5$ & 1752.0 & 121.6 & 104.2 & -- \\
-%        \hline
-%        \multirow{2}{*}{\textbf{SGC}}& $0.8<z<2.2$ & 1943.0 & 132.5 & 116.3 & 179.2\\
-%                            & $2.2<z<3.5$ & 2553.7 & 146.0 & 130.1 & --
-%    \end{tabular}    
-%    \label{tab:chi2_nbar}
-%\end{table}
-%
-%\begin{figure*}
-%    \centering
-%    \includegraphics[width=0.45\textwidth]{figures/nnbar_chi2pdf_ngc_main.pdf}
-%    \includegraphics[width=0.465\textwidth]{figures/nnbar_chi2pdf_sgc_main.pdf}
-%    \caption[Total chi-squared value of eBOSS quasars from mean density contrast.]{Total $\chi^{2}$ of the mean density residuals for the EZMocks with systematics (Cont) and without systematics (Null) for the NGC (left) and SGC (right). The same statistics observed in the eBOSS DR16 quasar sample (before and after treatment) are shown via vertical lines with the associated p-values, which are derived by comparing with the mocks without systematics, Null (Truth). There is substantial remaining systematics in the NGC with the standard linear treatment. Also, the contaminated simulations do not reflect the same level of systematic effects as the DR16 sample.}
-%    \label{fig:chi2_nbar}
-%\end{figure*}
-%
-%We compute the total $\chi^{2}$ of the mean density residuals against all of the 17 imaging maps to determine the significance of spurious fluctuations in the observed mean density of quasars. Fig. \ref{fig:chi2_nbar} shows the distributions of $\chi^{2}_{\rm tot}$, which are constructed from the null (Null) and contaminated EZmocks (Cont), before and after applying imaging systematics mitigation for the NGC (left) and SGC (right). The values observed in the DR16 sample before and after cleaning are represented with vertical lines. We use the distribution of the null mocks (Null Truth) to compute $p{\rm -value}$. In the NGC, the standard treatment yields $\chi^{2}=218.1$ with $p{\rm -value}=0.2\%$, while the neural network treatment cleans the sample substantially and returns a smaller $\chi{2}$ and higher $p{\rm -value}$, respectively, $151.7$ and $27.1\%$. In the SGC, we observe that the standard method returns $132.5$ with $p{\rm -value}=65.0\%$. This residual is somewhat expected since the trends against imaging maps in the SGC are mostly linear, and thus a linear model is sufficient for cleaning (see Fig. \ref{fig:data_nbar}). In the SGC, both methods return statistics that are in agreement with the $\chi^{2}$ distribution of the null mocks. No remaining systematic error is observed within the statistical uncertainty of the mocks. The total $\chi^{2}$ of the mean density residuals for the main and high-z samples are reported in Table \ref{tab:chi2_nbar}. The 95-th percentile for the main sample is estimated from the mocks and reported in the last column. Note that for the NGC region, the standard approach yields a $\chi^{2}$ value that is larger than the 95-th quantile of the mocks.
-%
-%\begin{figure*}
-%    \centering
-%    \includegraphics[width=0.455\textwidth]{figures/cell_chi2pdf_ngc_main.pdf}
-%    \includegraphics[width=0.45\textwidth]{figures/cell_chi2pdf_sgc_main.pdf}
-%    \caption[Total chi-squared value of eBOSS quasars from cross power spectra.]{Similar to Fig. \ref{fig:chi2_nbar} for the angular cross power spectrum between the projected quasar density and imaging maps. Compared with the simulations without systematics (Null), there is a substantial remaining systematics both in the NGC and SGC with the standard linear treatment, while the 1D diagnostic (Fig. \ref{fig:chi2_nbar}) shows no obvious issues with the SGC sample cleaned with the linear approach.}
-%    \label{fig:chi2_cell}
-%\end{figure*}
-%
-%Similarly, we cross-correlate the quasar density map with all of the 17 imaging templates. The cross-correlations are then binned to decrease statistical fluctuations, and normalized by the auto power spectrum of the imaging maps. The first four bins are then used to compute the residual squared error against zero. Fig. \ref{fig:chi2_cell} demonstrates the distribution of $\chi^{2}_{\rm tot}$ constructed from the null and contaminated mocks before and after applying imaging systematics mitigation for the NGC (left) and SGC (right). The values observed in the DR16 sample are represented with vertical lines. In the NGC, the standard treatment returns $\chi^{2}=338.5$ with $p{\rm -value}=1.1\%$, while the neural network treatment provides a cleaner sample with $\chi{2}=49.8$ and $p{\rm -value}=57.9$, respectively. In the SGC, we observe that the standard method is incapable of removing the systematics by returning $\chi^{2}=404.3$ with $p{\rm -value}=0.7\%$. On the other hand, the neural network approach enables rigorous cleaning with $\chi^{2}=53.2$ and $p{\rm -value}=52.4\%$. This test motivates further investigations of linear systematic treatment methods in future galaxy surveys since the 1D diagnostic based on the mean density contrast is not sufficiently sensitive to unveil these issues with the standard treatment in the SGC (see Fig. \ref{fig:chi2_nbar}). Interestingly, these histograms show that the magnitude of simulated systematic effects for the contaminated mocks are stronger in the SGC (cf. the left and right panels of Fig. \ref{fig:chi2_nbar} and \ref{fig:chi2_cell}). Similarly, the DR16 sample shows a stronger spurious fluctuation around $15\%$ against depth in the SGC region, compared with $8\%$ in the NGC.
-%
-%In summary, we find that the nonlinear aspect of our cleaning approach is the primary reason for efficiently reducing spurious fluctuations and systematic error. The neural network-based approach can model the non-linear feedback of observed quasar density to imaging templates, which results in a cleaner sample with a significantly lower $\chi^{2}$ value. Although the standard treatment passes the null test based on mean density contrasts, however, the test based on cross power shows that the catalog with the standard systematic weights is not properly cleaned. We find no improvement in the mean density residual after including all SDSS maps for training; however, our analysis shows that the Gaia stellar density is required to satisfy the null tests for residual systematic errors. We also find that computing the mean quasar density per pixel does not change our conclusion based on the mean quasar density per imaging bin, although the former quantity is subject to more fluctuations. Finally, we do not observe a significant change by splitting the main sample into redshift subsamples or using coarser imaging templates. In the following, our neural network-based treatment is applied on the entire $0.8<z<2.2$ and uses the Poisson cost function (nn-pnll), cyclic learning rate, and five imaging templates in \textsc{nside}$=512$ (Known+Gaia) as input features, see, Tab. \ref{tab:chi2methods}.
-%
-%\subsection{Power Spectrum}
-%\subsubsection{Measurement}
-%We now proceed to measure the power spectrum of the DR16 sample and EZmock simulations for each galactic cap separately since each cap is subject to different targeting properties. Fig. \ref{fig:p0data} shows the measured monopole power spectrum $P_{0}$ of the main sample in the NGC (left) and SGC (right). We use the square-root of the diagonal terms of the covariance matrices, constructed from the null EZmocks, as the errorbars on $P_{0}$. The open and filled circles represent the measured spectrum after cleaning the sample with the standard and neural network treatments, respectively. In both regions, the nonlinear cleaning approach returns a lower power at small $k$. On the other hand, the effect on the small-scale clustering is very small. We also show various models with \fnl=$-10$, $0$, or $90$ to illustrate the sensitivity of the signal on the low-$k$ measurements.
-%
-%\begin{figure*}
-%    \centering
-%    \includegraphics[width=0.45\textwidth]{figures/p0_ngc_main.pdf}
-%    \includegraphics[width=0.45\textwidth]{figures/p0_sgc_main.pdf}
-%    \caption[Power spectrum of eBOSS quasars in the NGC and SGC.]{Monopole of the main sample in the NGC (left) and SGC (right) after treatment with the standard method and neural network. Various \fnl~models are plotted to show the sensitivity of the signal on large scales. The shades represent 1$\sigma$ statistical uncertainty estimated from the EZmocks. The x-axes are logarithmic for $k < 0.02~h{\rm Mpc}^{-1}$ and linear otherwise.}
-%    \label{fig:p0data}
-%\end{figure*}
-%
-%\begin{figure}
-%    \centering
-%    \includegraphics[width=0.45\textwidth]{figures/ezmocks_512known.pdf}
-%    \caption[Power spectrum of eBOSS mocks.]{Measured power spectrum of the EZmock realizations before and after systematic treatment for the NGC (left) and SGC (right) regions. From top to bottom, we show the difference between the mean mitigated spectrum and the mean truth spectrum, the relative difference, the dispersion in the mock spectra, and the relative dispersion.}
-%    \label{fig:p0mocks}
-%\end{figure}
-%
-%We apply the systematics treatment methods on both the null and contaminated EZmock catalogues to characterize the impact of the mitigation procedure on the measured clustering statistics. The measured power spectrum of the null mocks without any systematic treatment is considered as the ground truth clustering. Fig. \ref{fig:p0mocks} shows the mean and the standard deviation of the measured spectra from the EZmock realizations in the NGC (left) and SGC (right) regions. The top row illustrates the difference between the mean $P_{0}$ of the EZmocks after mitigation, including the null (\textit{Truth after NN}) and contaminated catalogues using the neural network  (\textit{Cont after NN} and the standard approach \textit{Cont after Standard}), and the truth clustering (\textit{Truth}). The light and dark shades show the standard deviation of the null EZmock spectra and the $1\sigma$ uncertainties on the mean of the mock spectra, respectively. In the second row, we show the relative difference in the mean power spectrum. In the third row, we present the standard deviation of the mock spectra. Finally, we show the relative dispersion in the bottom row. The measured spectra for the contaminated mocks before treatment is an order of magnitude larger than the truth clustering and thus is not visualized for clarity. We note that the magnitude of the excess power observed in the mocks is one order of magnitude smaller than what is observed in the real sample (cf. Fig. \ref{fig:p0data}), primarily because a linear model was used to generate systematics. This implies that the actual systematics of the real sample is substantially more severe and complex than in these mocks.
-%
-%Due to allowing the correction to account for more freedom, the neural-network treatment removes more of the modes, known as the over-fitting problem, when it is applied to the mocks. On the other hand, the standard treatment indicates less of this over-fitting issue. This is expected as the same linear model is used to produce the systematic effects in the mock realizations. The standard deviation of the mock spectra shows that the imaging treatments do not increase the fractional variance of the measured power spectrum down to $k=0.003~h/{\rm Mpc}$. Interestingly, we observe that the dispersion of the null mocks decreases after applying the NN treatment, which is due to the over-correction of the power itself \footnote{The error on the power spectrum is expected to be proportional to the power itself under a Gaussian limit.}.
-%
-%\subsubsection{Mitigation Bias}
-%Using the mocks, we attempt to estimate any residual or over-correction that might have been introduced in the measured eBOSS QSO power spectrum in the process of the imaging systematics treatment. This assessment is crucial for obtaining an unbiased clustering measurement, which will lead to an accurate inference of cosmological parameters.
-%
-%We compare the spectra of the contaminated mocks after mitigation to that of the null mocks before treatment as the true power. Fig. \ref{fig:p0mocks} shows that the NN-based mitigation tends to introduce overcorrection for $k< 0.003$, especially if it is applied on the density field with no systematics (i.e., Truth with NN.~\footnote{The standard method performs better by construction, as it assumes we know exactly the source of systematics.}). With this caveat, we focus on the overcorrection observed in the contaminated mocks and inspect its nature. The differences between the measured power of the 1000 contaminated mocks after cleaning and the true power for all mocks are shown in Fig. \ref{fig:dpvsp} as a function of the true power for the first few $k$ bins. We find that the mitigation bias (or overcorrection) is almost linearly proportional to the true power. While this exercise shows that if the data has no systematics or is subject to simple, linear systematics, the neural network based method we developed will potentially introduce a small degree of overcorrection and we can attempt to correct for such mitigation bias. However, from Fig. \ref{fig:chi2_nbar} and \ref{fig:chi2_cell}, it is apparent that the DR16 sample is subject to much more severe and nonlinear systematic effects compared to the mocks and the standard linear method is not sufficiently effective. Therefore, we believe that the overcorrection is less likely a problem for the real eBOSS data and an attempt to mitigate it might further bias the data. We present the discussion of our mitigation bias on primordial non-Gaussianity constraints in a companion paper \citep{mueller2020fnl}.
-%
-%\begin{figure}
-%    \centering
-%    \includegraphics[width=0.45\textwidth]{figures/eboss_512_dpvsp_ngc.pdf}
-%    \caption[Residual bias between mock power spectra after mitigation.]{Difference between the measured spectra of the contaminated EZmock catalogues after cleaning and the spectra of the null catalogues as a function of the latter. The medians are used to obtain the best linear fit in each k bin, and are shown only for $k=0.001~h/{\rm Mpc}$ with open squares.}
-%    \label{fig:dpvsp}
-%\end{figure}
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/mcmc_zero.pdf} 
+    \includegraphics[width=0.45\textwidth]{figures/mcmc_po100.pdf} 
+    \caption{Mock test}\label{fig:mcmc_mocks}
+\end{figure*}
+
+
+\begin{table*}
+  \begin{center}
+    \caption{Best fit and marginalized  stats for $\fnl$.}
+    \label{tab:mocksmcmc}
+    \begin{tabular}{lcccccc}
+    \hline
+    \hline
+    & MAP [scipy] & MAP [chain]  &	Mean [chain]	& Median [chain] &	16th	& 84th \\
+    \hline
+    $\fnl$ = 0	& 0.747050	& 0.745692	& 0.739923	& 0.738965	& 0.326864	& 1.154931 \\
+    $\fnl$ = 100	& 100.853749	& 100.857356	& 100.856818	& 100.857763	& 100.306626	& 101.406558
+    \end{tabular}
+  \end{center}
+\end{table*}
+
+
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/mcmc_dr9.pdf} 
+    \caption{DR9}\label{fig:mcmc_dr9}
+\end{figure*}
+
+\begin{table*}
+  \begin{center}
+    \caption{Best fit and marginalized  stats for $\fnl$.}
+    \label{tab:mocksmcmc}
+    \begin{tabular}{lcccccc}
+    \hline
+    \hline
+    & MAP [scipy] & MAP [chain]  &	Mean [chain]	& Median [chain] &	16th	& 84th \\
+    \hline
+No Weight	 & 193.799114 &	193.834016	& 193.896075 &	193.867594&	188.480955&	199.329321 \\
+Baseline&	42.555440&	42.442136&	41.954523&	42.221369&	33.689653&	50.194945\\
+Conservative I &	58.635294 &	58.900166&	58.279580&	58.432779&	50.853873&	65.686198 \\
+Conservative II	& 47.556331 &	47.567315 &	46.739960 &	46.920699 &	38.736039 &	54.729885 
+    \end{tabular}
+  \end{center}
+\end{table*}
+
+%	
+
+%fNL = 100	100.853749	100.857356	100.856818	100.857763	100.306626	101.406558
