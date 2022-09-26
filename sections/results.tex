@@ -1,5 +1,14 @@
 \section{Results}\label{sec:results}
 
+
+\subsection{Lognormal Mocks}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{model_mock.pdf}
+\caption{Mean power spectrum of 1000 mocks with $\fnl=0$ and best fit theoretical prediction.}
+\end{figure}
+
 \begin{figure*}
     \centering
     \includegraphics[width=0.45\textwidth]{figures/mcmc_zero.pdf} 
@@ -10,20 +19,26 @@
 
 \begin{table*}
   \begin{center}
-    \caption{Best fit and marginalized  stats for $\fnl$.}
+    \caption{Best fit and marginalized stats for $\fnl$ from fitting the mean power spectrum of the mocks.}
     \label{tab:mocksmcmc}
     \begin{tabular}{lcccccc}
     \hline
     \hline
     & MAP [scipy] & MAP [chain]  &	Mean [chain]	& Median [chain] &	16th	& 84th \\
     \hline
-    $\fnl$ = 0	& 0.747050	& 0.745692	& 0.739923	& 0.738965	& 0.326864	& 1.154931 \\
-    $\fnl$ = 100	& 100.853749	& 100.857356	& 100.856818	& 100.857763	& 100.306626	& 101.406558
+    $\fnl$ = 0	& 0.572941	& 0.569411 &	0.563005&	0.564670&	0.203400&	0.921198 \\
+    $\fnl$ = 100	& 100.530435	& 100.528862 &	100.526471&	100.528808&	99.952158&	101.100725
     \end{tabular}
   \end{center}
 \end{table*}
 
 
+\subsection{DR9 LRGs}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/cl_obs.pdf} 
+    \caption{Measured power spectrum of DR9 LRGs.}\label{fig:cl_dr9}
+\end{figure}
 
 \begin{figure*}
     \centering
@@ -31,23 +46,30 @@
     \caption{DR9}\label{fig:mcmc_dr9}
 \end{figure*}
 
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/mcmc_dr9_2.pdf} 
+    \caption{DR9}\label{fig:mcmc_dr9}
+\end{figure*}
+
 \begin{table*}
   \begin{center}
-    \caption{Best fit and marginalized  stats for $\fnl$.}
+    \caption{Best fit and marginalized stats for $\fnl$ from fitting the power spectrum of DR9 LRGs before and after applying imaging weights.}
     \label{tab:mocksmcmc}
     \begin{tabular}{lcccccc}
     \hline
     \hline
     & MAP [scipy] & MAP [chain]  &	Mean [chain]	& Median [chain] &	16th	& 84th \\
     \hline
-No Weight	 & 193.799114 &	193.834016	& 193.896075 &	193.867594&	188.480955&	199.329321 \\
-Baseline&	42.555440&	42.442136&	41.954523&	42.221369&	33.689653&	50.194945\\
-Conservative I &	58.635294 &	58.900166&	58.279580&	58.432779&	50.853873&	65.686198 \\
-Conservative II	& 47.556331 &	47.567315 &	46.739960 &	46.920699 &	38.736039 &	54.729885 
+No Weight&	248.473520	&248.411797	&248.776187	&248.595088&	242.599638&	254.977561\\
+Baseline	&53.373443	&53.302632	&53.045753	&53.111457	&47.514519	&58.661667\\
+Conservative I	&65.286775	&65.277211	&65.047508&	65.122821&	60.079103&	70.028714\\
+Conservative II	&57.480562	&57.384026	&57.308910&	57.401921&	51.999420&	62.589189\\
+Nonlinear (Cons. II)	&42.845528	&42.682128	&42.255626&	42.360824&	36.203137&	48.370399
+
     \end{tabular}
   \end{center}
 \end{table*}
 
-%	
-
+%
 %fNL = 100	100.853749	100.857356	100.856818	100.857763	100.306626	101.406558
