@@ -71,7 +71,10 @@ The integral of the galaxy density contrast $\delta$ on the footprint is bound t
 
 \subsection{Characterization of systematic effects}
 \label{ssec:characterization}
-We use the diagnostic presented in \mr{Rezaie et al 2021} based on cross power spectrum of galaxy density field and imaging maps to quantify the significance of imaging systematic effects. Taking $C^{g,x}_{\ell}$ as the cross power spectrum between galaxy density contrast field and imaging map, one can normalize this quantity by auto power spectrum of imaging map itself:
+We use the diagnostic tests presented in \mr{Rezaie et al 2021} based on cross power spectrum between galaxy density field and imaging maps and mean density contrast as a function of imaging properties to quantify the significance of imaging systematic effects. 
+
+\subsubsection{Cross Spectrum}
+Taking $C^{g,x}_{\ell}$ as the cross power spectrum between galaxy density contrast field and imaging map, one can normalize this quantity by auto power spectrum of imaging map itself:
 \begin{equation}
 \hat{C}_{x, \ell} = \frac{(\hat{C}^{g,x}_{\ell})^{2}}{\hat{C}^{x,x}_{\ell}},
 \end{equation}
@@ -85,16 +88,20 @@ We bin the $C_{X}$ measurements with $\ell$ edges defined at $2,  10,  18,  26, 
 \end{equation}
 where covariance matrix $C = < C_{X, \ell} C_{X, \ell'} >$ is constructed from mocks without systematic effects. This statistics is measured for every mock realization with the leave-one-out technique to construct a histogram, which is then compared to the $\chi^{2}$ value observed from the DR9. 
 
+\subsubsection{Mean Density}
+
 \begin{figure*}
 \centering
-\includegraphics[width=0.95\textwidth]{clx_mocks.pdf}
-\caption{Normalized cross power spectrum of mocks. Top: mean cross spectrum. Bottom: standard deviation.}\label{fig:clxmock}
+\includegraphics[width=0.8\textwidth]{clx_mocks.pdf}
+\includegraphics[width=0.8\textwidth]{nbar_mocks.pdf}
+\caption{Top: cross spectrum. Bottom:  mean density contrast.}\label{fig:clxmock}
 \end{figure*}
 
-\begin{figure}
+\begin{figure*}
 \centering
 \includegraphics[width=0.45\textwidth]{chi2test.pdf}
-\caption{Cross power spectrum $\chi^{2}$ diagnostic. The DR9 value is quoted and the histograms are constructed from 1000 realizations of mocks with $\fnl=0$ and $100$.}
-\end{figure}
+\includegraphics[width=0.45\textwidth]{chi2test2.pdf}
+\caption{Left: Cross power spectrum $\chi^{2}$ diagnostic. Right: Mean density contrast diagnostic. The DR9 value is quoted and the histograms are constructed from 1000 realizations of mocks with $\fnl=0$ and $100$.}
+\end{figure*}
 
 
