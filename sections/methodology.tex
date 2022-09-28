@@ -20,7 +20,7 @@ To estimate power spectrum, we expand the galaxy overdensity field in terms of L
 \end{equation}
 where $\theta, \phi$ represent the polar and azimuthal angular coordinates of pixel \textit{i}, respectively. The cutoff at $\ell=\ell_{{\rm max}}$ assumes that modes with $\ell>\ell_{{\rm max}}$ do not contribute significantly to signal power. The  coefficients $a_{\ell m}$ are then obtained by integrating the density contrast field over the total number of non-empty pixels $N_{{\rm pix}}$ and using the orthogonality of Legendre polynomials:
 \begin{equation}
-        \hat{a}_{\ell m} = \frac{4\pi}{N_{{\rm pix}}} \sum_{i=1}^{N_{{\rm pix}}}  \hat{\delta}_{i}~f_{\rm pix, i}~ Y^{*}_{\ell m}(\theta_{i}, \phi_{i}),
+        \hat{a}_{\ell m} = \frac{4\pi}{N_{{\rm pix}}} \sum_{i=1}^{N_{{\rm pix}}}  \hat{\delta}_{i}~f_{{\rm pix}, i}~ Y^{*}_{\ell m}(\theta_{i}, \phi_{i}),
 \end{equation}
 where $^{*}$ represents the complex conjugate. Then, the angular power spectrum estimator is defined as the variance of  $\hat{a}_{\ell m}$  coefficients:
 \begin{equation}\label{eq:pusedocell}
@@ -68,6 +68,12 @@ The integral of the galaxy density contrast $\delta$ on the footprint is bound t
 \end{equation}
 
 
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{model_mock.pdf}
+\caption{Mean power spectrum of 1000 mocks with $\fnl=0$ and best fit theoretical prediction after accounting for various theoretical systematic effects.}
+\end{figure}
+
 
 \subsection{Characterization of systematic effects}
 \label{ssec:characterization}
@@ -89,19 +95,33 @@ We bin the $C_{X}$ measurements with $\ell$ edges defined at $2,  10,  18,  26, 
 where covariance matrix $C = < C_{X, \ell} C_{X, \ell'} >$ is constructed from mocks without systematic effects. This statistics is measured for every mock realization with the leave-one-out technique to construct a histogram, which is then compared to the $\chi^{2}$ value observed from the DR9. 
 
 \subsubsection{Mean Density}
+As an alternative test, we calculate the histogram of the density contrast field relative to each imaging map.
+\begin{equation}
+\delta_{x} = ({\hat{\overline{\rho}}})^{-1} \frac{\sum_{i} \rho_{i} f_{{\rm pix}, i}}{\sum_{i} f_{{\rm pix}, i}},
+\end{equation}
+where the summations are over pixels in each bin of imaging map $x$. Similarly, we construct the mean density contract vector against all imaging maps,
+\begin{equation}
+\delta_{X} = [\delta_{x_{1}}, \delta_{x_{2}}, \delta_{x_{3}}, ..., \delta_{x_{9}}],
+\end{equation}
+and the total residual error as,
+\begin{equation}
+\chi^{2} = \delta_{X}^{T} C^{-1} \delta_{X},
+\end{equation}
+where the covariance matrix $C = < \delta_{X} \delta_{X}>$ is constructed from mocks without systematic effects. Fig. \ref{fig:clxmock} shows the cross power spectrum and mean density contrast for the DR9 LRG sample. The shades represent the $1\sigma$ level fluctuations observed in 1000 clean mocks with $\fnl=0$ and $100$.
 
 \begin{figure*}
 \centering
-\includegraphics[width=0.8\textwidth]{clx_mocks.pdf}
-\includegraphics[width=0.8\textwidth]{nbar_mocks.pdf}
-\caption{Top: cross spectrum. Bottom:  mean density contrast.}\label{fig:clxmock}
+\includegraphics[width=0.45\textwidth]{clx_mocks.pdf}
+\includegraphics[width=0.45\textwidth]{nbar_mocks.pdf}
+\caption{Residual systematic fluctuations of DR9 LRGs against imaging maps. Left: cross spectrum. Right: mean density contrast. Shades represent $1\sigma$ dispersion of 1000 clean mocks with and without $\fnl$.}\label{fig:clxmock}
 \end{figure*}
 
 \begin{figure*}
 \centering
 \includegraphics[width=0.45\textwidth]{chi2test.pdf}
 \includegraphics[width=0.45\textwidth]{chi2test2.pdf}
-\caption{Left: Cross power spectrum $\chi^{2}$ diagnostic. Right: Mean density contrast diagnostic. The DR9 value is quoted and the histograms are constructed from 1000 realizations of mocks with $\fnl=0$ and $100$.}
+\caption{Left: Cross power spectrum $\chi^{2}$ diagnostic. Right: Mean density contrast diagnostic. The values observed in DR9 before and after linear and nonlinear treatments are quoted and the histograms are constructed from 1000 realizations of clean mocks with $\fnl=0$ and $100$.}
 \end{figure*}
 
 
+\clearpage
