@@ -6,12 +6,20 @@ We study the correlation between target density field and potential sources of s
 
 %Explain the target selection and sample. What bands are used for selection, total area, and maybe their redshift distribution from spectroscopy, and their inferred halo bias. Bitmasks applied based on . SV3 LRG Selection with 800 per sq. deg. Target selection of DESI LRGs is presented in XXX. The selection uses imaging in XXX optical and YY infrared bands (see, e.g., ZZZ). Density of DESI LRGs in deg$^{-2}$ is shown in Fig. \ref{fig:lrgdens}.
 
-\begin{figure*}
+\begin{figure}
     \centering
-    \includegraphics[width=0.9\textwidth]{figures/lrgdens.pdf}
+    \includegraphics[width=0.45\textwidth]{figures/lrgdens.pdf}
     \caption{Observed density field of DESI Luminous Red Galaxies DR9 in deg$^{-2}$.}
     \label{fig:ng}
-\end{figure*}
+\end{figure}
+
+Fig. \ref{fig:nz} shows the redshift distribution of LRGs and the halo bias as a function of redshift \mr{CITE Zhou et al for the bias model}. 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/nz_lrg.pdf}
+    \caption{Redshift distribution and linear bias of the DESI Luminous Red Galaxies.}
+    \label{fig:nz}
+\end{figure}
 
 
 \begin{figure}
@@ -20,7 +28,6 @@ We study the correlation between target density field and potential sources of s
     \caption{Predicted galaxy counts from template regression. Baseline approach uses imaging maps from Zhou et al. (2022): EBV, galaxy depth in rgz, psfdepth in W1, and psfsize in grz. Conservative I uses EBV and galaxy depth in z, and Conservative II uses EBV, galaxy depth in z, and psfsize in r. In all approaches, the models are regressed on BASS+MzLS, DECaLS North, and DECaLS South separately.}
     \label{fig:npred}
 \end{figure}
-
 
 
 
@@ -33,14 +40,7 @@ We study the correlation between target density field and potential sources of s
 
 
 
-Fig. \ref{fig:nz} shows the redshift distribution of LRGs and the halo bias as a function of redshift. 
 
-%\begin{figure}
-%    \centering
-%    \includegraphics[width=0.45\textwidth]{figures/nz_lrg.pdf}
-%    \caption{Redshift distribution and linear bias of the DESI Luminous Red Galaxies.}
-%    \label{fig:nz}
-%\end{figure}
 
 
 \begin{table*}
@@ -66,3 +66,6 @@ Fig. \ref{fig:nz} shows the redshift distribution of LRGs and the halo bias as a
       \end{tabular}
   \end{center}
 \end{table*}
+
+
+\clearpage
