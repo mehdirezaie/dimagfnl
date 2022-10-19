@@ -3,94 +3,96 @@
 
 \subsection{Lognormal Mocks}
 
-Corner plots of the PNG parameter $\fnl$ and bias coefficient are shown in Fig. \ref{fig:mcmc_mocks} for fitting the mean power spectrum of the mocks, with and without $\fnl$. Maximum-A-Posteriori estimates and marginalized mean, median and $1\sigma$ quantiles are summarized in Tab. \ref{tab:mocksmcmc}. As a robustness test, we also fit the mean power spectrum of the $\fnl=100$ mocks using the covariance matrix estimated from the $\fnl=0$ mocks. We find that the constraints improve by a factor of $4.2$, due to a higher signal to noise ratio.
-\begin{figure}
-    \centering
-    \includegraphics[width=0.45\textwidth]{figures/mcmc_zero.pdf} 
-    \includegraphics[width=0.45\textwidth]{figures/mcmc_po100.pdf} 
-    \caption{Lognormal mocks for $\fnl=0$ and $100$.}\label{fig:mcmc_mocks}
-\end{figure}
-
+Corner plots of the PNG parameter $\fnl$ and bias coefficient are shown in Fig. \ref{fig:mcmc_mocks} for fitting the mean power spectrum of the mocks, with and without $\fnl$. Maximum-A-Posteriori estimates and marginalized mean, median and $1\sigma$ quantiles are summarized in Tab. \ref{tab:mocksmcmc}. Comparing DECaLS North with sky coverage $0.14$ to full DESI with $0.40$, we find the constraint improve by a factor of $1.9$ which is slightly more than $\sim f_{\rm SKY}^{-1/2}$, 1.7. while As a robustness test, we also fit the mean power spectrum of the $\fnl=100$ mocks using the covariance matrix estimated from the $\fnl=0$ mocks. We find that the constraints improve by a factor of $4.2$, due to a higher signal to noise ratio.
 
 \begin{table*}
   \begin{center}
-    \caption{Best fit Maximum-A-Posteriori (MAP) and marginalized stats for $\fnl$ from fitting the mean power spectrum of the mocks.}
+    \caption{Maximum-A-Posteriori (MAP) and marginalized mean estimates for $\fnl$ from fitting the mean power spectrum of the mocks.}
     \label{tab:mocksmcmc}
-    \begin{tabular}{lcccccc}
+    \begin{tabular}{llcccc}
     \hline
     \hline
-   $\fnl$ [footprint] & MAP [scipy] & MAP [chain]  &	Mean [chain]	& Median [chain] &	16th	& 84th \\
+Mock $\fnl$ /  Footprint   &  Observable & 	Best fit  & Mean & $ 68\%$ CL & $ 95\%$ CL \\
     \hline
-	0~~~[BASS+MzLS]	&0.757876&	0.764393&	0.753563&	0.764325&	-0.009674&	1.519141 \\
-	0~~~[DECaLS North]	&0.177116&	0.178279&	0.154977&	0.159582&	-0.543994&	0.857133\\
-	0~~~[DECaLS South]&	0.650587&	0.654956&	0.632435&	0.635791&	0.084512&	1.178858 \\
-	0~~~[DESI] & 0.572941	& 0.569411 &	0.563005&	0.564670&	0.203400&	0.921198 \\
-	100~[DESI] & 100.530435	& 100.528862 &	100.526471&	100.528808&	99.952158&	101.100725 
+$\fnl=100$ / DESI &log$C_{\ell}$                           & $100.97$& $100.97$& $100.33<\fnl<101.61$& $ 99.72<\fnl<102.23$\\
+&log$C_{\ell}$ using $f_{\rm NL}=0$ cov  & $101.01$& $101.03$& $100.42<\fnl<101.63$& $ 99.85<\fnl<102.21$\\
+&$C_{\ell}$                              & $100.97$& $100.95$& $100.32<\fnl<101.58$& $ 99.71<\fnl<102.18$\\
+&$C_{\ell}$ using $f_{\rm NL}=0$ cov     & $100.13$& $100.13$& $100.00<\fnl<100.26$& $ 99.88<\fnl<100.38$\\
+\hline
+$\fnl=0$ / DESI  & log$C_{\ell}$   & $  0.47$& $  0.47$& $  0.08<\fnl<  0.85$& $ -0.30<\fnl<  1.22$\\
+ DECaLS North       &                 & $  0.09$& $  0.08$& $ -0.61<\fnl<  0.78$& $ -1.29<\fnl<  1.45$\\
+ DECaLS South      &                  & $  0.87$& $  0.88$& $  0.16<\fnl<  1.58$& $ -0.52<\fnl<  2.27$\\
+ BASS+MzLS           &               & $  1.07$& $  1.07$& $  0.32<\fnl<  1.82$& $ -0.40<\fnl<  2.55$\\
     \end{tabular}
   \end{center}
 \end{table*}
 
 
-\clearpage
-\subsection{DR9 LRGs}
 \begin{figure*}
     \centering
-    \includegraphics[width=0.95\textwidth]{figures/cl_obs.pdf} 
+    \includegraphics[width=0.45\textwidth]{figures/mcmc_zero.pdf} 
+    \includegraphics[width=0.45\textwidth]{figures/mcmc_po100.pdf} 
+    \includegraphics[width=0.45\textwidth]{figures/bestfit_zero.pdf} 
+    \includegraphics[width=0.45\textwidth]{figures/bestfit_po100.pdf}         
+    \caption{68\% and 95\% confidence contours for $\fnl=0$ and $100$ mocks. bottom: best fit estimates.}\label{fig:mcmc_mocks}
+\end{figure*}
+
+
+
+\subsection{DR9 LRGs}
+\begin{table*}
+  \begin{center}
+    \caption{Maximum-A-Posteriori (MAP) and marginalized mean estimates for $\fnl$ from fitting power spectrum of DR9 LRGs for DESI footprint before and after correcting for systematics.}
+    \label{tab:dr9method}
+    \begin{tabular}{llcccc}
+    \hline
+    \hline
+Footprint   & Method & 	Best fit  & Mean & $ 68\%$ CL & $ 95\%$ CL \\
+    \hline
+DESI & No Weight                               & $147.13$& $150.13$& $127.58<\fnl<172.76$& $108.56<\fnl<197.07$\\
+\hline
+DESI &Baseline                                & $ 46.87$& $ 49.04$& $ 33.97<\fnl< 63.98$& $ 21.21<\fnl< 81.00$\\
+&Conservative I                          & $ 64.46$& $ 66.69$& $ 49.67<\fnl< 83.63$& $ 35.64<\fnl<102.59$\\
+&Conservative II                         & $ 47.62$& $ 49.54$& $ 34.21<\fnl< 64.81$& $ 21.27<\fnl< 82.06$\\
+&Nonlinear (Cons. II)                    & $ 37.15$& $ 38.73$& $ 24.58<\fnl< 52.77$& $ 12.32<\fnl< 68.55$\\
+\hline
+BASS+MzLS & Nonlinear (Cons. II)    & $ 20.06$& $ 24.71$& $ -1.52<\fnl< 51.26$& $-24.95<\fnl< 82.62$\\
+DECaLS North &            & $ 53.33$& $ 58.36$& $ 30.33<\fnl< 86.81$& $  6.45<\fnl<120.93$\\
+DECaLS South &          & $ 40.61$& $ 43.17$& $ 19.36<\fnl< 68.11$& $ -6.64<\fnl< 96.65$\\
+DECaLS North [incl. DEC $<-11$]   &             & $ 53.36$& $ 58.27$& $ 30.65<\fnl< 85.91$& $  8.33<\fnl<118.84$\\
+DECaLS South [incl. DEC $< -30$]    &            & $ 56.93$& $ 60.83$& $ 39.20<\fnl< 82.44$& $ 21.30<\fnl<107.53$\\
+    \end{tabular}
+  \end{center}
+\end{table*}
+
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.95\textwidth]{figures/model_dr9.pdf} 
     \caption{Measured power spectrum of the DR9 LRG sample before and after correcting for systematics with their corresponding best fit theory predictions. The shade represents $1\sigma$ error on the mean power spectrum of mocks.}
     \label{fig:cl_dr9}
 \end{figure*}
 
 \begin{figure*}
+\centering
+    \includegraphics[width=0.95\textwidth]{figures/pdf_dr9vsmocks.pdf} 
+    \caption{}\label{fig:dr9vsmocks}
+\end{figure*}
+
+\begin{figure*}
     \centering
-    \includegraphics[width=0.95\textwidth]{figures/mcmc_dr9.pdf} 
+    \includegraphics[width=0.95\textwidth]{figures/mcmc_dr9methods.pdf} 
     \caption{DR9 LRGs for DESI footprint.}\label{fig:mcmc_dr9}
 \end{figure*}
 
 \begin{figure*}
     \centering
-    \includegraphics[width=0.95\textwidth]{figures/mcmc_dr9_2.pdf} 
-    \caption{DR9 LRGs for each individual imaging survey.}\label{fig:mcmc_dr9_2}
+    \includegraphics[width=0.95\textwidth]{figures/mcmc_dr9regions.pdf} 
+    \caption{DR9 LRGs for each individual imaging survey.}\label{fig:mcmc_dr9reg}
 \end{figure*}
 
-\begin{table*}
-  \begin{center}
-    \caption{Best fit Maximum-A-Posteriori (MAP) and marginalized stats for $\fnl$ from fitting power spectrum of DR9 LRGs for DESI footprint before and after correcting for systematics.}
-    \label{tab:dr9mcmc}
-    \begin{tabular}{lcccccc}
-    \hline
-    \hline
-    & MAP [scipy] & MAP [chain]  &	Mean [chain]	& Median [chain] &	16th	& 84th \\
-    \hline
-No Weight&	248.473520	&248.411797	&248.776187	&248.595088&	242.599638&	254.977561\\
-Baseline	&53.373443	&53.302632	&53.045753	&53.111457	&47.514519	&58.661667\\
-Conservative I	&65.286775	&65.277211	&65.047508&	65.122821&	60.079103&	70.028714\\
-Conservative II	&57.480562	&57.384026	&57.308910&	57.401921&	51.999420&	62.589189\\
-Nonlinear (Cons. II)	&42.845528	&42.682128	&42.255626&	42.360824&	36.203137&	48.370399 \\
-Nonlinear (Depths+EBV)	&51.662924 &	51.553357&	51.246052&	51.351139	 & 45.627949&	56.829878
-
-    \end{tabular}
-  \end{center}
-\end{table*}
-
-
-\begin{table*}
-  \begin{center}
-    \caption{Best fit Maximum-A-Posteriori (MAP) and marginalized stats for $\fnl$ from fitting power spectrum of DR9 LRGs  for different footprints after the nonlinear treatment with Conservative II.}
-    \label{tab:dr9mcmc}
-    \begin{tabular}{lcccccc}
-    \hline
-    \hline
-    & MAP [scipy] & MAP [chain]  &	Mean [chain]	& Median [chain] &	16th	& 84th \\
-    \hline
-BASS+MzLS&	21.249515&	21.157945&	14.725741&	17.215942&	-3.156691&	33.469937\\
-DECaLS North&	56.795210&	56.936222&	55.269142&	55.809133&	43.477820&	67.443802\\
-DECaLS South &	51.334244&	51.166450&	50.637556&	50.878139&	42.450484&	58.794574
-    \end{tabular}
-  \end{center}
-\end{table*}
-
-
-
-
-%
-%fNL = 100	100.853749	100.857356	100.856818	100.857763	100.306626	101.406558
+\begin{figure}
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/mcmc_dr9_cutdec.pdf}     
+    \caption{Impact of cutting out spurious islands in DECaLS North and DEC < -30 in DECaLS South.}\label{fig:mcmc_dr9cuts}
+\end{figure}

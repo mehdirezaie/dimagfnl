@@ -1,6 +1,6 @@
 \section{Data}
 \label{sec:data}
-Luminous red galaxies are massive galaxies that lack active star formation and considered as one of the highly biased tracers of large scale structure. They are widely targeted in previous galaxy surveys and their clustering and redshift properties are well known. We use the photometric DESI Luminous Red Galaxies (LRG), selected from the imaging surveys \citep{dey2018overview} using color cuts described in the $g$, $r$, $z$, and $W1$ bands \citep[see,][]{zhou2021clustering}, and summarized in Tab. \ref{tab:ts}. The LRG sample are masked for bright stars and foreground bright galaxies and clusters of galaxies\footnote{See \url{https://www.legacysurvey.org/dr9/bitmasks/}}, and then binned into HEALPix \citep{gorski2005healpix} at $\textsc{nside}=256$ to construct the LRG density field, with an average density of $800$ deg$^{-2}$ with a coverage around $14000$ square degrees of the sky, as shown in Fig. \ref{fig:ng}. The density map is accounted for pixel incompleteness using a catalog of random points with the similar cuts and masks as the LRG sample. 
+Luminous red galaxies are massive galaxies that lack active star formation and considered as one of the highly biased tracers of large scale structure. They are widely targeted in previous galaxy surveys and their clustering and redshift properties are well known. We use the photometric DESI Luminous Red Galaxies (LRG), selected from the imaging surveys \citep{dey2018overview} using color cuts described in the $g$, $r$, $z$, and $W1$ bands \citep[see,][]{zhou2021clustering}, and summarized in Tab. \ref{tab:ts}. The LRG sample are masked for bright stars and foreground bright galaxies and clusters of galaxies\footnote{See \url{https://www.legacysurvey.org/dr9/bitmasks/}}, and then binned into HEALPix \citep{gorski2005healpix} at $\textsc{nside}=256$ to construct the LRG density field, with an average density of $800$ deg$^{-2}$ with a coverage around $14000$ square degrees of the sky, as shown in Fig. \ref{fig:ng}. As discussed in Sec \ref{sec:results}, we find that the spurious islands and regions below Declination of -30 induce systematic shift in $\fnl$ constraints due to potential calibration biases. Therefore, we decide to remove those regions from the DR9 sample. The density map is accounted for pixel incompleteness using a catalog of random points with the similar cuts and masks as the LRG sample. 
 
 We study the correlation between target density field and potential sources of systematic error, mapped into HEALPix similar to the data. The maps considered in this study are stellar density from \mr{Myers et al. (2022)} from Gaia,  Galactic extinction E[B-V] from \cite{schlegel1998maps}, and other systematics properties including survey depth (galaxy depth in grz and PSF depth in W1) and seeing in grz from DESI imaging. Fig. \ref{fig:pcc} shows the Spearman correlation between galaxy density and imaging properties. 
 
@@ -9,7 +9,7 @@ We study the correlation between target density field and potential sources of s
 \begin{figure}
     \centering
     \includegraphics[width=0.45\textwidth]{figures/lrgdens.pdf}
-    \caption{Observed density field of DESI Luminous Red Galaxies DR9 in deg$^{-2}$.}
+    \caption{Observed density field of DESI Luminous Red Galaxies Data Release 9 in deg$^{-2}$. Spurious islands from the North footprint and Declination below $-30$ from the South are dropped from the DR9 sample due to calibration issues.}
     \label{fig:ng}
 \end{figure}
 
@@ -66,6 +66,3 @@ Fig. \ref{fig:nz} shows the redshift distribution of LRGs and the halo bias as a
       \end{tabular}
   \end{center}
 \end{table*}
-
-
-\clearpage
