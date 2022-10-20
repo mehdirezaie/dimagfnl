@@ -6,10 +6,11 @@
 Corner plots of the PNG parameter $\fnl$ and bias coefficient are shown in Fig. \ref{fig:mcmc_mocks} for fitting the mean power spectrum of the mocks, with and without $\fnl$. Maximum-A-Posteriori estimates and marginalized mean, median and $1\sigma$ quantiles are summarized in Tab. \ref{tab:mocksmcmc}. Comparing DECaLS North with sky coverage $0.14$ to full DESI with $0.40$, we find the constraint improve by a factor of $1.9$ which is slightly more than $\sim f_{\rm SKY}^{-1/2}$, 1.7. while As a robustness test, we also fit the mean power spectrum of the $\fnl=100$ mocks using the covariance matrix estimated from the $\fnl=0$ mocks. We find that the constraints improve by a factor of $4.2$, due to a higher signal to noise ratio.
 
 \begin{table*}
-  \begin{center}
-    \caption{Maximum-A-Posteriori (MAP) and marginalized mean estimates for $\fnl$ from fitting the mean power spectrum of the mocks. Degree of freedom is 33 (37 data points - 3 parameters - 1).}
-    \label{tab:mocksmcmc}
-    \begin{tabular}{lllccccc}
+  %\begin{center}
+    \caption{Maximum-A-Posteriori (MAP) and marginalized mean estimates for $\fnl$ from fitting the mean power spectrum of the mocks. Degree of freedom is 33 (37 data points - 3 parameters - 1).}   
+    \label{tab:mocksmcmc}  
+   \centerline{%
+    \begin{tabular}{llllllll}
     \hline
     \hline
 Mock $\fnl$ &  Footprint   &  Observable & 	Best fit  & Mean & $ 68\%$ CL & $ 95\%$ CL & $\chi^{2}$ \\
@@ -25,7 +26,7 @@ $\fnl=0$ & DECaLS South  &                     log$C_{\ell}$ & $  0.87$& $  0.88
 $\fnl=0$ & BASS+MzLS  &  log$C_{\ell}$                       & $  1.07$& $  1.07$& $  0.32<\fnl<  1.82$& $ -0.40<\fnl<  2.55$ &   39.4\\ 
 \hline
     \end{tabular}
-  \end{center}
+    }
 \end{table*}
 
 
@@ -42,10 +43,10 @@ $\fnl=0$ & BASS+MzLS  &  log$C_{\ell}$                       & $  1.07$& $  1.07
 
 \subsection{DR9 LRGs}
 \begin{table*}
-  \begin{center}
     \caption{Maximum-A-Posteriori (MAP) and marginalized mean estimates for $\fnl$ from fitting power spectrum of DR9 LRGs for DESI footprint before and after correcting for systematics. Degree of freedom is 33 (37 data points - 3 parameters - 1).}
     \label{tab:dr9method}
-    \begin{tabular}{llccccc}
+   \centerline{%     
+    \begin{tabular}{llllllll}
     \hline
     \hline
 Footprint   & Method & 	Best fit  & Mean & $ 68\%$ CL & $ 95\%$ CL & $\chi^{2}$ \\
@@ -56,34 +57,16 @@ DESI &Linear (Conservative I)                          & $ 64.46$& $ 66.69$& $ 4
 DESI &Linear (Conservative II)                         & $ 47.62$& $ 49.54$& $ 34.21<\fnl< 64.81$& $ 21.27<\fnl< 82.06$ &   39.6\\
 DESI & Nonlinear (Conservative II)                    & $ 37.15$& $ 38.73$& $ 24.58<\fnl< 52.77$& $ 12.32<\fnl< 68.55$ &   34.6\\
 \hline
-BASS+MzLS & Nonlinear (Cons. II)          & $ 20.06$& $ 24.71$& $ -1.52<\fnl< 51.26$& $-24.95<\fnl< 82.62$ &   35.6\\
-DECaLS North    & Nonlinear (Cons. II)                               & $ 53.33$& $ 58.36$& $ 30.33<\fnl< 86.81$& $  6.45<\fnl<120.93$ &   41.1\\
-DECaLS North   & Nonlinear (Cons. II+CALIBZ+logHI)             & $ 72.10$& $ 78.57$& $ 47.81<\fnl<109.27$& $ 23.22<\fnl<146.65$ &   38.4\\
-DECaLS North [incl. DEC $< -11$] & Nonlinear (Cons. II)                & $ 53.36$& $ 58.27$& $ 30.65<\fnl< 85.91$& $  8.33<\fnl<118.84$ &   40.7\\
-DECaLS South    & Nonlinear (Cons. II)                               & $ 40.61$& $ 43.17$& $ 19.36<\fnl< 68.11$& $ -6.64<\fnl< 96.65$ &   30.2\\
-DECaLS South & Nonlinear (Cons. II+CALIBZ+logHI)            & $ 43.93$& $ 48.74$& $ 23.02<\fnl< 74.64$& $ -0.40<\fnl<105.22$ &   30.8\\
-DECaLS South [incl. DEC $< -30$] & Nonlinear (Cons. II)                & $ 56.93$& $ 60.83$& $ 39.20<\fnl< 82.44$& $ 21.30<\fnl<107.53$ &   23.8\\
-%
-%
-%
-%
-%    
-%DESI & No Weight                               & $147.13$& $150.13$& $127.58<\fnl<172.76$& $108.56<\fnl<197.07$\\
-%\hline
-%DESI &Linear (all maps)                                & $ 46.87$& $ 49.04$& $ 33.97<\fnl< 63.98$& $ 21.21<\fnl< 81.00$\\
-%DESI &Linear (Conservative I)                          & $ 64.46$& $ 66.69$& $ 49.67<\fnl< 83.63$& $ 35.64<\fnl<102.59$\\
-%DESI &Linear (Conservative II)                         & $ 47.62$& $ 49.54$& $ 34.21<\fnl< 64.81$& $ 21.27<\fnl< 82.06$\\
-%DESI &Nonlinear (Conservative II)                    & $ 37.15$& $ 38.73$& $ 24.58<\fnl< 52.77$& $ 12.32<\fnl< 68.55$\\
-%\hline
-%BASS+MzLS & Nonlinear (Cons. II)    & $ 20.06$& $ 24.71$& $ -1.52<\fnl< 51.26$& $-24.95<\fnl< 82.62$\\
-%DECaLS North    &Nonlinear (Cons. II)                        & $ 53.33$& $ 58.36$& $ 30.33<\fnl< 86.81$& $  6.45<\fnl<120.93$\\
-%DECaLS North & Nonlinear (Cons. II+CALIBZ+logHI)     & $ 72.10$& $ 78.57$& $ 47.81<\fnl<109.27$& $ 23.22<\fnl<146.65$\\
-%DECaLS North [incl. DEC $< -11$]   &Nonlinear (Cons. II)       & $ 53.36$& $ 58.27$& $ 30.65<\fnl< 85.91$& $  8.33<\fnl<118.84$\\
-%DECaLS South      &Nonlinear (Cons. II)                        & $ 40.61$& $ 43.17$& $ 19.36<\fnl< 68.11$& $ -6.64<\fnl< 96.65$\\
-%DECaLS South & Nonlinear (Cons. II+CALIBZ+logHI)       & $ 43.93$& $ 48.74$& $ 23.02<\fnl< 74.64$& $ -0.40<\fnl<105.22$\\
-%DECaLS South [incl. DEC $ < -30$]  &Nonlinear (Cons. II)          & $ 56.93$& $ 60.83$& $ 39.20<\fnl< 82.44$& $ 21.30<\fnl<107.53$\\
+BASS+MzLS & Nonlin. (Cons. II)          & $ 20.06$& $ 24.71$& $ -1.52<\fnl< 51.26$& $-24.95<\fnl< 82.62$ &   35.6\\
+DECaLS North    & Nonlin. (Cons. II)                               & $ 53.33$& $ 58.36$& $ 30.33<\fnl< 86.81$& $  6.45<\fnl<120.93$ &   41.1\\
+DECaLS North   & Nonlin.(Cons. II+CALIBZ+HI)             & $ 72.10$& $ 78.57$& $ 47.81<\fnl<109.27$& $ 23.22<\fnl<146.65$ &   38.4\\
+DECaLS North [no DEC cut] & Nonlin. (Cons. II)                & $ 53.36$& $ 58.27$& $ 30.65<\fnl< 85.91$& $  8.33<\fnl<118.84$ &   40.7\\
+DECaLS South    & Nonlin.(Cons. II)                               & $ 40.61$& $ 43.17$& $ 19.36<\fnl< 68.11$& $ -6.64<\fnl< 96.65$ &   30.2\\
+DECaLS South & Nonlin. (Cons. II+CALIBZ+HI)            & $ 43.93$& $ 48.74$& $ 23.02<\fnl< 74.64$& $ -0.40<\fnl<105.22$ &   30.8\\
+DECaLS South [no DEC cut] & Nonlin. (Cons. II)                & $ 56.93$& $ 60.83$& $ 39.20<\fnl< 82.44$& $ 21.30<\fnl<107.53$ &   23.8\\
+\hline
     \end{tabular}
-  \end{center}
+}
 \end{table*}
 
 
