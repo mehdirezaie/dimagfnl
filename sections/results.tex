@@ -74,9 +74,17 @@ Contaminated $76.92$ & ConsII+nStar             & $ 37.48$& $ 37.49$& $ 37.09<\f
 \end{table*}
 
 \subsection{DR9 LRGs}
+\subsection{Robustness Tests}
+\subsubsection{Pixel completeness}
+We remove pixels with low completeness from the mask by applying $f_{\rm pix}>0.5$. At the cost of losing $.6\%$ survey area, we find that the $\fnl$ constraint changes only around $2\%$, from 28.58 to 28.07, see \textit{comp cut} Table \ref{tab:dr9method}.
 
 
+\subsubsection{Imaging quality}
+We remove pixels with poor imaging from the mask by applying the following limits on imaging properties; $E[B-V]<0.1$, $nStar < 3000$, $depth_{g} > 23.2$, $depth_{r} > 22.6$, $depth_{z} > 22.5$, $psfsize_{g}<2.5$, $psfsize_{r}<2.5$, and $psfsize_{z}<2$. We lose about $8.2\%$ survey area, and the best fit $\fnl$ estimate changes about $2\%$ from $28.58$ to $29.16$. See \textit{imag cut} in Table \ref{tab:dr9method}.
 
+
+\subsubsection{Covariance}
+The mocks with $\fnl=76.92$ are used to construct a covariance matrix, and with the new covariance we obtain a $12\%$ increase in the $\fnl$ constraint uncertainties and $11\%$ change in the best fit.
 
 \begin{table*}
     \caption{Maximum-A-Posteriori (MAP) and marginalized mean estimates for $\fnl$ from fitting power spectrum of DR9 LRGs before and after correcting for systematics. Degree of freedom is 34 (37 data points - 3 parameters).}
@@ -150,8 +158,15 @@ DECaLS South (comp. cut)  & Nonlin. (Cons. II)& $ 29.62$& $ 31.76$& $ 13.00<\fnl
     \caption{DR9 constraints. Each individual imaging survey versus the whole DESI footprint.}\label{fig:mcmc_dr9reg}
 \end{figure}
 
-\begin{figure*}
+\begin{figure}
     \centering
-    \includegraphics[width=0.95\textwidth]{figures/fnl_elmin.pdf}     
+    \includegraphics[width=0.45\textwidth]{figures/fnl_elmin.pdf}     
     \caption{DR9 Constraints. Mean estimates of $\fnl$ and its $65$\% and $95$\% errorbars after changing the lowest $\ell$ mode used in fitting.}\label{fig:mcmc_dr9elmin}
-\end{figure*}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{figures/fnlbias}
+\caption{True $\fnl$ vs measured $\fnl$ from mocks with (dashed) and without systematics (solid).}
+\end{figure}
