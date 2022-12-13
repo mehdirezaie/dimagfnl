@@ -26,23 +26,21 @@ where $^{*}$ represents the complex conjugate. Then, the angular power spectrum 
 \begin{equation}\label{eq:pusedocell}
         \hat{C}_{\ell} = \frac{1}{2\ell +1} \sum_{m=-\ell}^{\ell} \hat{a}_{\ell m} \hat{a}^{*}_{\ell m}.
 \end{equation}
-In order to extract $\hat{a}_{\ell m}$  and compute the angular power spectrum, $C_{\ell}$, we make use of the ANAFAST function from HEALPix \citep{gorski2005healpix} with the third order iteration of the quadrature to increase the accuracy\footnote{We refer the reader to \url{https://healpix.sourceforge.io/pdf/subroutines.pdf}, p. 104-105.}. Due to the survey geometry implicit in the summation over the non-empty pixels and explicit in $f_{\rm pix, i}$, our estimator does not return an unbiased estimate of power spectrum, and thus the same effect must be accounted in the modeling of power spectrum. We ignore $\ell=0$ and $2$ and bin spectra with $\Delta \ell=10$ up to $\ell_{\rm max}=$\\ 
+In order to extract $\hat{a}_{\ell m}$  and compute the angular power spectrum, $C_{\ell}$, we make use of the ANAFAST function from HEALPix \citep{gorski2005healpix} with the third order iteration of the quadrature to increase the accuracy\footnote{We refer the reader to \url{https://healpix.sourceforge.io/pdf/subroutines.pdf}, p. 104-105.}. Due to the survey geometry implicit in the summation over the non-empty pixels and explicit in $f_{\rm pix, i}$, our estimator does not return an unbiased estimate of power spectrum, and thus the same effect must be accounted in the modeling of power spectrum. Throughout this manuscript, we bin each mode with $\Delta\ell=2$ between $\ell=2$ and $20$ and $\Delta \ell=10$ from $\ell=20$ to $300$, while weighting each mode by $2\ell+1$.\\ 
 
 \subsection{Modeling Power Spectrum}
 The projected angular power spectrum of galaxies in the presence of redshift space distortions and local primordial non-Gaussianity is related to the 3D linear power spectrum $P(k)$ and shotnoise $N_{\rm shot}$ by \citep[see, e.g.,][]{slosar2008constraints},
 \begin{equation}\label{eq:cell}
     C_{\ell} = \frac{2}{\pi}\int_{0}^{\infty}\frac{dk}{k}k^{3}P(k)|\Delta_{\ell}(k)|^{2} + N_{\rm shot},
 \end{equation}
-where $\Delta_{\ell}(k) = \Delta^{\rm g}_{\ell}(k) + \Delta^{\rm RSD}_{\ell}(k) + \Delta^{\rm f_{NL}}_{\ell}(k)$ and,
+where $N_{\rm shot}$ is the scale-independent shotnoise, and $\Delta_{\ell}(k) = \Delta^{\rm g}_{\ell}(k) + \Delta^{\rm RSD}_{\ell}(k) + \Delta^{\rm f_{NL}}_{\ell}(k)$ with,
 \begin{align}
     \Delta^{\rm g}_{\ell}(k) &= \int \frac{dr}{r} r b(r) D(r) \frac{dN}{dr} j_{\ell}(kr),\\
     \Delta^{\rm RSD}_{\ell}(k) &= - \int \frac{dr}{r} r f(r) D(r) \frac{dN}{dr} j^{\prime\prime}_{\ell}(kr),\\
     \Delta^{\rm f_{NL}}_{\ell}(k) &= \fnl \frac{\alpha}{k^{2}T(k)} \int \frac{dr}{r} r [b(r)-p] \frac{dN}{dr} j_{\ell}(kr),
 \end{align}
-where $\alpha=3\delta_{c}\Omega_{M}(H_{0}/c)^{2}$, $b(r)$ is the linear bias, $dN/dr$ is the normalized redshift distribution of galaxies\footnote{$dN/dr = (dN/dz)*(dz/dr) \propto (dN/dz)*H(z)$}, $D(r)$ is the normalized growth factor such that $D(0)=1$, $f(r)$ is the growth rate, and $r$ is the comoving distance. The parameter $p$ is the response of the tracer to halo's gravitational field, e.g., $1$ for luminous red galaxies and $1.6$ for recent mergers. In order to overcome rapid oscillations in spherical Bessel functions, we employ the FFTLog\footnote{\href{https://github.com/xfangcosmo/FFTLog-and-beyond}{github.com/xfangcosmo/FFTLog-and-beyond}} algorithm and its extension as implemented in \cite{fang2020JCAP...05..010F} to compute the inner integrations over $d\ln r$.
+where $\alpha=3\delta_{c}\Omega_{M}(H_{0}/c)^{2}$, $b(r)$ is the linear bias, $dN/dr$ is the normalized redshift distribution of galaxies\footnote{$dN/dr = (dN/dz)*(dz/dr) \propto (dN/dz)*H(z)$}, $\delta_{c}$ is the critical density above which gravitational collapse occurs, $D(r)$ is the normalized growth factor such that $D(0)=1$, $f(r)$ is the growth rate, and $r$ is the comoving distance. The parameter $p$ is the response of the tracer to halo's gravitational field, e.g., $1$ for luminous red galaxies and $1.6$ for recent mergers. In order to overcome rapid oscillations in spherical Bessel functions, we employ the FFTLog\footnote{\href{https://github.com/xfangcosmo/FFTLog-and-beyond}{github.com/xfangcosmo/FFTLog-and-beyond}} algorithm and its extension as implemented in \mr{Fang et al (2020)} to compute the inner integrations over $d\ln r$.
 
-
-\subsubsection{Survey Geometry}
 For a galaxy survey that observes the sky partially, the measured power spectrum is convolved with the survey geometry. This means that the pseudo-power spectrum $\hat{C}_{\ell}$ obtained by the direct Spherical Harmonic Transforms of a partial sky map, differs from the full-sky angular spectrum $C_{\ell}$. However, their ensemble average is related by \citep{hivonmaster2002ApJ...567....2H} 
 
 \begin{equation}
@@ -61,7 +59,6 @@ Next, we normalize $\omega^{\rm window}$ such that it is normalized to one at $\
     \hat{C}^{\rm model}_{\ell} &= 2\pi \int d\theta \hat{\omega}^{\rm model}(\theta)P_{\ell}(\cos \theta).
 \end{align}
 
-\subsubsection{Integral Constraint}
 The integral of the galaxy density contrast $\delta$ on the footprint is bound to zero, which is often referred to as the \textit{Integral Constraint}. We account for this effect in the modeling by,
 \begin{equation}
      \hat{C}^{\rm model, IC}_{\ell} = \hat{C}^{\rm model}_{\ell} - \hat{C}^{\rm model}_{\ell=0} (\frac{\hat{C}^{\rm window}_{\ell}}{\hat{C}^{\rm window}_{\ell=0}})
@@ -81,7 +78,7 @@ The integral of the galaxy density contrast $\delta$ on the footprint is bound t
 \end{figure}
 
 
-\subsection{Characterization of systematic effects}
+\subsection{Characterization of residual systematic error}
 \label{ssec:characterization}
 We use the diagnostic tests presented in \mr{Rezaie et al 2021} based on cross power spectrum between galaxy density field and imaging maps and mean density contrast as a function of imaging properties to quantify the significance of imaging systematic effects. 
 
@@ -96,9 +93,9 @@ and then construct a vector from cross spectra against all other imaging maps:
 \end{equation}
 We bin the $C_{X}$ measurements with $\ell$ edges defined at $2,  10,  18,  26,  40,  60,  80,~{\rm and}~100$. The mean and standard deviation of $\hat{C}_{X, \ell}$ for 1000 mocks with and without $\fnl$ are shown in Fig. \ref{fig:clxmock}.  Finally, cross power spectrum $\chi^{2}$ can be defined as,
 \begin{equation}
-\chi^{2} = C^{T}_{X, \ell} C^{-1} C_{X, \ell},
+\chi^{2} = C^{T}_{X, \ell} \mathbb{C}_{X}^{-1} C_{X, \ell},
 \end{equation}
-where covariance matrix $C = < C_{X, \ell} C_{X, \ell'} >$ is constructed from mocks without systematic effects. This statistics is measured for every mock realization with the leave-one-out technique to construct a histogram, which is then compared to the $\chi^{2}$ value observed from the DR9. 
+where covariance matrix $\mathbb{C}_{X} = < C_{X, \ell} C_{X, \ell'} >$ is constructed from mocks without systematic effects. This statistics is measured for every mock realization with the leave-one-out technique to construct a histogram, which is then compared to the $\chi^{2}$ value observed from the DR9. 
 
 \subsubsection{Mean Density}
 As an alternative test, we calculate the histogram of the density contrast field relative to each imaging map.
@@ -111,9 +108,9 @@ where the summations are over pixels in each bin of imaging map $x$. Similarly, 
 \end{equation}
 and the total residual error as,
 \begin{equation}
-\chi^{2} = \delta_{X}^{T} C^{-1} \delta_{X},
+\chi^{2} = \delta_{X}^{T} \mathbb{C_{\delta}}^{-1} \delta_{X},
 \end{equation}
-where the covariance matrix $C = < \delta_{X} \delta_{X}>$ is constructed from mocks without systematic effects. Fig. \ref{fig:clxmock} shows the cross power spectrum and mean density contrast for the DR9 LRG sample. The shades represent the $1\sigma$ level fluctuations observed in 1000 clean mocks with $\fnl=0$ and $100$.
+where the covariance matrix $\mathbb{C}_{\delta} = < \delta_{X} \delta_{X}>$ is constructed from mocks without systematic effects. Fig. \ref{fig:clxmock} shows the cross power spectrum and mean density contrast for the DR9 LRG sample. The shades represent the $1\sigma$ level fluctuations observed in 1000 clean mocks with $\fnl=0$ and $100$.
 
 \begin{figure*}
 \centering
@@ -128,3 +125,13 @@ where the covariance matrix $C = < \delta_{X} \delta_{X}>$ is constructed from m
 \includegraphics[width=0.45\textwidth]{chi2test2.pdf}
 \caption{Left: Cross power spectrum $\chi^{2}$ diagnostic. Right: Mean density contrast diagnostic. The values observed in DR9 before and after linear and nonlinear treatments are quoted and the histograms are constructed from 1000 realizations of clean mocks with $\fnl=0$ and $100$.}
 \end{figure}
+
+
+\subsection{Parameter estimation}
+We constrain $\fnl$ by maximizing a posterior defined as,
+\begin{equation}
+-2\ln\mathcal{L} = (C(\Theta)-\hat{C})^{\dagger} \mathbb{C}^{-1} (C(\Theta)-\hat{C}) + \chi^{2}_{\rm priors},
+\end{equation}
+where $\Theta$ represents the parameters, $\fnl$, bias at $z=0$, and shotnoise, all of which were associated with a flat prior, $\chi^{2}_{\rm priors}$; $C(\Theta)$ is the (binned) theoretical power spectrum including the effects for survey geometry and integral constraint; $\hat{C}$ is the (binned) measured power spectrum; and $\mathbb{C}$ is the covariance matrix constructed from simulations. 
+
+\clearpage
