@@ -93,13 +93,20 @@ where $\Theta$ represents the parameters, $\fnl$, bias at $z=0$, and shotnoise, 
 
 \subsection{Characterization of residual systematic error}
 \label{ssec:characterization}
-We use the diagnostic tests presented in \mr{Rezaie et al 2021} based on cross power spectrum between galaxy density field and imaging maps and mean density contrast as a function of imaging properties to quantify the significance of imaging systematic effects. 
+We use the diagnostic tests first applied to SDSS data in \cite{rezaie2021primordial} based on cross power spectrum between galaxy density field and imaging maps and mean density contrast as a function of imaging properties to quantify the significance of imaging systematic effects. 
 \begin{figure*}
 \centering
 \includegraphics[width=0.95\textwidth]{clx_mocks.pdf}
+\caption{Residual systematic fluctuations of DR9 LRGs against imaging maps. Left: cross spectrum. Right: mean density contrast. Shades represent $1\sigma$ dispersion of 1000 clean mocks with and without $\fnl$. Solid curve shows the data before applying any weights, while the red dashed shows the data with linear all maps, and blue dot-dashed shows the data with linear cons I, and orange dotted curve shows linear cons II. The nonlinear models are shown with blue dashed and red dot-dashed.}\label{fig:clxmock}
+\end{figure*}
+
+\begin{figure*}
+\centering
 \includegraphics[width=0.95\textwidth]{nbar_mocks.pdf}
 \caption{Residual systematic fluctuations of DR9 LRGs against imaging maps. Left: cross spectrum. Right: mean density contrast. Shades represent $1\sigma$ dispersion of 1000 clean mocks with and without $\fnl$. Solid curve shows the data before applying any weights, while the red dashed shows the data with linear all maps, and blue dot-dashed shows the data with linear cons I, and orange dotted curve shows linear cons II. The nonlinear models are shown with blue dashed and red dot-dashed.}\label{fig:clxmock}
 \end{figure*}
+
+
 
 \subsubsection{Cross Spectrum}
 Taking $C^{g,x}_{\ell}$ as the cross power spectrum between galaxy density contrast field and imaging map, one can normalize this quantity by auto power spectrum of imaging map itself:
@@ -133,12 +140,12 @@ and the total residual error as,
 \end{equation}
 where the covariance matrix $\mathbb{C}_{\delta} = < \delta_{X} \delta_{X}>$ is constructed from mocks without systematic effects. Fig. \ref{fig:clxmock} (bottom) shows the mean density contrast for the DR9 LRG sample. The shades represent the $1\sigma$ level fluctuations observed in 1000 clean mocks with $\fnl=0$ and $100$. Before treatment (solid) shows strong correlation around $10\%$ against depth in the z band which is consistent with the cross power spectrum. Beside that, there are strong positive trends against extinction and stellar density at about $5-6\%$. The linear model is able to mitigate most of the systematic effects with only the extinction and depth-z maps as input, however a new trend appears against psfsize-r which is indicative of psfsize dependence in the sample. This finding is in agreement with the cross power spectrum. Even after applying the linear weights there is some residual against depth-z at around $2\%$, which indicates the systematic effects might be more complex than what can be removed using a linear model. Nonlinear model with three maps (or four maps including the stellar density) is capable of reducing the fluctuations below $2\%$. 
 
-\begin{figure}
+\begin{figure*}
 \centering
 \includegraphics[width=0.45\textwidth]{chi2test.pdf}
 \includegraphics[width=0.45\textwidth]{chi2test2.pdf}
 \caption{Left: Cross power spectrum $\chi^{2}$ diagnostic. Right: Mean density contrast diagnostic. The values observed in DR9 before and after linear and nonlinear treatments are quoted and the histograms are constructed from 1000 realizations of clean mocks with $\fnl=0$ and $76.92$.}\label{fig:chi2test}
-\end{figure}
+\end{figure*}
 
 Fig. \ref{fig:chi2test} (bottom) shows the mean density $\chi^{2}$ observed in the mocks vs DR9 sample before and after applying imaging weights. Linear weights with two maps reduce the chi-2 value from 679.8 (before) to 178.8. The p-value is indicative of remaining systematic effects. Adding psfsize-r does not help much with the p-value even though it reduces the chi-2 to 130. Using all maps with the linear model gives a more reasonable value however it leaves the analysis susceptible to over-fitting true clustering signal. With nonlinear approach two maps as input, the chi-2 is reasonable 74.3 with p-value XXX, and adding the stellar map does not change the p-value much, indicating the trend against stellar density can be explained with the extinction to a great extend. 
 
@@ -147,5 +154,3 @@ Fig. \ref{fig:chi2test} (bottom) shows the mean density $\chi^{2}$ observed in t
 \includegraphics[width=0.45\textwidth]{chi2lmax.pdf}
 \caption{Cross Spectrum $\chi^{2}$ as a function of the highest mode $\ell_{\rm max}$. The lowest mode is $\ell_{\rm min}=2$.}\label{fig:chi2cellextend}
 \end{figure}
-
-\clearpage
