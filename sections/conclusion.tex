@@ -1,4 +1,14 @@
-\section{Conclusion}\label{sec:conclusion}
+\section{Conclusions}\label{sec:conclusion}
+We have presented constraints on $\fnl$ using the scale-dependent bias effect in the large-scale clustering of DESI imaging DR9 LRGs. Methods from linear and nonlinear regressions are applied for data cleaning from foreground and imaging systematic effects. Same tools are tested on lognormal density fields to evaluate the sensitivity of signal to systematic error. As summarized in Table ??, we find that fitting $\log C_{\ell}$ rather than $C_{\ell}$ minimizes the dependence of constraints to the choice of covariance, and we are able to recover the truth $\fnl$ at $95\%$ confidence in both simulations with and without PNG. Table ??? summarizes the constraints from mocks undergone cleaning for systematics. We find that template-based regression removes clustering and thus biased constraints are obtained. We use the mock constraints to calibrate DR9 constraints. We obtain $36.07 (25.03) < \fnl < 61.44(75.64)$ when cleaning is performed with the nonlinear model using only three imaging maps. With more extreme cleaning using all maps and stellar density, we obtain $13.09(-15.95) < \fnl < 69.14(91.84)$ at $68\% (95\%)$.  
+
+Various tests are performed to assess the robustness of constraints against analysis assumptions, and the results are summarized in Table ??. We find
+\begin{itemize}
+\item constraints from individual surveys are consistent with each other
+\item no significant shift observed in constraints after applying imaging cut, completeness cut
+\item no significant shift after including additional imaging templates for hydrogen column density or calibration in the z-band.
+\item region below dec of -30 indicates some issues probably due to unaccounted for calibration issues
+\item constraints are robust against the largest scales (lowest $\ell$ mode) used in fitting for $\fnl$. \mr{Some signs of systematics on $10 < \ell < 18$.}
+\end{itemize}
 %We have performed a thorough study of imaging systematic effects and various template-based mitigation techniques in the final sample of quasars \citep{lyke2020dr16qso, ross2020lss} from the eBOSS DR16 \citep{Ahumada2020ApJS}. We present a nonlinear cleaning approach, based on artificial neural networks, and compare the treatment effectiveness with the standard method, based on linear regression. The methods are applied to model the observed density of quasars given a set of templates for imaging properties, related to SDSS properties and Galactic foregrounds, which include stellar density, Galactic extinction, neutral hydrogen column density, depth, seeing, sky brightness, airmass, and run. As summarized in Tab. \ref{tab:chi2methods},
 %\begin{enumerate}[leftmargin=1\parindent]
 %    \item We find that the neural network-based approach outperforms standard linear regression by allowing more freedom for correcting nonlinear and complex variations in the quasar density caused by imaging properties, see Fig. \ref{fig:nbarmethods} and \ref{fig:data_nbar}. The approach is also further improved by using the Poisson statistics to account for the sparsity of the DR16 sample.
