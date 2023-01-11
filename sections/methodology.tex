@@ -28,38 +28,37 @@ where $^{*}$ represents the complex conjugate. Then, the angular power spectrum 
 \begin{equation}\label{eq:pusedocell}
         \hat{C}_{\ell} = \frac{1}{2\ell +1} \sum_{m=-\ell}^{\ell} \hat{a}_{\ell m} \hat{a}^{*}_{\ell m}.
 \end{equation}
-In order to extract $\hat{a}_{\ell m}$  and compute the angular power spectrum, $C_{\ell}$, the function \texttt{ANAFAST} is called from \textsc{HEALPix} \citep{gorski2005healpix} with the third order iteration of the quadrature to increase the accuracy\footnote{We refer the reader to \url{https://healpix.sourceforge.io/pdf/subroutines.pdf}, p. 104-105.}. Due to the survey geometry implicit in the summation over the non-empty pixels and explicit in $f_{\rm pix, i}$, our estimator does not return an unbiased estimate of power spectrum, as different modes are no longer independent. Therefore, the same effect must be accounted in the modeling of power spectrum.
+In order to extract $\hat{a}_{\ell m}$  and compute the angular power spectrum, $C_{\ell}$, the function \texttt{ANAFAST} is called from \textsc{HEALPix} \citep{gorski2005healpix} with the third order iteration of the quadrature to increase the accuracy\footnote{We refer the reader to \url{https://healpix.sourceforge.io/pdf/subroutines.pdf}, p. 104-105.}. Due to the survey geometry implicit in the summation over the non-empty pixels and explicit in $f_{\rm pix, i}$, our estimator does not return an unbiased estimate of power spectrum, as different harmonic modes are no longer independent. Therefore, we account for the same effect in the modeling of angular power spectrum. The survey geometry treatment is validated against synthetic datasets.
 
 \begin{figure}
 \centering
 \includegraphics[width=0.45\textwidth]{hist_cl.pdf}
-\caption{Distribution of the first bin power spectrum for $\fnl=0$ and $100$ mocks.}\label{fig:histcell}
+\caption{Distribution of the first bin power spectrum constructed from $\fnl=0$ (left) and $76.92$ (right) mocks. Differences in the standard deviations become less significant, and power spectrum measurements follow a more symmetric distribution after the log transformation.}\label{fig:histcell}
 \end{figure}
 
  \subsection{Modeling Power Spectrum}
-The projected angular power spectrum of galaxies in the presence of redshift space distortions and local primordial non-Gaussianity is related to the 3D linear power spectrum $P(k)$ and shotnoise $N_{\rm shot}$ by \citep[see, e.g.,][]{Padmanabhan2007},
+Angular power spectrum is a projection of 3D clustering along the line of sight over all possible wavenumbers $k$. With redshift space distortions included, the projected angular power spectrum of galaxies is related to the 3D linear power spectrum $P(k)$ and shotnoise $N_{\rm shot}$ by \citep[see, e.g.,][]{Padmanabhan2007},
 \begin{equation}\label{eq:cell}
     C_{\ell} = \frac{2}{\pi}\int_{0}^{\infty}\frac{dk}{k}k^{3}P(k)|\Delta_{\ell}(k)|^{2} + N_{\rm shot},
 \end{equation}
-where $N_{\rm shot}$ is the scale-independent shotnoise, and $\Delta_{\ell}(k) = \Delta^{\rm g}_{\ell}(k) + \Delta^{\rm RSD}_{\ell}(k)$ with,
+where shotnoise is assumed to scale-independent, and kernel $\Delta_{\ell}(k) = \Delta^{\rm g}_{\ell}(k) + \Delta^{\rm RSD}_{\ell}(k)$ determines how much each wavenumber $k$ contributes to mode $\ell$ by integrating over all comoving distances $r$ and accounting for cosmic growth,
 \begin{align}
     \Delta^{\rm g}_{\ell}(k) &= \int \frac{dr}{r} r b(r) D(r) \frac{dN}{dr} j_{\ell}(kr),\\
     \Delta^{\rm RSD}_{\ell}(k) &= - \int \frac{dr}{r} r f(r) D(r) \frac{dN}{dr} j^{\prime\prime}_{\ell}(kr),
 \end{align}
-where $D(r)$ is the normalized growth factor such that $D(0)=1$, $f(r)$ is the growth rate, $r$ is the comoving distance, $dN/dr$ is the normalized redshift distribution of galaxies\footnote{$dN/dr = (dN/dz)*(dz/dr) \propto (dN/dz)*H(z)$}, $b(r)$ is the linear bias $b$ (see, Fig. \ref{fig:nz}) plus the scale-dependent shift due to PNG (see, Eq. \ref{eq:db}),
+where $D(r)$ is the normalized growth factor such that $D(0)=1$, $f(r)$ is the growth rate, and $dN/dr$ is the normalized redshift distribution of galaxies\footnote{$dN/dr = (dN/dz)*(dz/dr) \propto (dN/dz)*H(z)$} (see, Fig. \ref{fig:nz}). In the presence of local primordial non-Gaussianity, $b(r)$ is the linear bias $b$ (see, Fig. \ref{fig:nz}) plus the scale-dependent shift due to PNG (see, Eq. \ref{eq:db}),
 \begin{equation}
-b(r) = b + 2 (b - p) \fnl \alpha \delta_{c} 
+b(k, r) = b + \frac{2 (b - p) \fnl \delta_{c}}{\alpha (k)},
 \end{equation}
-$\delta_{c}=1.686$ is the critical density above which gravitational collapse occurs \mr{(Fillmore \& Goldreich 1984)}, . The parameter $p$ is the response of the tracer to halo's gravitational field, e.g., $1$ for luminous red galaxies and $1.6$ for recent mergers. In order to overcome rapid oscillations in spherical Bessel functions, we employ the FFTLog\footnote{\href{https://github.com/xfangcosmo/FFTLog-and-beyond}{github.com/xfangcosmo/FFTLog-and-beyond}} algorithm and its extension as implemented in \mr{Fang et al (2020)} to compute the inner integrations over $d\ln r$.
+where $\alpha(k) \propto k^{2}$, $\delta_{c}=1.686$ is the critical density above which gravitational collapse occurs \citep{fillmore1984self}, and the parameter $p$ determines the response of the tracer to halo's gravitational field, e.g., $1$ for luminous red galaxies following universality and $1.6$ for tracers that are results of recent mergers like quasars. In order to overcome rapid oscillations in spherical Bessel functions, FFTLog\footnote{\href{https://github.com/xfangcosmo/FFTLog-and-beyond}{github.com/xfangcosmo/FFTLog-and-beyond}} algorithm and its extension as implemented in \cite{fang2020beyond} are employed to evaluate the inner integrations over $d\ln r$.
 
-For a galaxy survey that observes the sky partially, the measured power spectrum is convolved with the survey geometry. This means that the pseudo-power spectrum $\hat{C}_{\ell}$ obtained by the direct Spherical Harmonic Transforms of a partial sky map, differs from the full-sky angular spectrum $C_{\ell}$. However, their ensemble average is related by \citep{hivonmaster2002ApJ...567....2H} 
-
+For a galaxy survey that observes the sky partially, the measured power spectrum is convolved with the survey geometry. This means that the pseudo-power spectrum $\hat{C}_{\ell}$ obtained by the direct Spherical Harmonic Transforms of a partial sky map, differs from the full-sky angular spectrum $C_{\ell}$. However, their ensemble average is related by a mixing matrix \citep{hivon2002master}, 
 \begin{equation}
     <\hat{C}_{\ell}> = \sum_{\ell^{\prime}} M_{\ell \ell^{\prime}}<C_{\ell^{\prime}}>,
 \end{equation}
 where $M_{\ell \ell^{\prime}}$ represents the mode-mode coupling from the partial sky coverage. This is known as the Window Function effect and a proper assessment of this effect is crucial for a robust measurement of the large-scale clustering of galaxies. This window effect is a source of observational systematic error and impacts the measured galaxy clustering, especially on scales comparable to survey size.
 
-We follow a similar approach to that of \citep{chon2004MNRAS.350..914C} to model the window function effect on the theoretical power spectrum $C_{\ell}$ rather than correcting the measured pseudo-power spectrum from data. First, we use \textsc{healpix} to compute the pseudo-power spectrum of the window $\hat{C}^{\rm window}_{\ell}$, which is defined by a mask file in ring ordering format with \textsc{nside}$=256$. Then, we transform it to correlation function by,
+We follow a similar approach to that of \cite{chon2004fast} to model the window function effect on the theoretical power spectrum $C_{\ell}$ rather than correcting the measured pseudo-power spectrum from data. First, we use \textsc{healpix} to compute the pseudo-power spectrum of the window $\hat{C}^{\rm window}_{\ell}$, which is defined by a mask file in ring ordering format with \textsc{nside}$=256$. Then, we transform it to correlation function by,
 
 \begin{equation}
     \omega^{\rm window} (\theta) = \frac{1}{4\pi}\sum_{\ell} (2\ell+1) \hat{C}^{\rm window}_{\ell} P_{\ell}(\cos \theta).
@@ -80,7 +79,7 @@ Fig. \ref{fig:model_mock} shows the mean measured power spectrum of 1000 lognorm
 \begin{figure}
 \centering
 \includegraphics[width=0.45\textwidth]{model_mock.pdf}
-\caption{Mean power spectrum of 1000 mocks with $\fnl=0$ and best fit theoretical prediction after accounting for various theoretical systematic effects.}\label{fig:model_mock}
+\caption{Mean power spectrum of 1000 mocks with $\fnl=0$ and best fit theoretical prediction after accounting for various theoretical systematic effects, namely survey geometry effect and integral constraint. Dark and light shades represent $1\sigma$ error on the mean and one realization, respectively. Bottom panel shows the residual relative to the mean of mocks. No imaging systematic effects are added to these mocks.}\label{fig:model_mock}
 \end{figure}
 
 
@@ -138,7 +137,7 @@ and the total residual error as,
 \begin{equation}
 \chi^{2} = \delta_{X}^{T} \mathbb{C_{\delta}}^{-1} \delta_{X},
 \end{equation}
-where the covariance matrix $\mathbb{C}_{\delta} = < \delta_{X} \delta_{X}>$ is constructed from mocks without systematic effects. Fig. \ref{fig:clxmock} (bottom) shows the mean density contrast for the DR9 LRG sample. The shades represent the $1\sigma$ level fluctuations observed in 1000 clean mocks with $\fnl=0$ and $100$. Before treatment (solid) shows strong correlation around $10\%$ against depth in the z band which is consistent with the cross power spectrum. Beside that, there are strong positive trends against extinction and stellar density at about $5-6\%$. The linear model is able to mitigate most of the systematic effects with only the extinction and depth-z maps as input, however a new trend appears against psfsize-r which is indicative of psfsize dependence in the sample. This finding is in agreement with the cross power spectrum. Even after applying the linear weights there is some residual against depth-z at around $2\%$, which indicates the systematic effects might be more complex than what can be removed using a linear model. Nonlinear model with three maps (or four maps including the stellar density) is capable of reducing the fluctuations below $2\%$. 
+where the covariance matrix $\mathbb{C}_{\delta} = < \delta_{X} \delta_{X}>$ is constructed from mocks without systematic effects. Fig. \ref{fig:clxmock} (bottom) shows the mean density contrast for the DR9 LRG sample. The shades represent the $1\sigma$ level fluctuations observed in 1000 clean mocks with $\fnl=0$ and $76.92$. Before treatment (solid) shows strong correlation around $10\%$ against depth in the z band which is consistent with the cross power spectrum. Beside that, there are strong positive trends against extinction and stellar density at about $5-6\%$. The linear model is able to mitigate most of the systematic effects with only the extinction and depth-z maps as input, however a new trend appears against psfsize-r which is indicative of psfsize dependence in the sample. This finding is in agreement with the cross power spectrum. Even after applying the linear weights there is some residual against depth-z at around $2\%$, which indicates the systematic effects might be more complex than what can be removed using a linear model. Nonlinear model with three maps (or four maps including the stellar density) is capable of reducing the fluctuations below $2\%$. 
 
 \begin{figure*}
 \centering
@@ -152,5 +151,5 @@ Fig. \ref{fig:chi2test} (bottom) shows the mean density $\chi^{2}$ observed in t
 \begin{figure}
 \centering
 \includegraphics[width=0.45\textwidth]{chi2lmax.pdf}
-\caption{Cross Spectrum $\chi^{2}$ as a function of the highest mode $\ell_{\rm max}$. The lowest mode is $\ell_{\rm min}=2$.}\label{fig:chi2cellextend}
+\caption{Cross Spectrum $\chi^{2}$ for DR9 LRG density and imaging maps with linear and nonlinear cleaning (both with conservative II maps) as a function of the highest mode $\ell_{\rm max}$ while the lowest mode is fixed at $\ell_{\rm min}=2$. Solid curve and shade represent the median estimate and $68\%$ confidence constructed from $\fnl=0$ mocks.}\label{fig:chi2cellextend}
 \end{figure}
