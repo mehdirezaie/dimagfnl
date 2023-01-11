@@ -104,11 +104,12 @@ Fig. \ref{fig:cl_dr9} shows the measured power spectrum of DR9 LRGs with differe
     \label{fig:cl_dr9}
 \end{figure}
 
-\begin{figure}
+\begin{figure*}
     \centering
+    \includegraphics[width=0.45\textwidth]{mcmc_dr9methods1d.pdf}
     \includegraphics[width=0.45\textwidth]{figures/mcmc_dr9methods.pdf} 
-    \caption{DR9 constraints. DESI footprint before and after applying various cleaning methods.}\label{fig:mcmc_dr9}
-\end{figure}
+    \caption{1D and 2D $\fnl$ constraints from DR9 LRG sample before and after applying linear and nonlinear cleaning methods.}\label{fig:mcmc_dr9}
+\end{figure*}
 
 $\fnl$ constraints from DR9 LRG sample is summarized in Table \ref{tab:dr9method}. First, we focus on the DESI footprint and then compare constraints obtained from each sub-survey. Fig \ref{fig:mcmc_dr9} shows the 2D constraints with $68\%$ and $95\%$ confidence on $\fnl$ and $b$ for the DESI footprint from the DR9 sample before (no weight) and after applying different cleaning schemes. No weight constraint at $68\%$ is $98.14<\fnl<132.89$ with a best fit of $113.18$ and marginalized mean of $115.49$, and is more than $2\sigma$ off from zero. Applying imaging weights shifts constraints to lower $\fnl$ values, and $b$ is slightly pulled upward since excess clustering due to systematics is removed. Using all maps with the linear model does not change the results, showing that three maps are sufficient at the linear level to mitigate systematics.  As an alternative, using a nonlinear model with three maps shows around $1\sigma$ shift, with $68\%$ confidence at $18.91<\fnl<40.59$, inconsistent with zero for more than $2\sigma$. Adding a template for the local stellar density shift constraints by $1\sigma$, making it consistent with zero. As the most rigorous approach, using all maps and stellar density included results in more than $2\sigma$ shift. We emphasize that these shifts to lower $\fnl$ are somewhat expected as more input maps results in regressing more modes from cosmological clustering signal. Therefore, we use lognormal mocks to calibrate the amount of signal that is removed in each case and attempt to undo the effect.
 
@@ -191,21 +192,11 @@ DECaLS South (comp. cut)       & Nonlin. (Cons. II)& $ 29.62$& $ 31.76$& $ 13.00
 }
 \end{table*}
 
-%\begin{figure}
-%\centering
-%    \includegraphics[width=0.45\textwidth]{figures/pdf_dr9vsmocks.pdf} 
-%    \caption{Best fit $\chi^{2}$ and $\fnl$ from fitting mocks (histograms) and DR9 (vertical line).}\label{fig:dr9vsmocks}
-%\end{figure}
-
 \begin{figure}
     \centering
     \includegraphics[width=0.45\textwidth]{figures/fnl_elmin.pdf}     
     \caption{DR9 Constraints. Mean estimates of $\fnl$ and its $65$\% and $95$\% errorbars after changing the lowest $\ell$ mode used in fitting.}\label{fig:mcmc_dr9elmin}
 \end{figure}
 
-
 \subsubsection{Calibrated constraints}
 Fig \ref{fig:fnlbias} is adapted to debias $\fnl$ constraints. With the corrections applied, we obtain $36.07 (25.03) < \fnl < 61.44(75.64)$ for nonlinear (conservative II), $36.88(24.87) < \fnl < 63.31(77.78)$ for nonlinear (conservative II + nStar), and $13.09(-15.95) < \fnl < 69.14(91.84)$ for nonlinear (all maps + nStar) at $68\% (95\%)$ confidence. 
-
-
-
