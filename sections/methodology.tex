@@ -30,12 +30,6 @@ where $^{*}$ represents the complex conjugate. Then, the angular power spectrum 
 \end{equation}
 In order to extract $\hat{a}_{\ell m}$  and compute the angular power spectrum, $C_{\ell}$, the function \texttt{ANAFAST} is called from \textsc{HEALPix} \citep{gorski2005healpix} with the third order iteration of the quadrature to increase the accuracy\footnote{We refer the reader to \url{https://healpix.sourceforge.io/pdf/subroutines.pdf}, p. 104-105.}. Due to the survey geometry implicit in the summation over the non-empty pixels and explicit in $f_{\rm pix, i}$, our estimator does not return an unbiased estimate of power spectrum, as different harmonic modes are no longer independent. Therefore, we account for the same effect in the modeling of angular power spectrum. The survey geometry treatment is validated against synthetic datasets.
 
-\begin{figure}
-\centering
-\includegraphics[width=0.45\textwidth]{hist_cl.pdf}
-\caption{Distribution of the first bin power spectrum constructed from $\fnl=0$ (left) and $76.92$ (right) mocks. Differences in the standard deviations become less significant, and power spectrum measurements follow a more symmetric distribution after the log transformation.}\label{fig:histcell}
-\end{figure}
-
  \subsection{Modeling Power Spectrum}
 Angular power spectrum is a projection of 3D clustering along the line of sight over all possible wavenumbers $k$. With redshift space distortions included, the projected angular power spectrum of galaxies is related to the 3D linear power spectrum $P(k)$ and shotnoise $N_{\rm shot}$ by \citep[see, e.g.,][]{Padmanabhan2007},
 \begin{equation}\label{eq:cell}
@@ -89,6 +83,13 @@ Signature of local PNG is unique and cannot be reproduced with other cosmologica
 -2\ln\mathcal{L} = (\log C(\Theta)-\log \hat{C})^{\dagger} \mathbb{C}^{-1} (\log C(\Theta)-\log \hat{C}) + \chi^{2}_{\rm priors},
 \end{equation}
 where $\Theta$ represents the parameters, $\fnl$, bias at $z=0$, and shotnoise, all of which are associated with a flat prior, $\chi^{2}_{\rm priors}$; $C(\Theta)$ is the (binned) theoretical power spectrum including the effects for survey geometry and integral constraint; $\hat{C}$ is the (binned) measured power spectrum; and $\mathbb{C}$ is the covariance matrix constructed from simulations. 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{hist_cl.pdf}
+\caption{Distribution of the first bin power spectrum constructed from $\fnl=0$ (left) and $76.92$ (right) mocks. Differences in the standard deviations become less significant, and power spectrum measurements follow a more symmetric distribution after the log transformation.}\label{fig:histcell}
+\end{figure}
+
 
 \subsection{Characterization of residual systematic error}
 \label{ssec:characterization}
