@@ -35,16 +35,16 @@ Angular power spectrum is a projection of 3D clustering along the line of sight 
 \begin{equation}\label{eq:cell}
     C_{\ell} = \frac{2}{\pi}\int_{0}^{\infty}\frac{dk}{k}k^{3}P(k)|\Delta_{\ell}(k)|^{2} + N_{\rm shot},
 \end{equation}
-where shotnoise is assumed to scale-independent, and kernel $\Delta_{\ell}(k) = \Delta^{\rm g}_{\ell}(k) + \Delta^{\rm RSD}_{\ell}(k)$ determines how much each wavenumber $k$ contributes to mode $\ell$ by integrating over all comoving distances $r$ and accounting for cosmic growth,
+where shotnoise is assumed to scale-independent, and kernel $\Delta_{\ell}(k) = \Delta^{\rm g}_{\ell}(k) + \Delta^{\rm RSD}_{\ell}(k)$ determines how much each wavenumber $k$ contributes to mode $\ell$ by integrating over all comoving scales $r$,
 \begin{align}
-    \Delta^{\rm g}_{\ell}(k) &= \int \frac{dr}{r} r b(r) D(r) \frac{dN}{dr} j_{\ell}(kr),\\
+    \Delta^{\rm g}_{\ell}(k) &= \int \frac{dr}{r} r b(r, k) D(r) \frac{dN}{dr} j_{\ell}(kr),\\
     \Delta^{\rm RSD}_{\ell}(k) &= - \int \frac{dr}{r} r f(r) D(r) \frac{dN}{dr} j^{\prime\prime}_{\ell}(kr),
 \end{align}
 where $D(r)$ is the normalized growth factor such that $D(0)=1$, $f(r)$ is the growth rate, and $dN/dr$ is the normalized redshift distribution of galaxies\footnote{$dN/dr = (dN/dz)*(dz/dr) \propto (dN/dz)*H(z)$} (see, Fig. \ref{fig:nz}). In the presence of local primordial non-Gaussianity, $b(r)$ is the linear bias $b$ (see, Fig. \ref{fig:nz}) plus the scale-dependent shift due to PNG (see, Eq. \ref{eq:db}),
 \begin{equation}
-b(k, r) = b + \frac{2 (b - p) \fnl \delta_{c}}{\alpha (k)},
+b(k, r) = b + \frac{2 (b - p) \fnl \delta_{c}}{\alpha (k, r)},
 \end{equation}
-where $\alpha(k) \propto k^{2}$, $\delta_{c}=1.686$ is the critical density above which gravitational collapse occurs \citep{fillmore1984self}, and the parameter $p$ determines the response of the tracer to halo's gravitational field, e.g., $1$ for luminous red galaxies following universality and $1.6$ for tracers that are results of recent mergers like quasars. In order to overcome rapid oscillations in spherical Bessel functions, FFTLog\footnote{\href{https://github.com/xfangcosmo/FFTLog-and-beyond}{github.com/xfangcosmo/FFTLog-and-beyond}} algorithm and its extension as implemented in \cite{fang2020beyond} are employed to evaluate the inner integrations over $d\ln r$.
+where $\alpha(k,r) \propto k^{2}D(r)$, $\delta_{c}=1.686$ is the critical density above which gravitational collapse occurs \citep{fillmore1984self}, and the parameter $p$ determines the response of the tracer to halo's gravitational field, e.g., $1$ for luminous red galaxies following universality and $1.6$ for tracers that are results of recent mergers like quasars. In order to overcome rapid oscillations in spherical Bessel functions, FFTLog\footnote{\href{https://github.com/xfangcosmo/FFTLog-and-beyond}{github.com/xfangcosmo/FFTLog-and-beyond}} algorithm and its extension as implemented in \cite{fang2020beyond} are employed to evaluate the inner integrations over $d\ln r$.
 
 For a galaxy survey that observes the sky partially, the measured power spectrum is convolved with the survey geometry. This means that the pseudo-power spectrum $\hat{C}_{\ell}$ obtained by the direct Spherical Harmonic Transforms of a partial sky map, differs from the full-sky angular spectrum $C_{\ell}$. However, their ensemble average is related by a mixing matrix \citep{hivon2002master}, 
 \begin{equation}
@@ -93,19 +93,35 @@ where $\Theta$ represents the parameters, $\fnl$, bias at $z=0$, and shotnoise, 
 
 \subsection{Characterization of residual systematic error}
 \label{ssec:characterization}
+
+
 We use the diagnostic tests first applied to SDSS data in \cite{rezaie2021primordial} based on cross power spectrum between galaxy density field and imaging maps and mean density contrast as a function of imaging properties to quantify the significance of imaging systematic effects. 
+
 \begin{figure*}
 \centering
-\includegraphics[width=0.95\textwidth]{clx_mocks.pdf}
-\caption{Residual systematic fluctuations of DR9 LRGs against imaging maps. Left: cross spectrum. Right: mean density contrast. Shades represent $1\sigma$ dispersion of 1000 clean mocks with and without $\fnl$. Solid curve shows the data before applying any weights, while the red dashed shows the data with linear all maps, and blue dot-dashed shows the data with linear cons I, and orange dotted curve shows linear cons II. The nonlinear models are shown with blue dashed and red dot-dashed.}\label{fig:clxmock}
+\includegraphics[width=0.75\textwidth]{clx_mocks.pdf}
+\caption{Cross power spectrum between the DR9 LRGs and imaging maps. Dark and light shades represent the $97.5$ percentile of 1000 lognormal mocks without and with PNG, respectively.}\label{fig:clxmock}
 \end{figure*}
 
 \begin{figure*}
 \centering
-\includegraphics[width=0.95\textwidth]{nbar_mocks.pdf}
-\caption{Residual systematic fluctuations of DR9 LRGs against imaging maps. Left: cross spectrum. Right: mean density contrast. Shades represent $1\sigma$ dispersion of 1000 clean mocks with and without $\fnl$. Solid curve shows the data before applying any weights, while the red dashed shows the data with linear all maps, and blue dot-dashed shows the data with linear cons I, and orange dotted curve shows linear cons II. The nonlinear models are shown with blue dashed and red dot-dashed.}\label{fig:clxmock}
+\includegraphics[width=0.75\textwidth]{nbar_mocks.pdf}
+\caption{Mean density contrast of the DR9 LRGs as a function of imaging maps. Dark and light shades represent the $1\sigma$ dispersion of 1000 lognormal mocks without and with PNG, respectively.}\label{fig:nbarmock}
 \end{figure*}
 
+
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{chi2test.pdf}
+\includegraphics[width=0.45\textwidth]{chi2test2.pdf}
+\caption{Top: Cross power spectrum $\chi^{2}$ diagnostic. Bottom: Mean density contrast diagnostic. The values observed in DR9 before and after linear and nonlinear treatments are quoted and the histograms are constructed from 1000 realizations of clean mocks with $\fnl=0$ and $76.92$.}\label{fig:chi2test}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{chi2lmax.pdf}
+\caption{Cross Spectrum $\chi^{2}$ for DR9 LRG density and imaging maps with linear and nonlinear cleaning (both with conservative II maps) as a function of the highest mode $\ell_{\rm max}$ while the lowest mode is fixed at $\ell_{\rm min}=2$. Solid curve and shade represent the median estimate and $68\%$ confidence constructed from $\fnl=0$ mocks.}\label{fig:chi2cellextend}
+\end{figure}
 
 
 \subsubsection{Cross Spectrum}
@@ -140,17 +156,5 @@ and the total residual error as,
 \end{equation}
 where the covariance matrix $\mathbb{C}_{\delta} = < \delta_{X} \delta_{X}>$ is constructed from mocks without systematic effects. Fig. \ref{fig:clxmock} (bottom) shows the mean density contrast for the DR9 LRG sample. The shades represent the $1\sigma$ level fluctuations observed in 1000 clean mocks with $\fnl=0$ and $76.92$. Before treatment (solid) shows strong correlation around $10\%$ against depth in the z band which is consistent with the cross power spectrum. Beside that, there are strong positive trends against extinction and stellar density at about $5-6\%$. The linear model is able to mitigate most of the systematic effects with only the extinction and depth-z maps as input, however a new trend appears against psfsize-r which is indicative of psfsize dependence in the sample. This finding is in agreement with the cross power spectrum. Even after applying the linear weights there is some residual against depth-z at around $2\%$, which indicates the systematic effects might be more complex than what can be removed using a linear model. Nonlinear model with three maps (or four maps including the stellar density) is capable of reducing the fluctuations below $2\%$. 
 
-\begin{figure*}
-\centering
-\includegraphics[width=0.45\textwidth]{chi2test.pdf}
-\includegraphics[width=0.45\textwidth]{chi2test2.pdf}
-\caption{Left: Cross power spectrum $\chi^{2}$ diagnostic. Right: Mean density contrast diagnostic. The values observed in DR9 before and after linear and nonlinear treatments are quoted and the histograms are constructed from 1000 realizations of clean mocks with $\fnl=0$ and $76.92$.}\label{fig:chi2test}
-\end{figure*}
 
 Fig. \ref{fig:chi2test} (bottom) shows the mean density $\chi^{2}$ observed in the mocks vs DR9 sample before and after applying imaging weights. Linear weights with two maps reduce the chi-2 value from 679.8 (before) to 178.8. The p-value is indicative of remaining systematic effects. Adding psfsize-r does not help much with the p-value even though it reduces the chi-2 to 130. Using all maps with the linear model gives a more reasonable value however it leaves the analysis susceptible to over-fitting true clustering signal. With nonlinear approach two maps as input, the chi-2 is reasonable 74.3 with p-value XXX, and adding the stellar map does not change the p-value much, indicating the trend against stellar density can be explained with the extinction to a great extend. 
-
-\begin{figure}
-\centering
-\includegraphics[width=0.45\textwidth]{chi2lmax.pdf}
-\caption{Cross Spectrum $\chi^{2}$ for DR9 LRG density and imaging maps with linear and nonlinear cleaning (both with conservative II maps) as a function of the highest mode $\ell_{\rm max}$ while the lowest mode is fixed at $\ell_{\rm min}=2$. Solid curve and shade represent the median estimate and $68\%$ confidence constructed from $\fnl=0$ mocks.}\label{fig:chi2cellextend}
-\end{figure}

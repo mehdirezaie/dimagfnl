@@ -5,6 +5,13 @@ Luminous red galaxies (LRGs) are massive galaxies that occupy massive halos, lac
 \subsection{DESI Imaging DR9 LRGs}
 We work with the photometric LRGs selected from the DESI Imaging Surveys Data Release 9 \citep[DR9;][]{dey2018overview} using the selection and cuts designed for the DESI 1\% survey \mr{(CITE)}, described as the SV3 selection in more detail in \cite{zhou2022target}. The color-magnitude selection cuts are defined in the $g$, $r$, $z$ bands in the optical and $W1$ band in the infrared frequencies, and summarized in Tab. \ref{tab:ts}. The selection cuts are designed differently for each imaging survey to attain almost uniform target surface density in spite of different survey efficiency and calibration between DECaLS and BASS+MzLS. The implementation of these selection cuts in the DESI data processing pipeline is explained in \cite{myers2022}. Fig. \ref{fig:nz} shows the redshift distribution of the DR9 LRG sample (solid black), which is inferred from the spectroscopic DESI Survey Validation data \mr{(CITE)}, and the evolution of halo bias for the DR9 LRG sample (dashed red) adapted from \cite{zhou2021clustering}, which is consistent with the assumption of a constant clustering amplitude. 
 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/nz_lrg.pdf}
+    \caption{Redshift distribution (solid) and bias evolution (dashed) of DESI LRGs \citep{zhou2021clustering, zhou2022target}. The LRG redshift distribution is deducted from early spectroscopy by DESI and the LRG bias model assumes a constant clustering amplitude.}
+    \label{fig:nz}
+\end{figure}
+
 \begin{table*}
     \caption{Selection criteria for the DESI-like LRG targets \citep{zhou2022target}. Magnitudes are corrected for MW extinction.}
     \label{tab:ts}
@@ -29,23 +36,25 @@ We work with the photometric LRGs selected from the DESI Imaging Surveys Data Re
       }
 \end{table*}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.45\textwidth]{figures/nz_lrg.pdf}
-    \caption{Redshift distribution (solid) and bias evolution (dashed) of DESI LRGs \citep{zhou2021clustering, zhou2022target}. The LRG redshift distribution is deducted from early spectroscopy by DESI and the LRG bias model assumes a constant clustering amplitude.}
-    \label{fig:nz}
-\end{figure}
-
-DESI-like LRGs are selected brighter than the imaging survey depth limits; therefore, the DR9 LRG density field is nearly homogenous unlike the other DESI tracers. To further reduce stellar contamination, the LRG sample is masked rigorously for foreground bright stars, galaxies, and clusters of galaxies\footnote{See the maskbits at \url{https://www.legacysurvey.org/dr9/bitmasks/}}. Then, the sample is binned into \textsc{healpix} \citep{gorski2005healpix} at $\textsc{nside}=256$ to construct the 2D density map with an average surface density of $800$ deg$^{-2}$ with sky coverage around $14000$ square degrees. We correct for the pixel incompleteness and lost areas in the density field of LRGs using a catalog of random points, hereafter referred to as randoms, uniformly scattered over the footprint with the same cuts and masks applied. Fig. \ref{fig:ng} (top) shows observed density field of the DR9 LRGs in deg$^{-2}$ before applying any correction weights to account for imaging systematic effects.
-
 \begin{figure*}
     \centering
-    \includegraphics[width=\textwidth]{figures/dr9data.pdf}
-    \caption{DESI Imaging Legacy Survey Data Release 9 Luminous Red Galaxies and imaging properties \citep{dey2018overview}. Top: Observed target density field in deg$^{-2}$. Spurious disconnected islands from the DECaLS North footprint at Declination below $-11$ and parts of the DECaLS South with Declination below $-30$ are dropped from the DR9 sample due to potential calibration issues. Bottom: Mollweide projections of DR9 catalog imaging properties (depth and psfsize/seeing) and MW foregrounds (extinction and local stellar density) in celestial coordinates.}
+    \includegraphics[width=0.95\textwidth]{figures/dr9data.pdf}
+    \caption{DESI Legacy Imaging Survey Data Release 9 Luminous Red Galaxies and imaging properties \citep{dey2018overview}. Top: Observed target density field in deg$^{-2}$. Spurious disconnected islands from the DECaLS North footprint at Declination below $-11$ and parts of the DECaLS South with Declination below $-30$ are dropped from the DR9 sample due to potential calibration issues. Bottom: Mollweide projections of the DR9 catalog imaging properties (depth and psfsize/seeing) and MW foregrounds (extinction and local stellar density) in celestial coordinates.}
     \label{fig:ng}
 \end{figure*}
 
+DESI-like LRGs are selected brighter than the imaging survey depth limits; therefore, the DR9 LRG density field is nearly homogenous unlike the other DESI tracers. To further reduce stellar contamination, the LRG sample is masked rigorously for foreground bright stars, galaxies, and clusters of galaxies\footnote{See the maskbits at \url{https://www.legacysurvey.org/dr9/bitmasks/}}. Then, the sample is binned into \textsc{healpix} \citep{gorski2005healpix} at $\textsc{nside}=256$ to construct the 2D density map with an average surface density of $800$ deg$^{-2}$ with sky coverage around $14000$ square degrees. We correct for the pixel incompleteness and lost areas in the density field of LRGs using a catalog of random points, hereafter referred to as randoms, uniformly scattered over the footprint with the same cuts and masks applied. Fig. \ref{fig:ng} (top) shows observed density field of the DR9 LRGs in deg$^{-2}$ before applying any correction weights to account for imaging systematic effects.
+
 The DR9 LRG density exhibits large-scale spurious fluctuations, which are likely to be of non-cosmological origin. Specifically, the SGC footprint indicates some systematic under-density while there are some systematic over-density near the boundaries in the NGC. We study the impact of imaging properties as potential sources of systematic error, mapped into \textsc{healpix} at the same \textsc{nside}. Similar to \cite{zhou2022target}, the properties studied in this work are local stellar density constructed from point-like sources with a g-band magnitude in the range $12 \leq g < 17$ from Gaia Data Release 2 \citep[see,][]{gaiadr2, myers2022};  Galactic extinction E[B-V] from \cite{schlegel1998maps}; and other imaging properties include survey depth (galaxy depth in the g, r, and z bands and PSF depth in W1) and seeing in the g, r, and z bands. These maps are produced by making the histograms of randoms (painted with imaging properties) in \textsc{HEALPix} and averaging over randoms in each pixel. Fig. \ref{fig:ng} (bottom) illustrates the imaging templates investigated for potential sources of systematic error, each of which reflect their characteristic large-scale spurious fluctuations. For instance, the under-density with the SGC can be visually correlated with the depth maps, while the over-density in the NGC can be associated visually with the extinction map. There are some disconnected islands, hereafter referred to as \textit{spurious islands}, in the DECaLS North region at Declination below $-11$, which are removed from the main analysis to minimize potential calibration issues. Additionally, some parts of the DECaLS South footprint with Declination below $-30$ are removed from the sample, since similar calibration issues might tamper with our clustering measurement. We discuss how these data cuts influence our $\fnl$ constraints in Section \ref{sec:results}. 
+
+\begin{figure}
+    \includegraphics[width=0.45\textwidth]{figures/pcc.pdf} 
+    \includegraphics[width=0.45\textwidth]{figures/pccx.pdf}     
+    \caption{Top: Pearson correlation coefficient between galaxy density and imaging properties in the three imaging regions. Solid curves represent the $95\%$ of correlation coefficients observed in 100 randomly selected lognormal mock density realizations. Bottom: Pearson correlation matrix from imaging properties for the full DESI footprint.}
+    \label{fig:pcc}
+\end{figure}
+
+
 
 Fig. \ref{fig:pcc} shows the Pearson correlation coefficient between the DR9 LRG density and DESI imaging properties for the three imaging surveys (DECaLS North, DECaLS South, and BASS+MzLS) in the top panel. The horizontal curves are constructed from lognormal simulations (see, subsection \ref{ssec:mocks}) to quantify the significance of correlations. Fig. \ref{fig:pcc} (bottom) shows the correlation matrix among the imaging properties themselves for the full DESI survey. There is a strong correlation between the LRG density and depth maps, and then the second correlated property seems to be Galactic foregrounds. There is a little correlation between the LRG density and the W1 depth and psfsize properties. We observe a significant inner-correlation among the imaging properties themselves, especially between the local stellar density and Milky Way extinction; also, the $r$-band and $g$-band properties are more correlated with each other than with the $z$-band. 
 
@@ -60,21 +69,6 @@ We also investigate whether including external maps for neutral hydrogen column 
 Linear and nonlinear models (approximated using a neural network) are applied to assess the potential of nonlinear systematic error. Parameters of the models are fit by optimizing the negative Poisson log likelihood, $= \sum \lambda - \rho \log(\lambda)$, where the summation runs over pixels, $\rho$ is the galaxy density, and $\lambda$ is either a linear or nonliner model for galaxy density given imaging properties \textbf{x} as input, $\lambda(\textbf{x}) = \log (1+e^{f(\textbf{x})})$. For finding the parameters of the linear model, we perform a Monte Carlo Markov Chain (MCMC) search using the \textsc{emcee} package \mr{(CITE)} and for the nonlinear model we use the implementation from \cite{rezaie2021primordial}; specifically, the nonlinear model is an ensemble of 20 neural network models. Each neural network is constructed with three hidden layers and 20 rectifier units on each layer. Rectifier is identity function for positive input and zero for negative, and it introduces nonlinearities in the neural network. For the linear model we use all data for computing the log of posterior during MCMC while for the nonlinear approach we use $60\%$ of data for training, $20\%$ for validation, and $20\%$ for testing; this is to minimize the chance of over-fitting by the nonlinear model. By changing the permutation of training-testing splits, we test the nonlinear model on entire data. The training is performed for up to 70 training epochs using \textsc{Adam} optimizer, which is a variant of gradient descent, and the learning rate is tuned on the validation set to dynamically varying between $0.001$ and $0.1$, to enable learning robust against local minima. The best model is then selected with the lowest prediction error when applied to the validation set. Finally, we apply the ensemble of 20 best fit models to the test set and average over the predictions to construct the predicted galaxy density maps, which is used as imaging systematic weights to down-weight observed density map for removing imaging systematics. 
 
 Upon the inspection of the predicted density maps, we find that while most of the large-scale spurious fluctuations are explained by just the extinction map and depth in the z band, adding the psfsize in the r band results in finer structure in the predicted density map. Using all maps as input features for regression does not add much information. Comparing linear to nonlinear with the same input maps, we find that the nonlinear approach yields finer structure due to a higher flexibility.  Overall, both models predict higher density near the boundaries where the surveys meet the high extinction regions of Milky Way. These regions are probably contaminated artifacts entering the selection either via the direct stellar contamination or the impact of extinction on colors.
-
-%\begin{figure}
-%    \centering
-%    \includegraphics[width=0.45\textwidth]{figures/npred.pdf}
-%    \caption{Predicted galaxy counts from template regression. Baseline approach uses imaging maps from Zhou et al. (2022): EBV, galaxy depth in rgz, psfdepth in W1, and psfsize in grz. Conservative I uses EBV and galaxy depth in z, and Conservative II uses EBV, galaxy depth in z, and psfsize in r. In all approaches, the models are regressed on BASS+MzLS, DECaLS North, and DECaLS South separately.}
-%    \label{fig:npred}
-%\end{figure}
-
-\begin{figure}
-    \includegraphics[width=0.45\textwidth]{figures/pcc.pdf} 
-    \includegraphics[width=0.45\textwidth]{figures/pccx.pdf}     
-    \caption{Top: Pearson-r correlation coefficient between galaxy density and imaging properties in the three imaging regions. Solid curves represent the range of correlations observed in 100 randomly selected mock density realizations. Bottom: Pearson-r correlation matrix between imaging properties themselves for the full DESI footprint.}
-    \label{fig:pcc}
-\end{figure}
-
 
 \subsection{Synthetic lognormal density fields}\label{ssec:mocks}
 Lognormal distributions are shown to be appropriate for describing matter density fluctuations on large scales \citep{coles1991}. Unlike N-body simulations, the generation of lognormal density fields is rather quick and enables a computationally economic approach to generate a large ensemble of synthetic realizations of galaxy density fields which mimic the redshift and angular distribution of real data. Mocks will enable the validation of analysis software from an end-to-end perspective, and mocks can be used to construct covariance matrices for error estimation and perform statistical tests for characterizing remaining systematic effects. \textsc{FLASK}  \citep[Full-sky Lognormal Astro-fields Simulation Kit;][]{Xavier_2016} is used to generate series of lognormal galaxy density fields with $\fnl=0$ and $76.92$ using a redshift dependent bias $b(z)=1.43/D(z)$. $1000$ realizations are generated for each $\fnl$. The fiducial cosmology to generate the mocks is based on a flat $\Lambda$CDM universe including one massive neutrino with $m_{\nu}=0.06$ eV, and the rest of cosmological parameters are chosen within $68\%$ of the Planck 2018 results \citep{aghanim2020planck},
