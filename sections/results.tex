@@ -46,9 +46,9 @@ Tab. \ref{tab:dr9methodcalib} summarizes the best fit and marginalized mean esti
 
 
 
-\subsubsection{Uncalibrated constraints: robustness tests}
+\subsubsection{Robustness tests}
 
-$\fnl$ constraints from DR9 LRG sample is summarized in Table \ref{tab:dr9method}. First, we focus on the DESI footprint and then compare constraints obtained from each sub-survey. We also evaluate the robustness of constraints against various cuts and configurations. First, we compare how constraints from whole DESI footprint compares to those from each survey individually, namely BASS+MzLS, DECaLS Nouth, and DECaLS South. Fig. \ref{fig:mcmc_dr9reg} shows $68\%$ and $95\%$ confidence on $\fnl$ and $b$ from each individual survey or all combined as DESI. Constraints from all surveys are consistent and agree with each other within $68\%$. Both BASS+MzLS and DECaLS South are consistent with zero PNG, but DECaLS North deviates from zero at more than $2\sigma$. Adding the stellar density template does not change constraints from BASS+MzLS much, but it shifts DECaLS North and DECaLS South by $0.5\sigma$ and $\sigma$, respectively. This might indicate that there are some unresolved issues with stellar contamination in DECaLS North and DECaLS South. We note that differences are more significant when all maps and stellar density are used as input. This is expected as more maps mean the model has more freedom to take out clustering modes.
+These results are subject to mitigation bias. $\fnl$ constraints from DR9 LRG sample is summarized in Table \ref{tab:dr9method}. First, we focus on the DESI footprint and then compare constraints obtained from each sub-survey. We also evaluate the robustness of constraints against various cuts and configurations. First, we compare how constraints from whole DESI footprint compares to those from each survey individually, namely BASS+MzLS, DECaLS Nouth, and DECaLS South. Fig. \ref{fig:mcmc_dr9reg} shows $68\%$ and $95\%$ confidence on $\fnl$ and $b$ from each individual survey or all combined as DESI. Constraints from all surveys are consistent and agree with each other within $68\%$. Both BASS+MzLS and DECaLS South are consistent with zero PNG, but DECaLS North deviates from zero at more than $2\sigma$. Adding the stellar density template does not change constraints from BASS+MzLS much, but it shifts DECaLS North and DECaLS South by $0.5\sigma$ and $\sigma$, respectively. This might indicate that there are some unresolved issues with stellar contamination in DECaLS North and DECaLS South. We note that differences are more significant when all maps and stellar density are used as input. This is expected as more maps mean the model has more freedom to take out clustering modes.
 
 
 \begin{table*}
@@ -180,7 +180,7 @@ Clean $0$ & BASS+MzLS    &  log$C_{\ell}$     & $  0.83$& $  0.82$& $  0.25<\fnl
 \begin{figure}
     \centering
     \includegraphics[width=0.45\textwidth]{figures/mcmc_po100.pdf} 
-    \caption{68\% and 95\% confidence contours from the mean power spectrum of the $\fnl=76.92$ mocks for the DESI footprint. Using the $\log C_{\ell}$ fitting yield constraints that are insensitive to the covariance used. The truth values are represented by vertical and horizontal lines.}\label{fig:mcmc_mocks100}
+    \caption{68\% and 95\% confidence contours of fitting the mean power spectrum or its log transformation from the $\fnl=76.92$ mocks for the DESI footprint. Using the $\log C_{\ell}$ fitting yield constraints that are insensitive to the covariance used. The truth values are represented by vertical and horizontal lines.}\label{fig:mcmc_mocks100}
 \end{figure}
 
 \begin{figure}
@@ -233,5 +233,5 @@ With template based mitigation, the measured power spectrum is biased and the am
 \begin{figure}
 \centering
 \includegraphics[width=0.45\textwidth]{figures/fnlbias}
-\caption{True $\fnl$ vs measured $\fnl$ from mocks with (dashed) and without systematics (solid).}\label{fig:fnlbias}
+\caption{True $\fnl$ vs measured $\fnl$ from the mean of the mocks with (dashed) and without systematics (solid).}\label{fig:fnlbias}
 \end{figure}
