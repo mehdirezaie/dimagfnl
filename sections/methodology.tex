@@ -1,37 +1,37 @@
 \section{Analysis techniques}
 \label{sec:method}
-This section describes the estimator for measuring the angular power spectrum and the methodology for modeling it in the presence of PNG. We also demonstrate how we correct for the effects of survey geometry and integral constraint in the modeling. The statistical tools for measuring the remaining systematic error are also presented. 
+%This section describes the estimator for measuring the angular power spectrum and the methodology for modeling it in the presence of PNG. We also demonstrate how we correct for the effects of survey geometry and integral constraint in the model power spectrum. Finally, we discuss how remaining systematic fluctuations are characterized using the cross-correlation between the LRG density and imaging properties and the mean density contrast of the LRG sample. 
  
  
- \subsection{Measuring Power Spectrum}
-The quantity that carries cosmological information is galaxy density contrast, $\delta$, which in pixel $i$ is constructed as,
+\subsection{Power spectrum estimator}
+For pixel $i$, the density contrast field $\delta_{i}$ is constructed from the observed density of galaxies $\rho_{i}$,
 \begin{align}\label{eq:delta}
-    \hat{\delta}_{i} &= \frac{\rho_{i}}{\hat{\overline{\rho}}} - 1 ,
+    \hat{\delta}_{i} &= \frac{\rho_{i}}{\hat{\overline{\rho}}} - 1,
 \end{align}
-where $\rho$ is the density of galaxies accounted for pixel area $f_{{\rm pix},i}$, which is determined by uniformly distributed random galaxies over footprint, and $\hat{\overline{\rho}}$ is the mean galaxy density directly estimated from the data,
+and $\hat{\overline{\rho}}$ is the mean galaxy density estimated directly from the data,
 \begin{equation}\label{eq:nbar}
-\hat{\overline{\rho}} = \frac{\sum_{i}\rho_{i}f_{{\rm pix},i}}{\sum_{i}f_{{\rm pix},i}}.
+\hat{\overline{\rho}} = \frac{\sum_{i}\rho_{i}f_{{\rm pix},i}}{\sum_{i}f_{{\rm pix},i}},
 \end{equation}
-By definition, Eqs. \ref{eq:delta} and \ref{eq:nbar} ensure that the integral of the observed quantity over the footprint vanishes:
-\begin{align}\label{eq:ic}
-    \sum_{i} \hat{\delta}_{i}~f_{{\rm pix},i} = 0,
-\end{align}
-and this constraint causes an effect commonly referred to as \textit{integral constraint}, which needs to be accounted for in the model. To estimate power spectrum, the galaxy density contrast is expanded in terms of Legendre polynomials,
-\begin{equation}
-        \hat{\delta}_{i} = \sum_{\ell=0}^{\ell_{{\rm max}}}\sum_{m=-\ell}^{\ell} a_{\ell m} Y_{\ell m}(\theta_{i}, \phi_{i}),
+where $f_{{\rm pix},i}$ represents the fractional area of pixel $i$, and is estimated by uniformly distributing random galaxies over the footprint. The angular power spectrum is then defined as the variance of the spherical harmonic transform of the field $\delta_{i}$,
+\begin{equation}\label{eq:pusedocell}
+        \hat{C}_{\ell} = \frac{1}{2\ell +1} \sum_{m=-\ell}^{\ell} |\hat{a}_{\ell m}|^{2},
 \end{equation}
-where $\theta, \phi$ represent the polar and azimuthal angular coordinates of pixel \textit{i} center, respectively. The cutoff at $\ell=\ell_{{\rm max}}$ assumes that modes with $\ell>\ell_{{\rm max}}$ do not contribute significantly to signal power. The  coefficients $a_{\ell m}$ are then obtained by integrating the density contrast field over the total number of non-empty pixels $N_{{\rm pix}}$ and using the orthogonality of Legendre polynomials:
+with,
 \begin{equation}
         \hat{a}_{\ell m} = \frac{4\pi}{N_{{\rm pix}}} \sum_{i=1}^{N_{{\rm pix}}}  \hat{\delta}_{i}~f_{{\rm pix}, i}~ Y^{*}_{\ell m}(\theta_{i}, \phi_{i}),
 \end{equation}
-where $^{*}$ represents the complex conjugate. Then, the angular power spectrum estimator is defined as the variance of  $\hat{a}_{\ell m}$  coefficients:
-\begin{equation}\label{eq:pusedocell}
-        \hat{C}_{\ell} = \frac{1}{2\ell +1} \sum_{m=-\ell}^{\ell} \hat{a}_{\ell m} \hat{a}^{*}_{\ell m}.
-\end{equation}
-In order to extract $\hat{a}_{\ell m}$  and compute the angular power spectrum, $C_{\ell}$, the function \texttt{ANAFAST} is called from \textsc{HEALPix} \citep{gorski2005healpix} with the third order iteration of the quadrature to increase the accuracy\footnote{We refer the reader to \url{https://healpix.sourceforge.io/pdf/subroutines.pdf}, p. 104-105.}. Due to the survey geometry implicit in the summation over the non-empty pixels and explicit in $f_{\rm pix, i}$, our estimator does not return an unbiased estimate of power spectrum, as different harmonic modes are no longer independent. Therefore, we account for the same effect in the modeling of angular power spectrum. The survey geometry treatment is validated against synthetic datasets.
+where $N_{\rm pix}$ is the number of non-empty pixels, and $\theta$ and $\phi$ represent the polar and azimuthal angular coordinates of the center for pixel \textit{i}, respectively. We the implementation of \texttt{anafast} from \citep[\textsc{HEALPix};][]{gorski2005healpix} to measure the angular power spectrum. The power spectrum estimator is biased because of the survey geometry; different harmonic modes are no longer independent and the measured power on scales near the survey size is zero. Later we will describe how we account for the effects in the model power spectrum, and validate the model against the lognormal simulations. 
 
- \subsection{Modeling Power Spectrum}
-Angular power spectrum is a projection of 3D clustering along the line of sight over all possible wavenumbers $k$. With redshift space distortions included, the projected angular power spectrum of galaxies is related to the 3D linear power spectrum $P(k)$ and shotnoise $N_{\rm shot}$ by \citep[see, e.g.,][]{Padmanabhan2007},
+ \subsection{Modeling}
+
+ \begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{model_mock.pdf}
+\caption{Mean power spectrum of the lognormal density fields with $\fnl=0$ and best fit theoretical prediction after accounting for the survey geometry and integral constraint effects. Dark and light shades represent $1\sigma$ error on the mean and one realization, respectively. Bottom panel shows the residual power spectrum relative to the mean power spectrum of the mocks. No imaging systematic effects are added to these mocks.}\label{fig:model_mock}
+\end{figure}
+
+\subsubsection{Power spectrum}
+The angular power spectrum is a projection of the 3D clustering of galaxies along the line of sight over all possible wavenumbers $k$. With redshift space distortions included, the projected angular power spectrum of galaxies is related to the 3D linear power spectrum $P(k)$ and shotnoise $N_{\rm shot}$ by \citep[see, e.g.,][]{Padmanabhan2007},
 \begin{equation}\label{eq:cell}
     C_{\ell} = \frac{2}{\pi}\int_{0}^{\infty}\frac{dk}{k}k^{3}P(k)|\Delta_{\ell}(k)|^{2} + N_{\rm shot},
 \end{equation}
@@ -46,6 +46,7 @@ b(k, r) = b + \frac{2 (b - p) \fnl \delta_{c}}{\alpha (k, r)},
 \end{equation}
 where $\alpha(k,r) \propto k^{2}D(r)$, $\delta_{c}=1.686$ is the critical density above which gravitational collapse occurs \citep{fillmore1984self}, and the parameter $p$ determines the response of the tracer to halo's gravitational field, e.g., $1$ for luminous red galaxies following universality and $1.6$ for tracers that are results of recent mergers like quasars. In order to overcome rapid oscillations in spherical Bessel functions, FFTLog\footnote{\href{https://github.com/xfangcosmo/FFTLog-and-beyond}{github.com/xfangcosmo/FFTLog-and-beyond}} algorithm and its extension as implemented in \cite{fang2020beyond} are employed to evaluate the inner integrations over $d\ln r$.
 
+\subsubsection{Survey geometry and integral constraint}
 For a galaxy survey that observes the sky partially, the measured power spectrum is convolved with the survey geometry. This means that the pseudo-power spectrum $\hat{C}_{\ell}$ obtained by the direct Spherical Harmonic Transforms of a partial sky map, differs from the full-sky angular spectrum $C_{\ell}$. However, their ensemble average is related by a mixing matrix \citep{hivon2002master}, 
 \begin{equation}
     <\hat{C}_{\ell}> = \sum_{\ell^{\prime}} M_{\ell \ell^{\prime}}<C_{\ell^{\prime}}>,
@@ -63,19 +64,16 @@ Next, we normalize $\omega^{\rm window}$ such that it is normalized to one at $\
     \hat{C}^{\rm model}_{\ell} &= 2\pi \int d\theta \hat{\omega}^{\rm model}(\theta)P_{\ell}(\cos \theta).
 \end{align}
 
-The integral of the galaxy density contrast $\delta$ on the footprint is bound to zero, which is often referred to as the \textit{Integral Constraint}. We account for this effect in the modeling by,
+By definition, the integral of the observed density contrast over the footprint vanishes,
+\begin{align}\label{eq:ic}
+    \sum_{i} \hat{\delta}_{i}~f_{{\rm pix},i} = 0,
+\end{align}
+and this boundary condition induces an effect in the measured power spectrum commonly referred to as the \textit{integral constraint}. We account for this effect in the modeling by,
 \begin{equation}
      \hat{C}^{\rm model, IC}_{\ell} = \hat{C}^{\rm model}_{\ell} - \hat{C}^{\rm model}_{\ell=0} (\frac{\hat{C}^{\rm window}_{\ell}}{\hat{C}^{\rm window}_{\ell=0}})
 \end{equation}
 
-Fig. \ref{fig:model_mock} shows the mean measured power spectrum of 1000 lognormal density fields (dashed) and best fit theory prediction. light and dark shades represent the 68\% error on the mean and one single realization, respectively. DESI footprint mask is applied to the mocks, and even though DESI covers around $40\%$ of the sky, but the window effect is affecting modes down to $\ell=200$. On the other hand, integral constraint only alters the power in the first two bins. 
-
-\begin{figure}
-\centering
-\includegraphics[width=0.45\textwidth]{model_mock.pdf}
-\caption{Mean power spectrum of 1000 mocks with $\fnl=0$ and best fit theoretical prediction after accounting for various theoretical systematic effects, namely survey geometry effect and integral constraint. Dark and light shades represent $1\sigma$ error on the mean and one realization, respectively. Bottom panel shows the residual relative to the mean of mocks. No imaging systematic effects are added to these mocks.}\label{fig:model_mock}
-\end{figure}
-
+Fig. \ref{fig:model_mock} shows the mean measured power spectrum of 1000 lognormal density fields (dashed) and best fit theory prediction. light and dark shades represent the 68\% error on the mean and one single realization, respectively. DESI footprint mask is applied to the mocks, and even though DESI covers around $40\%$ of the sky, but the window effect is affecting modes down to $\ell=200$. On the other hand, integral constraint only alters the power in the first two bins.
 
 \subsection{Parameter estimation}
 Signature of local PNG is unique and cannot be reproduced with other cosmological parameters. We allow three parameters to vary; $\fnl$, shotnoise, and bias at $z=0$. Throughout this manuscript, we bin each mode with $\Delta\ell=2$ between $\ell=2$ and $20$ and $\Delta \ell=10$ from $\ell=20$ to $300$, while weighting each mode by $2\ell+1$. We also find that the distribution of power spectrum at the lowest bin, $2\leq \ell < 12$,  is not Gaussian and its standard deviation varies significantly from mocks with $\fnl=0$ to $76.9$ (see, Fig. \ref{fig:histcell}). Therefore, we attempt to fit $\log C_{\ell}$ to make our constraints insensitive to the choice of covariance matrix. The parameter $\fnl$ is constrained by maximizing a posterior defined as,
@@ -86,12 +84,12 @@ where $\Theta$ represents the parameters, $\fnl$, bias at $z=0$, and shotnoise, 
 
 \begin{figure}
 \centering
-\includegraphics[width=0.45\textwidth]{hist_cl.pdf}
-\caption{Distribution of the first bin power spectrum constructed from $\fnl=0$ (left) and $76.92$ (right) mocks. Differences in the standard deviations become less significant, and power spectrum measurements follow a more symmetric distribution after the log transformation.}\label{fig:histcell}
+\includegraphics[width=0.5\textwidth]{hist_cl.pdf}
+\caption{Distribution of the first bin power spectrum and its log transformation from the mocks with $\fnl=0$ (left) and $76.92$ (right). Differences in the standard deviations become less significant, and power spectrum measurements follow a more symmetric distribution after the log transformation.}\label{fig:histcell}
 \end{figure}
 
 
-\subsection{Characterization of residual systematic error}
+\subsection{Remaining systematic errors}
 \label{ssec:characterization}
 
 
@@ -99,32 +97,32 @@ We use the diagnostic tests first applied to SDSS data in \cite{rezaie2021primor
 
 \begin{figure*}
 \centering
-\includegraphics[width=0.75\textwidth]{clx_mocks.pdf}
+\includegraphics[width=0.76\textwidth]{clx_mocks.pdf}
 \caption{Cross power spectra between the DR9 LRG sample and imaging maps. Dark and light shades represent the $97.5$ percentile of 1000 lognormal mocks without and with PNG, respectively.}\label{fig:clxmock}
 \end{figure*}
 
 \begin{figure*}
 \centering
-\includegraphics[width=0.75\textwidth]{nbar_mocks.pdf}
-\caption{Mean density contrast of the DR9 LRGs as a function of imaging maps. Dark and light shades represent the $1\sigma$ dispersion of 1000 lognormal mocks without and with PNG, respectively.}\label{fig:nbarmock}
+\includegraphics[width=0.76\textwidth]{nbar_mocks.pdf}
+\caption{Mean density contrast of the DR9 LRG sample as a function of imaging maps. Dark and light shades represent the $1\sigma$ dispersion of 1000 lognormal mocks without and with PNG, respectively.}\label{fig:nbarmock}
 \end{figure*}
 
 
 \begin{figure}
-\centering
+\raggedleft
 \includegraphics[width=0.45\textwidth]{chi2test.pdf}
-\includegraphics[width=0.45\textwidth]{chi2test2.pdf}
-\caption{Remaining systematic error $\chi^{2}. $Top: Cross power spectrum. Bottom: Mean density contrast. The values observed in the DR9 sample before and after linear and nonlinear treatments are quoted, and the histograms are constructed from 1000 realizations of clean lognormal mocks with $\fnl=0$ and $76.92$.}\label{fig:chi2test}
+\includegraphics[width=0.44\textwidth]{chi2test2.pdf}
+\caption{Remaining systematic error $\chi^{2}$ from the galaxy-imaging cross power spectrum (top) and the mean galaxy density contrast (bottom). The values observed in the DR9 sample before and after linear and nonlinear treatments are quoted, and the histograms are constructed from 1000 realizations of clean lognormal mocks with $\fnl=0$ and $76.92$.}\label{fig:chi2test}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=0.45\textwidth]{chi2lmax.pdf}
-\caption{Cross Spectrum $\chi^{2}$ for DR9 LRG density and imaging maps with linear and nonlinear cleaning (both with conservative II maps) as a function of the highest mode $\ell_{\rm max}$ while the lowest mode is fixed at $\ell_{\rm min}=2$. Solid curve and dark (light) shade represent the median estimate and $68\%$ ($95\%$) confidence constructed from the $\fnl=0$ mocks.}\label{fig:chi2cellextend}
+\includegraphics[width=0.5\textwidth]{chi2lmax.pdf}
+\caption{Cross power spectrum $\chi^{2}$ as a function of the highest mode $\ell_{\rm max}$ for the DR9 LRG sample using the linear and nonlinear imaging weights with the conservative II maps. The lowest mode is fixed at $\ell_{\rm min}=2$. Solid curve and dark (light) shade represent the median estimate and $68\%$ ($95\%$) confidence constructed from the $\fnl=0$ mocks.}\label{fig:chi2cellextend}
 \end{figure}
 
 
-\subsubsection{Cross Spectrum}
+\subsubsection{Cross power spectrum}
 Taking $C^{g,x}_{\ell}$ as the cross power spectrum between galaxy density contrast field and imaging map, one can normalize this quantity by auto power spectrum of imaging map itself:
 \begin{equation}
 \hat{C}_{x, \ell} = \frac{(\hat{C}^{g,x}_{\ell})^{2}}{\hat{C}^{x,x}_{\ell}},
@@ -141,7 +139,7 @@ where covariance matrix $\mathbb{C}_{X} = < C_{X, \ell} C_{X, \ell'} >$ is const
 
 Fig. \ref{fig:chi2test} (top) shows the histogram of cross spectrum $\chi^{2}$ from mocks with and without $\fnl$. Comparing with the data, the residual is 20014.8 before correction, and after applying the first set of weights, it reduces to 375.1 with p-value \mr{XXX}. Adding psfsize-z, the linear model reduces the error dow to 195.9 (\mr{p-value = XXX}). Although using all maps gives the lowest error i.e., 129.2, but it could potentially lead to over-fitting true clustering given how correlated the imaging maps are (see, Fig. \ref{fig:pcc}). On the other hand, the nonlinear method with three maps yields a $\chi^{2}$ value of 79.3 and p-value of XXX, and adding the stellar density map reduces the error to 70.9 (p-value=XXX). This test clearly shows that a nonlinear approach is desired to get a null test. We further test the stability of our results by extending the highest mode from $\ell=20$ to $100$, or fluctuations over scales as small as $1.8$ degrees (see, Fig. \ref{fig:chi2cellextend}). The solid line shows how the median of 1000 mocks changes as the highest $\ell$ increases from $20$ to $100$. The red circles show the chi2 for the linear approach with three maps and the blue crosses show the chi2 for the nonlinear approach with three maps.
 
-\subsubsection{Mean Density}
+\subsubsection{Mean density contrast}
 In the absence of systematic error, the integral of mean density contrast over the footprint should be zero As an alternative test, we calculate the histogram of the density contrast field relative to each imaging map.
 \begin{equation}
 \delta_{x} = ({\hat{\overline{\rho}}})^{-1} \frac{\sum_{i} \rho_{i} f_{{\rm pix}, i}}{\sum_{i} f_{{\rm pix}, i}},

@@ -1,25 +1,25 @@
 \section{Results}\label{sec:results}
 This sections presents the constraint on $\fnl$ from the DR9 LRG sample. The robustness of constraints are tested against various assumptions and details in survey mask, imaging weights, and calibration of data. The default analysis uses the covariance from $\fnl=0$ mocks. We also validate the modeling pipeline and characterize the amount of mitigation bias introduced in $\fnl$ after cleaning for systematics. 
 
-\subsection{DR9 LRGs}
+\subsection{DESI imaging LRG sample}
 
 Fig. \ref{fig:cl_dr9} shows the measured power spectrum of the DESI imaging DR9 LRG sample with different imaging weights applied, the best fit theory predictions, and the mean and 1$\sigma$ error on angular power spectrum measured from the $\fnl=0$ lognormal simulations. Power spectra are similar with differences less than ??\% for small scales ($\ell > 2$), and as we go to larger scales, the differences become more significant. There is a little difference between linear cons II and linear all maps. This proves that our feature selection procedure has worked to identify the important maps. Comparing linear cons I to linear cons II, modes with $6\leq \ell < 10$ are different, indicating scales where psfsize-r is affecting the signal. Comparing nonlinear cons II to linear cons II, modes at the second bin ($4 \leq \ell < 6$) are very different, indicating the nonlinear approach is more flexible to reduce fluctuations on small scales as well large scales. 
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.45\textwidth]{figures/model_dr9.pdf} 
+    \includegraphics[width=0.48\textwidth]{figures/model_dr9.pdf} 
     \caption{Measured power spectrum of the DR9 LRG sample before and after correcting for systematics with their corresponding best fit theory predictions. The shade represents $1\sigma$ error constructed from the $\fnl=0$ mocks.}
     \label{fig:cl_dr9}
 \end{figure}
 
 \subsubsection{Calibrated constraints}
 
-\begin{figure*}
-    \centering
-    \includegraphics[width=0.45\textwidth]{mcmc_dr9methods1d.pdf}
+\begin{figure}
+    \raggedleft
+    \includegraphics[width=0.424\textwidth]{mcmc_dr9methods1d.pdf}
     \includegraphics[width=0.45\textwidth]{figures/mcmc_dr9methods.pdf} 
-    \caption{Calibrated 1D and 2D $\fnl$ constraints from the DR9 LRG sample before and after applying nonlinear cleaning methods. The dark and light 2D contours represent $68\%$ and $95\%$ confidence intervals, respectively.}\label{fig:mcmc_dr9}
-\end{figure*}
+    \caption{Calibrated constrains from the DR9 LRG sample. \textit{Top}: probability distribution for $\fnl$ marginalized over the shotnoise and bias. \textit{Bottom}: probability contours for the bias from the DR9 LRG sample before and after applying nonlinear cleaning methods. The dark and light 2D contours represent $68\%$ and $95\%$ confidence intervals, respectively.}\label{fig:mcmc_dr9}
+\end{figure}
 
 \begin{table*}
     \caption{Calibrated best fit and marginalized mean estimates for $\fnl$ from fitting power spectrum of the DESI DR9 LRG sample before and after correcting for systematics. Degree of freedom is 34 (37 data points - 3 parameters).}
@@ -52,7 +52,7 @@ These results are subject to mitigation bias. $\fnl$ constraints from DR9 LRG sa
 
 
 \begin{table*}
-    \caption{Uncalibrated best fit and marginalized mean estimates for $\fnl$ from fitting power spectrum of DR9 LRGs before and after correcting for systematics. Degree of freedom is 34 (37 data points - 3 parameters).}
+    \caption{Uncalibrated best fit and marginalized mean estimates for $\fnl$ from fitting power spectrum of the DR9 LRG sample before and after correcting for systematics. Degree of freedom is 34 (37 data points - 3 parameters).}
     \label{tab:dr9method}
    \centerline{%     
     \begin{tabular}{llllllll}
@@ -137,9 +137,9 @@ Overall we find that the declination cut is necessary for DECaLS South, while ad
 
 
 
-\subsection{Lognormal Mocks}
+\subsection{Lognormal simulations}
 
-\subsubsection{Clean mocks}
+\subsubsection{Clean density fields}
 Corner plots of the PNG parameter $\fnl$ and bias coefficient are shown in Fig. \ref{fig:mcmc_mocks} for fitting the mean power spectrum of mocks, with and without $\fnl$. Best fit estimates, marginalized mean, $1\sigma$ and $2\sigma$ confidence intervals are summarized in Tab. \ref{tab:mocksmcmc}. Fig \ref{fig:mcmc_mocks} (right) shows confidence contours for different combinations of target variable (e.g., either power spectrum or its log transform) and covariance matrix. First we attempt to understand the impact of covariance on confidence intervals. We fit the mean power spectrum of $\fnl=76.9$ mocks or its log transformation using covariance matrices constructed from the same set of mocks or from the $\fnl=0$ mocks. When covariance is consistent with mean, the difference between fitting power spectrum and log of it is only 2\%. If a wrong covariance is used for the log power, the effect is only $7\%$. However, when mean power spectrum of the $\fnl=76.9$ mocks is fit using the covariance matrix estimated from the $\fnl=0$ mocks, the constraints improve by a factor of $5$, simply due to a false higher signal to noise ratio. Therefore, we argue that fitting logarithm of power spectrum would remove the need for having $\fnl$-dependent covariance matrices and make the constraints less sensitive to covariance construction. Fig. \ref{fig:mcmc_mocks} (left) shows the confidence contours for $\fnl=0$ mocks when fit is done to the log of mean spectra of $\fnl=0$ mocks for the different regions. We find that the underlying true $\fnl$ value is recovered within $2\sigma$ confidence. \mr{Add a paragraph for the constraining power vs fsky}.
 
 Fig \ref{fig:bestfit_mocks} shows the best fit estimates for $b$ vs $\fnl$ for $\fnl=0$ and $=76.92$ mocks in the left and right, respectively. Truth values are represented via the dotted lines. The points are color-coded with the minimum $\chi^{2}$ from fit for each realization. The histograms of best fit $\fnl$ estimates are plotted in the background. We obtain $\fnl=MU\pm STD$ and $=MU\pm STD$ for the left and right panels, respectively.
@@ -193,7 +193,7 @@ Clean $0$ & BASS+MzLS    &  log$C_{\ell}$     & $  0.83$& $  0.82$& $  0.25<\fnl
 
 
 
-\subsubsection{Contaminated mocks}\label{ssec:contmocks}
+\subsubsection{Contaminated density fields}\label{ssec:contmocks}
 \begin{table*}
   %\begin{center}
     \caption{Best fit and marginalized estimates for $\fnl$ from fitting the mean power spectrum of the mocks before and after applying imaging weights. }   
