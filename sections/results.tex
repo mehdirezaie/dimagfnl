@@ -39,17 +39,11 @@ DESI                      & Nonlin. (All Maps+nStar)& $ 49.69$& $ 41.91$& $ 13.1
 }
 \end{table*}
 
-
-Tab. \ref{tab:dr9methodcalib} describes the best fit and marginalized mean estimates of $\fnl$ from fitting the power spectrum of the DR9 LRG sample before and after cleaning with the nonlinear approach given various combinations of imaging templates. All constraints are calibrated for the effect of mitigation bias using the lognormal simulations. With the corrections applied, we obtain $36.08 (25.03) < \fnl < 61.44(75.64)$ with $\chi^{2}=34.6$ for \textit{nonlinear conservative II}, $36.88(24.87) < \fnl < 63.31(77.78)$ with $\chi^{2}=35.2$ for \textit{nonlinear conservative II + nStar}, and $13.10(-15.96) < \fnl < 69.14(91.84)$ with $\chi^{2}=39.5$ for \textit{nonlinear all maps + nStar} at $68\% (95\%)$ confidence over 34 degrees of freedom. \mr{here}
-
-Fig \ref{fig:mcmc_dr9} shows the marginalized probability distribution for $\fnl$ (top) and the $68\%$ and $95\%$ probability contours for the bias parameter and $\fnl$ from the DR9 sample before (\textit{no weight}) and after applying different cleaning schemes. No weight constraint at $68\%$ is $98.14<\fnl<132.89$ with a best fit of $113.18$ and marginalized mean of $115.49$, and is more than $2\sigma$ off from zero. Applying imaging weights shifts constraints to lower $\fnl$ values, and $b$ is slightly pulled upward since excess clustering due to systematics is removed. Using all maps with the linear model does not change the results, showing that three maps are sufficient at the linear level to mitigate systematics.  As an alternative, using a nonlinear model with three maps shows around $1\sigma$ shift, with $68\%$ confidence at $18.91<\fnl<40.59$, inconsistent with zero for more than $2\sigma$. Adding a template for the local stellar density shift constraints by $1\sigma$, making it consistent with zero. As the most rigorous approach, using all maps and stellar density included results in more than $2\sigma$ shift. We emphasize that these shifts to lower $\fnl$ are somewhat expected as more input maps results in regressing more modes from cosmological clustering signal. Therefore, we use lognormal mocks to calibrate the amount of signal that is removed in each case and attempt to undo the effect.
-
+All $\fnl$ constraints presented here are calibrated for the effect of mitigation bias using the lognormal simulations. Tab. \ref{tab:dr9methodcalib} describes the best fit and marginalized mean estimates of $\fnl$ from fitting the power spectrum of the DR9 LRG sample before and after cleaning with the nonlinear approach given various combinations of imaging templates. Fig \ref{fig:mcmc_dr9} shows the marginalized probability distribution for $\fnl$ (top) and the $68\%$ and $95\%$ probability contours for the bias parameter and $\fnl$ from the DR9 sample before (\textit{no weight}) and after applying various imaging weights. With the imaging weights applied, we obtain $36.08 (25.03) < \fnl < 61.44(75.64)$ with $\chi^{2}=34.6$ for \textit{nonlinear conservative II}, $36.88(24.87) < \fnl < 63.31(77.78)$ with $\chi^{2}=35.2$ for \textit{nonlinear conservative II + nStar}, and $13.10(-15.96) < \fnl < 69.14(91.84)$ with $\chi^{2}=39.5$ for \textit{nonlinear all maps + nStar} at $68\% (95\%)$ confidence over 34 degrees of freedom. Overall, we find the maximum likelihood estimates to be consistent between among the various cleaning methods. For the conservative methods, the confidence intervals with or without $nStar$ are consistent and more than $3\sigma$ off from zero. The method \textit{nonlinear all maps+nStar} has asymmetric probability distribution, a larger uncertainty, and consistent with $\fnl=0$ within the $95\%$ confidence interval. For comparison, we obtain $98.14(83.51) < \fnl < 132.89(151.59)$ at $68\% (95\%)$ confidence with $\chi^{2}=44.4$ for the \textit{no weight} approach. The uncalibrated probability contours are presented in Appendix \ref{sec:dr9uncalib}.
 
 
 \subsubsection{Robustness tests}
-
-These results are subject to mitigation bias. $\fnl$ constraints from DR9 LRG sample is summarized in Table \ref{tab:dr9method}. First, we focus on the DESI footprint and then compare constraints obtained from each sub-survey. We also evaluate the robustness of constraints against various cuts and configurations. First, we compare how constraints from whole DESI footprint compares to those from each survey individually, namely BASS+MzLS, DECaLS Nouth, and DECaLS South. Fig. \ref{fig:mcmc_dr9reg} shows $68\%$ and $95\%$ confidence on $\fnl$ and $b$ from each individual survey or all combined as DESI. Constraints from all surveys are consistent and agree with each other within $68\%$. Both BASS+MzLS and DECaLS South are consistent with zero PNG, but DECaLS North deviates from zero at more than $2\sigma$. Adding the stellar density template does not change constraints from BASS+MzLS much, but it shifts DECaLS North and DECaLS South by $0.5\sigma$ and $\sigma$, respectively. This might indicate that there are some unresolved issues with stellar contamination in DECaLS North and DECaLS South. We note that differences are more significant when all maps and stellar density are used as input. This is expected as more maps mean the model has more freedom to take out clustering modes.
-
+Now we proceed to perform some robustness tests and assess how sensitive the $\fnl$ constraints are to the assumptions made in the analysis or the quality cuts applied to the data.  The calibration of mitigation bias for all of these runs is beyond the scope of this work. Therefore, the constraints presented here are subject to the mitigation bias effect. Table \ref{tab:dr9method} describes the uncalibrated $\fnl$ constraints from the DR9 LRG sample. Our tests are as follows:
 
 \begin{table*}
     \caption{Uncalibrated best fit and marginalized mean estimates for $\fnl$ from fitting power spectrum of the DR9 LRG sample before and after correcting for systematics. Degree of freedom is 34 (37 data points - 3 parameters).}
@@ -97,13 +91,14 @@ DECaLS South (comp. cut)       & Nonlin. (Cons. II)& $ 29.62$& $ 31.76$& $ 13.00
 }
 \end{table*}
 
-
 \begin{itemize}
-\item \textbf{Pixel completeness}
-We remove pixels with low completeness from the DESI footprint by applying $f_{\rm pix}>0.5$, and find that the impact is negligible. Specifically, the cut removes \mr{$.6\%$} survey area and causes best fit $\fnl$ shifts only around $2\%$, from 28.58 to 28.07, see \textit{comp cut} Table \ref{tab:dr9method}. When investigated this impact on each region separately, BASS+MzLS increases around $10\%$, DECaLS North decreases $1\%$, and DECaLS South decreases around $5\%$.
+\item \textbf{Imaging regions}: First, we compare how the $\fnl$ constraints from fitting the power spectrum of the whole DESI footprint compares to that from the power spectrum for each sub-survey individually, namely BASS+MzLS, DECaLS North, and DECaLS South. Fig. \ref{fig:mcmc_dr9reg} shows $68\%$ and $95\%$ probability contours on $\fnl$ and $b$ from each individual survey or DESI. The cleaning method here is \textit{nonlinear conservative II}. Overall, we find that the constraints from all imaging surveys are consistent with each other within $68\%$ confidence. Both BASS+MzLS and DECaLS South yield constraints consistent with $\fnl=0$ within $95\%$, but DECaLS North deviates from zero PNG at more than $2\sigma$. 
 
-\item \textbf{Imaging quality}
-We remove pixels with poor imaging from the DESI footprint by applying the following cuts on imaging properties; $E[B-V]<0.1$, $nStar < 3000$, $depth_{g} > 23.2$, $depth_{r} > 22.6$, $depth_{z} > 22.5$, $psfsize_{g}<2.5$, $psfsize_{r}<2.5$, and $psfsize_{z}<2$. Overall the constraints are consistent despite best fit and marginalized mean estimates shift. Quantitatively, we lose about $8.2\%$ survey area, and the best fit $\fnl$ estimate changes about $2\%$ from $28.58$ to $29.16$. See \textit{imag cut} in Table \ref{tab:dr9method}. For BASS+MzLS only, the imaging cut increases the best fit by $62\%$ from $15.43$ to $25.03$. For DECaLS North and DECaLS South, the best fit increases by $5\%$ and $15\%$ respectively.
+\item \textbf{Stellar density template (\textit{nStar})}: Adding the stellar density template (\textit{nonlinear conservative II+ nStar}) does not change the constraints from BASS+MzLS much, but it shifts the $\fnl$ distributions to lower values in DECaLS North and DECaLS South by $0.5\sigma$ and $\sigma$, respectively, reconciling all constraints with $\fnl=0$. This might indicate that there are either some unresolved issues with the stellar contamination in DECaLS North and DECaLS South. Although our mock test indicates that we could expect a mitigation bias around $\Delta \fnl \sim 10-16$. So we can argue that some of the shift in constraints can be associated with the fact that the stellar density template is correlating with large-scale structure. We note that differences are more significant when all maps and stellar density are used as input. This is expected as cleaning the data with more maps is more prone to the over-correction issue.
+
+\item \textbf{Pixel completeness (\textit{comp. cut})}: We discard pixels with $f_{\rm pix} < 0.5$ to assess the effect of partially complete pixels on $\fnl$. The $f_{\rm pix}$ cut removes only $.6\%$ of the survey area. We observe no significant shift in the $\fnl$ constraints. The impact on the best fit $\fnl$ estimate from fitting the DESI power spectrum is negligible. When applied this impact of this cut on each region separately, we find that the BASS+MzLS constraint increases by $\Delta \fnl \sim 10$ while the constraints from DECaLS North and DECaLS South do not show significant changes after this cut.
+
+\item \textbf{Imaging quality (\textit{imag. cut})}: We remove pixels with poor imaging from the DESI footprint by applying the following cuts on imaging properties; $E[B-V]<0.1$, $nStar < 3000$, $depth_{g} > 23.2$, $depth_{r} > 22.6$, $depth_{z} > 22.5$, $psfsize_{g}<2.5$, $psfsize_{r}<2.5$, and $psfsize_{z}<2$. Overall the constraints are consistent despite best fit and marginalized mean estimates shift. Quantitatively, we lose about $8.2\%$ survey area, and the best fit $\fnl$ estimate changes about $2\%$ from $28.58$ to $29.16$. See \textit{imag cut} in Table \ref{tab:dr9method}. For BASS+MzLS only, the imaging cut increases the best fit by $62\%$ from $15.43$ to $25.03$. For DECaLS North and DECaLS South, the best fit increases by $5\%$ and $15\%$ respectively.
 
 \item \textbf{Covariance}
 We now use the mocks with $\fnl=76.92$ to construct a covariance matrix, and with the new covariance we observe a $12\%$ increase in the $\fnl$ constraint uncertainties and $11\%$ increase in the best fit estimate of $\fnl$.
@@ -117,20 +112,17 @@ We decrease the largest mode (or increase the lowest $\ell$) used in estimating 
 
 \end{itemize}
 
-Overall we find that the declination cut is necessary for DECaLS South, while adding external templates for HI and CALIBZ, using a different covariance, or applying imaging and completeness cuts do not alter the constraints significantly.
-
-
 \begin{figure}
     \centering
     \includegraphics[width=0.45\textwidth]{figures/mcmc_dr9regions.pdf} 
     \caption{Uncalibrated 2D constraints from the DR9 LRG sample for each imaging survey compared with that for the whole DESI footprint. The dark and light shades represent the $68\%$ and $95\%$ confidence intervals, respectively.}\label{fig:mcmc_dr9reg}
 \end{figure}
 
-
-
-
 \begin{figure}
     \centering
     \includegraphics[width=0.45\textwidth]{figures/fnl_elmin.pdf}     
     \caption{Robustness of the uncalibrated DR9 constraints w.r.t. the largest scale (lowest $\ell$ mode) used in MCMC regression. Points represent marginalized mean estimates of $\fnl$ and errorbars represent $68$\% confidence.}\label{fig:mcmc_dr9elmin}
 \end{figure}
+
+
+Overall we find that the declination cut is necessary for DECaLS South, while adding external templates for HI and CALIBZ, using a different covariance, or applying imaging and completeness cuts do not alter the constraints significantly.
