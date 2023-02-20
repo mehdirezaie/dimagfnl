@@ -43,7 +43,7 @@ All $\fnl$ constraints presented here are calibrated for the effect of mitigatio
 
 
 \subsubsection{Robustness tests}
-Now we proceed to perform some robustness tests and assess how sensitive the $\fnl$ constraints are to the assumptions made in the analysis or the quality cuts applied to the data.  The calibration of mitigation bias for all of these runs is beyond the scope of this work. Therefore, the constraints presented here are subject to the mitigation bias effect. Table \ref{tab:dr9method} describes the uncalibrated $\fnl$ constraints from the DR9 LRG sample. Our tests are as follows:
+Now we proceed to perform some robustness tests and assess how sensitive the $\fnl$ constraints are to the assumptions made in the analysis or the quality cuts applied to the data. For each case, we retrain the cleaning methods and derive new sets of imaging weights. Similarly, for the cases where a cut is applied on the data, we re-calculate the covariance matrices using the new masked footprint to account for the changes in the window and integral constraint effect. calibrating the mitigation bias for all of these experiments is beyond the scope of this work. Therefore, the $\fnl$ constraints presented here are subject to the mitigation bias effect. Table \ref{tab:dr9method} describes the uncalibrated $\fnl$ constraints from the DR9 LRG sample. Our tests are as follows:
 
 \begin{table*}
     \caption{Uncalibrated best fit and marginalized mean estimates for $\fnl$ from fitting power spectrum of the DR9 LRG sample before and after correcting for systematics. Degree of freedom is 34 (37 data points - 3 parameters).}
@@ -65,7 +65,7 @@ DESI                                    & Nonlin. (Cons. II+nStar)& $ 16.63$& $ 
 DESI                                    & Nonlin. (All Maps+nStar)& $ -5.87$& $ -9.19$& $-21.45<\fnl<  2.40$& $-33.81<\fnl< 12.06$ &   39.5\\
 DESI (imag. cut)                  & Nonlin. (Cons. II)& $ 29.16$& $ 30.57$& $ 19.05<\fnl< 42.18$& $  9.01<\fnl< 54.81$ &   35.8\\
 DESI (comp. cut)                 & Nonlin. (Cons. II)& $ 28.07$& $ 29.48$& $ 18.38<\fnl< 40.50$& $  8.81<\fnl< 53.10$ &   34.5\\
-DESI                                    & Nonlin. (Cons. II)+Cov& $ 31.62$& $ 33.11$& $ 20.94<\fnl< 45.24$& $ 10.56<\fnl< 59.16$ &   33.5\\
+DESI                                    & Nonlin. (Cons. II) + cov& $ 31.62$& $ 33.11$& $ 20.94<\fnl< 45.24$& $ 10.56<\fnl< 59.16$ &   33.5\\
 \hline
 BASS+MzLS                        & Nonlin. (Cons. II)& $ 15.43$& $ 19.01$& $ -1.17<\fnl< 39.43$& $-19.19<\fnl< 63.56$ &   35.6\\
 BASS+MzLS                        & Nonlin. (Cons. II+nStar)& $ 13.12$& $ 15.39$& $ -4.59<\fnl< 35.56$& $-24.88<\fnl< 59.31$ &   34.7\\
@@ -87,36 +87,38 @@ DECaLS South (no DEC cut) & Nonlin. (Cons. II)& $ 43.79$& $ 46.79$& $ 30.16<\fnl
 DECaLS South (imag. cut)        & Nonlin. (Cons. II)& $ 26.47$& $ 23.36$& $  3.18<\fnl< 47.84$& $-57.69<\fnl< 71.39$ &   30.0\\
 DECaLS South (comp. cut)       & Nonlin. (Cons. II)& $ 29.62$& $ 31.76$& $ 13.00<\fnl< 51.58$& $ -9.78<\fnl< 74.28$ &   29.7\\
    \hline
-    \end{tabular}
-}
+    \end{tabular}}
 \end{table*}
 
+
+
 \begin{itemize}
-\item \textbf{Imaging regions}: First, we compare how the $\fnl$ constraints from fitting the power spectrum of the whole DESI footprint compares to that from the power spectrum for each sub-survey individually, namely BASS+MzLS, DECaLS North, and DECaLS South. Fig. \ref{fig:mcmc_dr9reg} shows $68\%$ and $95\%$ probability contours on $\fnl$ and $b$ from each individual survey or DESI. The cleaning method here is \textit{nonlinear conservative II}. Overall, we find that the constraints from all imaging surveys are consistent with each other within $68\%$ confidence. Both BASS+MzLS and DECaLS South yield constraints consistent with $\fnl=0$ within $95\%$, but DECaLS North deviates from zero PNG at more than $2\sigma$. 
 
-\item \textbf{Stellar density template (\textit{nStar})}: Adding the stellar density template (\textit{nonlinear conservative II+ nStar}) does not change the constraints from BASS+MzLS much, but it shifts the $\fnl$ distributions to lower values in DECaLS North and DECaLS South by $0.5\sigma$ and $\sigma$, respectively, reconciling all constraints with $\fnl=0$. This might indicate that there are either some unresolved issues with the stellar contamination in DECaLS North and DECaLS South. Although our mock test indicates that we could expect a mitigation bias around $\Delta \fnl \sim 10-16$. So we can argue that some of the shift in constraints can be associated with the fact that the stellar density template is correlating with large-scale structure. We note that differences are more significant when all maps and stellar density are used as input. This is expected as cleaning the data with more maps is more prone to the over-correction issue.
+\item \textbf{Linear methods}: We find consistent $\fnl$ constraints from \textit{linear all maps} and \textit{linear conservative II} which support the idea that all imaging maps are not needed to completely mitigate systematic effects. We find $\sigma (\fnl) \sim 25$ for the linear methods. 
 
-\item \textbf{Pixel completeness (\textit{comp. cut})}: We discard pixels with $f_{\rm pix} < 0.5$ to assess the effect of partially complete pixels on $\fnl$. The $f_{\rm pix}$ cut removes only $.6\%$ of the survey area. We observe no significant shift in the $\fnl$ constraints. The impact on the best fit $\fnl$ estimate from fitting the DESI power spectrum is negligible. When applied this impact of this cut on each region separately, we find that the BASS+MzLS constraint increases by $\Delta \fnl \sim 10$ while the constraints from DECaLS North and DECaLS South do not show significant changes after this cut.
-
-\item \textbf{Imaging quality (\textit{imag. cut})}: We remove pixels with poor imaging from the DESI footprint by applying the following cuts on imaging properties; $E[B-V]<0.1$, $nStar < 3000$, $depth_{g} > 23.2$, $depth_{r} > 22.6$, $depth_{z} > 22.5$, $psfsize_{g}<2.5$, $psfsize_{r}<2.5$, and $psfsize_{z}<2$. Overall the constraints are consistent despite best fit and marginalized mean estimates shift. Quantitatively, we lose about $8.2\%$ survey area, and the best fit $\fnl$ estimate changes about $2\%$ from $28.58$ to $29.16$. See \textit{imag cut} in Table \ref{tab:dr9method}. For BASS+MzLS only, the imaging cut increases the best fit by $62\%$ from $15.43$ to $25.03$. For DECaLS North and DECaLS South, the best fit increases by $5\%$ and $15\%$ respectively.
-
-\item \textbf{Covariance}
-We now use the mocks with $\fnl=76.92$ to construct a covariance matrix, and with the new covariance we observe a $12\%$ increase in the $\fnl$ constraint uncertainties and $11\%$ increase in the best fit estimate of $\fnl$.
-
-\item \textbf{Lowest $\ell$} 
-We decrease the largest mode (or increase the lowest $\ell$) used in estimating the best fit and $68\%$ confidence intervals. Fig. \ref{fig:mcmc_dr9elmin} illustrates the results for the DESI footprint and how they compared to BASS+MzLS, DECaLS North, or DECaLS South only results. Points represent marginalized mean estimates of $\fnl$ and errorbars represent $68$\% confidence from MCMC results.Overall we find that the constraints are robust against the largest mode.
-
-\item \textbf{External maps} We also derive imaging weights using additional external maps for the neutral hydrogen column density (HI) and magnitude calibration errors in the z band (CALIBZ). With the new weights, we find the best fit estimates increase from $41.02$ to $55.46$ for DECaLS North and from $31.24$ to $33.79$ for DECaLS South.
-
-\item \textbf{Declination cut} Our default analysis do not use the spurious islands in DECaLS North and DECaLS South below DEC = -30 to avoid potential calibration issues. \mr{PANASTARS are used for calibration below DEC of -30.} Without these cuts, best fit $\fnl$ estimates increase from $31.24$ to $43.79$ for DECaLS South and decrease from $41.02$ to $41.05$. This indicates that indeed there is an issue with DECaLS South below DEC of $-30$.
-
-\end{itemize}
+\item \textbf{Imaging regions}: We compare how the $\fnl$ constraints from fitting the power spectrum of the whole DESI footprint compares to that from the power spectrum for each sub-survey individually, namely BASS+MzLS, DECaLS North, and DECaLS South. Fig. \ref{fig:mcmc_dr9reg} shows $68\%$ and $95\%$ probability contours on $\fnl$ and $b$ from each individual region, compared with that from DESI. The cleaning method here is \textit{nonlinear conservative II}. Overall, we find that the constraints from all imaging surveys are consistent with each other within $68\%$ confidence. Both BASS+MzLS and DECaLS South yield constraints consistent with $\fnl=0$ within $95\%$, but DECaLS North deviates from zero PNG at more than $2\sigma$. 
 
 \begin{figure}
     \centering
     \includegraphics[width=0.45\textwidth]{figures/mcmc_dr9regions.pdf} 
     \caption{Uncalibrated 2D constraints from the DR9 LRG sample for each imaging survey compared with that for the whole DESI footprint. The dark and light shades represent the $68\%$ and $95\%$ confidence intervals, respectively.}\label{fig:mcmc_dr9reg}
 \end{figure}
+
+\item \textbf{Stellar density template (\textit{nStar})}: Adding the stellar density template (\textit{nonlinear conservative II+ nStar}) does not change the constraints from BASS+MzLS much, but it shifts the $\fnl$ distributions to lower values in DECaLS North and DECaLS South by $0.5\sigma$ and $\sigma$, respectively, reconciling all constraints with $\fnl=0$. This might indicate that there are either some unresolved issues with the stellar contamination in DECaLS North and DECaLS South. Although our mock test indicates that we could expect a mitigation bias around $\Delta \fnl \sim 10-16$. So we can argue that some of the shift in constraints can be associated with the fact that the stellar density template is correlating with large-scale structure. We note that differences are more significant when all maps and stellar density are used as input. This is expected as cleaning the data with more maps is more prone to the over-correction issue.
+
+\item \textbf{Pixel completeness (\textit{comp. cut})}: We discard pixels with $f_{\rm pix} < 0.5$ from the analysis to assess the effect of partially complete pixels on $\fnl$. The $f_{\rm pix}$ cut removes only $.6\%$ of the survey area, but no changes in the $\fnl$ constraints are observed.
+
+\item \textbf{Imaging quality (\textit{imag. cut})}: Pixels with poor photometry are removed the DR9 sample by applying the following cuts on imaging properties; $E[B-V]<0.1$, $nStar < 3000$, ${\rm depth}_{g} > 23.2$, ${\rm depth}_{r} > 22.6$, ${\rm depth}_{z} > 22.5$, ${\rm psfsize}_{g}<2.5$, ${\rm psfsize}_{r}<2.5$, and ${\rm psfsize}_{z}<2$. Despite losing $8\%$ of the survey area, we find a negligible impact on the best fit $\fnl$ estimate from fitting the DESI power spectrum. When we fit each region separately, we find that the BASS+MzLS constraint increases by $\Delta \fnl \sim 10$ while the constraints from DECaLS North and DECaLS South do not show significant changes after this cut. 
+
+\item \textbf{Covariance matrix (\textit{cov})}: We fit the DR9 power spectrum but use a covariance matrix constructed from the $\fnl=76.92$ mocks. With the new covariance, a $12\%$ increase in the $\sigma \fnl$ is observed. We also find that the best fit and marginalized mean estimates of $\fnl$ increase by $10-11\%$. Overall, we find that the differences are less than the statistical error.
+
+\item \textbf{External maps (\textit{CALIBZ+HI})}: The nonlinear \textit{conservative II} method is re-trained using two additional external maps for the neutral hydrogen column density (HI) and the z-band photometric calibration error (CALIBZ). This test is only performed for the DECaLS region due to the limitation and issues with the maps. With this correction, we find that the best fit $\fnl$ increases from $41.02$ to $55.46$ for DECaLS North and from $31.24$ to $33.79$ for DECaLS South.
+
+\item \textbf{Declination mask (\textit{no DEC cut})}: The fiducial mask removes the spurious islands in DECaLS North and DECaLS South below DEC = -30, where different standard stars are used for photometric calibrations, to avoid potential systematic effects. We analyze the DR9 without these cuts, and find that the best fit and marginalized $\fnl$ mean estimates from DECaLS South shift significantly by $\Delta \fnl \sim 10$ which supports the likelihood of photometric issues in the DECaLS South region below DEC $=-30$. While the constraints from DECaLS North do not change significantly.
+
+\item \textbf{Scale dependence (\textit{varying $\ell_{\rm min}$})}: We decrease the largest scale (or increase the lowest harmonic mode $\ell_{\rm min}$) while fitting the power spectrum. Fig. \ref{fig:mcmc_dr9elmin} illustrates the $\fnl$ results for the DESI, BASS+MzLS, DECaLS North, and DECaLS South regions. The points represent the marginalized mean estimates and the errorbars represent $68$\% confidence derived from MCMC chains. We find noticeable systematic trends in DECaLS North and BASS+MzLS on scales $12<\ell<18$, but the overall constraints are robust against $\ell_{\rm min}$.
+
+\end{itemize}
 
 \begin{figure}
     \centering
@@ -125,4 +127,5 @@ We decrease the largest mode (or increase the lowest $\ell$) used in estimating 
 \end{figure}
 
 
-Overall we find that the declination cut is necessary for DECaLS South, while adding external templates for HI and CALIBZ, using a different covariance, or applying imaging and completeness cuts do not alter the constraints significantly.
+\subsection{Summary}
+In summary, we find that the nonlinear methods outperform the linear methods in removing the excess clustering signal on large scales. Adding the stellar density map results in significant changes, however when accounted for the mitigation bias, all methods recover the same maximum likelihood estimate. With calibration on the lognormal mocks, the conservative approaches that use a small subset of imaging maps show $\fnl$ detection at more than $2\sigma$ confidence. The most flexible nonlinear method with all maps and stellar density returns a bigger associated error is larger and consistent with $\fnl=0$. We also run various tests with cuts on the DR9 sample or changing the configuration or details of the analysis. Overall, we find consistent results across sub imaging surveys within DESI. However, our results show that a declination cut at DEC $=-30$ is necessary for DECaLS South to avoid potential calibration issues. Our analysis does not show a statistical demand for including external templates for HI and CALIBZ, using a different covariance matrix, or imposing additional cuts on the DR9 based on imaging and pixel completeness. We also obtain robust results regardless of the largest scale used for constraining $\fnl$.
