@@ -1342,7 +1342,7 @@ $\reset@font\displaystyle##$\hfil\cr>\cr\approx\cr}}}
  \newcolumntype{.}{D{.}{.}{-1}}
  \newcolumntype{,}{D{,}{,}{2}}
 \fi
-
+\usepackage{xcolor}
 
 %  ****************************************
 %  *    COMMANDS FOR USE WITH MNRAS.BST    *
