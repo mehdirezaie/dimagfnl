@@ -1,14 +1,14 @@
 \section{Results}\label{sec:results}
 \mr{This section presents our $\fnl$ constraints from the DESI LRG targets. The analysis is not carried out blindly. However, the cleaning methods are decided only based on the cross power spectrum and mean density contrast statistics.} 
 
-
-\subsection{DESI imaging LRG sample}
-\begin{figure}
+\begin{figure*}
     \centering
-    \includegraphics[width=0.45\textwidth]{figures/model_dr9.pdf} 
+    \includegraphics[width=0.9\textwidth]{figures/model_dr9.pdf} 
     \caption{The angular power spectrum of the DR9 LRG sample before (\textit{No weight}) and after correcting for imaging systematics using the linear and nonlinear methods with their corresponding best fit theory curves. The solid curve and grey shade respectively represent the mean power spectrum and $68\%$ error from the $\fnl=0$ mocks.}
     \label{fig:cl_dr9}
-\end{figure}
+\end{figure*}
+
+\subsection{DESI imaging LRG sample}
 Figure \ref{fig:cl_dr9} shows the measured power spectrum of the DR9 LRG sample before and after applying imaging weights and the best fit theory curves. The solid line and the grey shade represent respectively the mean power spectrum and 1$\sigma$ error, estimated from the $\fnl=0$ lognormal simulations. The differences between various cleaning methods are significant on large scales ($\ell > 20$), but the small scale clustering measurements are consistent. By comparing \textit{linear two maps} to \textit{linear three maps}, we find that the measured clustering power on modes with $6\leq \ell < 10$ are noticeably different between the two methods. We associate the differences to the additional map for psfsize in the r-band, which is included in \textit{linear three maps}. On other scales, the differences between \textit{linear three maps} and \textit{linear eight maps} are negligible, supporting the idea that our feature selection procedure has been effective in identifying the primary maps which cause the large-scale excess clustering signal. Comparing \textit{nonlinear three maps} to \textit{linear three maps}, we find that the measured spectra on $4 \leq \ell < 6$ are very different, probably indicating some nonlinear spurious fluctuations with large scale characteristics due to extinction. Including stellar density in the nonlinear approach (\textit{nonlinear four maps}) further reduces the excess power relative to the mock power spectrum, in particular on modes between $2\leq \ell < 4$. When calibrated on the lognormal simulations, we find that these differences are recovered after accounting for over-correction. Therefore, we associate this subtraction to over fitting.
 
 
@@ -45,10 +45,10 @@ All $\fnl$ constraints presented here are calibrated for the effect of over corr
 
 
 \subsubsection{Uncalibrated constraints: robustness tests}
-Now we proceed to perform some robustness tests and assess how sensitive the $\fnl$ constraints are to the assumptions made in the analysis or the quality cuts applied to the data. For each case, we re-train the cleaning methods and derive new sets of imaging weights. Accordingly, for the cases where a new survey mask is applied on the data, we re-calculate the covariance matrices using the new survey mask to account for the changes in the survey window and integral constraint effects. Calibrating the mitigation biases for all of these experiments is beyond the scope of this work and redundant, as we are only interested in the relative shift in the $\fnl$ constraints after changing the assumptions. Therefore, the absolute scaling of the $\fnl$ constraints presented here are biased because of the over correction effect. Table \ref{tab:dr9method} summarizes the uncalibrated $\fnl$ constraints from the DR9 LRG sample. Our tests are as follows:
+Now we proceed to perform some robustness tests and assess how sensitive the $\fnl$ constraints are to the assumptions made in the analysis or the quality cuts applied to the data. For each case, we re-train the cleaning methods and derive new sets of imaging weights. Accordingly, for the cases where a new survey mask is applied to the data, we re-calculate the covariance matrices using the new survey mask to account for the changes in the survey window and integral constraint effects. Calibrating the mitigation biases for all of these experiments is beyond the scope of this work and redundant, as we are only interested in the relative shift in the $\fnl$ constraints after changing the assumptions. Therefore, the absolute scaling of the $\fnl$ constraints presented here are biased because of the over correction effect. Table \ref{tab:dr9method} summarizes the uncalibrated $\fnl$ constraints from the DR9 LRG sample. Our tests are as follows:
 
 \begin{table*}
-    \caption{The uncalibrated best fit and marginalized mean estimates for $\fnl$ from fitting power spectrum of the DR9 LRG sample before and after correcting for systematics. Degree of freedom is 34 (37 data points - 3 parameters). The lowest mode is $\ell=2$ and covariance matrix is from the $\fnl=0$ clean mocks (no mitigation) except for the case with '+cov' in which the covariance matrix is from the $\fnl=76.9$ clean mocks (no mitigation).}
+    \caption{The uncalibrated best fit and marginalized mean estimates for $\fnl$ from fitting the power spectrum of the DR9 LRG sample before and after correcting for systematics. The number of degrees of freedom is 34 (37 data points - 3 parameters). The lowest mode is $\ell=2$ and the covariance matrix is from the $\fnl=0$ clean mocks (no mitigation) except for the case with '+cov' in which the covariance matrix is from the $\fnl=76.9$ clean mocks (no mitigation).}
     \label{tab:dr9method}
    \centerline{%     
     \begin{tabular}{llllllll}
@@ -97,12 +97,12 @@ DECaLS South (comp. cut)  & Nonlinear Three Maps& $ 29.62$& $ 31.76$& $ 13.00<\f
     \includegraphics[width=0.45\textwidth]{figures/mcmc_dr9regions.pdf} 
     \caption{The uncalibrated 2D constraints from the DR9 LRG sample for each imaging survey compared with that for the whole DESI footprint. The dark and light shades represent the $68\%$ and $95\%$ confidence intervals, respectively.}\label{fig:mcmc_dr9reg}
 \end{figure}
-\begin{figure}
+\begin{figure*}
     \centering
-    \includegraphics[width=0.45\textwidth]{figures/cldr9_lowell.pdf}
-    \includegraphics[width=0.46\textwidth]{figures/fnl_elmin.pdf}  
-    \caption{Top: The measured power spectra before and after \textit{nonlinear three maps}. The uncalibrated $\fnl$ constraints vs the lowest $\ell$ mode from with the DR9 LRG sample cleaned with \textit{nonlinear three maps}. The points represent marginalized mean estimates of $\fnl$ and error bars represent $68$\% confidence.}\label{fig:mcmc_dr9elmin}
-\end{figure}
+    \includegraphics[width=0.85\textwidth]{figures/cldr9_lowell.pdf}
+    \includegraphics[width=0.86\textwidth]{figures/fnl_elmin.pdf}  
+    \caption{Top: The measured power spectra before and after \textit{nonlinear three maps}. The uncalibrated $\fnl$ constraints vs the lowest $\ell$ mode from the DR9 LRG sample cleaned with \textit{nonlinear three maps}. The points represent marginalized mean estimates of $\fnl$ and error bars represent $68$\% confidence.}\label{fig:mcmc_dr9elmin}
+\end{figure*}
 
 \begin{itemize}[itemindent=*]
 
@@ -120,9 +120,9 @@ DECaLS South (comp. cut)  & Nonlinear Three Maps& $ 29.62$& $ 31.76$& $ 13.00<\f
 
 \item \textbf{External maps (\textit{CALIBZ+HI})}: The neural network five maps correction includes the additional maps for HI and CALIBZ. With this correction, the best fit $\fnl$ increases from $41.02$ to $55.46$ for DECaLS North and from $31.24$ to $33.79$ for DECaLS South, which might suggest that adding HI and CALIBZ increases the input noise, and thus negatively impacts the performance of the neural network model. This test is not performed on BASS+MzLS due to a lack of coverage from the CALIBZ map. 
 
-\item \textbf{Declination mask (\textit{no DEC cut})}: The fiducial mask removes the disconnected islands in DECaLS North and regions with DEC $<-30$ in DECaLS South, where there is a high likelihood of calibration issues as different standard stars are used for photometric calibrations. We analyze our sample without these cuts, and find that the best fit and marginalized $\fnl$ mean estimates from DECaLS South shift significantly to higher values of $\fnl$ by $\Delta \fnl \sim 10$, which supports the issue of photometric systematics in the DECaLS South region below DEC $=-30$. While the constraints from DECaLS North do not change significantly. \bbk{[Did you try cutting out more of DECaLS North, such as everything below the equator?]}
+\item \textbf{Declination mask (\textit{no DEC cut})}: The fiducial mask removes the disconnected islands in DECaLS North and regions with DEC $<-30$ in DECaLS South, where there is a high likelihood of calibration issues as different standard stars are used for photometric calibrations. We analyze our sample without these cuts, and find that the best fit and marginalized $\fnl$ mean estimates from DECaLS South shift significantly to higher values of $\fnl$ by $\Delta \fnl \sim 10$, which supports the issue of photometric systematics in the DECaLS South region below DEC $=-30$. On the other hand, the constraints from DECaLS North do not change significantly, indicating the islands do not induce significant contaminations. \bbk{[Did you try cutting out more of DECaLS North, such as everything below the equator?]}
 
-\item \textbf{Scale dependence (\textit{varying $\ell_{\rm min}$})}: This test decreases the largest scale (i.e., equivalent to increasing the lowest harmonic mode $\ell_{\rm min}$) used while fitting the power spectrum. We expect the effects of imaging systematics decrease as we go to lower $\ell$ modes. Figure \ref{fig:mcmc_dr9elmin} illustrates the power spectra before and after the correction with \textit{nonlinear three maps} in the top panel. The bottom panel shows the marginalized mean and $68\%$ error on $\fnl$ with \textit{nonlinear three maps} for the DESI, BASS+MzLS, DECaLS North, and DECaLS South regions. \mr{ALEX: We find that the mean estimates of $\fnl$ slightly shifts to higher values on scales $12<\ell<18$ in DECaLS North and BASS+MzLS when higher $\ell_{\rm min}$ is used. This is the opposite behavior from what one would expect if there were just a giant systematics induced spike at low $\ell$. So it shows that the issue here is more subtle than what one would have initially suspected.}
+\item \textbf{Scale dependence (\textit{varying $\ell_{\rm min}$})}: We raise the value of the lowest harmonic mode $\ell_{\rm min}$ used for the likelihood evaluation during MCMC. This is equivalent to decreasing the highest scale of measurement in the power spectrum. By doing so, we anticipate a reduction in the impact of imaging systematics on $\fnl$ inference as lower $\ell$ modes are more likely to be contaminated. Figure \ref{fig:mcmc_dr9elmin} illustrates the power spectra before and after the correction with \textit{nonlinear three maps} in the top panel. The bottom panel shows the marginalized mean and $68\%$ error on $\fnl$ with \textit{nonlinear three maps} for the DESI, BASS+MzLS, DECaLS North, and DECaLS South regions. \mr{ALEX: We find that the mean estimates of $\fnl$ slightly shifts to higher values on scales $12<\ell<18$ in DECaLS North and BASS+MzLS when higher $\ell_{\rm min}$ is used. This is the opposite behavior from what one would expect if there were just a giant systematics induced spike at low $\ell$. So it shows that the issue here is more subtle than what one would have initially suspected.}
 
 \end{itemize}
 
