@@ -61,6 +61,13 @@ where $\tilde{C}^{\rm window}$ is the spherical harmonic transform of $\hat{\ome
 The lognormal simulations are used to validate our survey window and integral constraint correction. Figure \ref{fig:model_mock} shows the mean power spectrum of the $\fnl=0$ simulations (dashed) and the best fit theory prediction before and after accounting for the survey mask and integral constraint. The simulations are neither contaminated nor mitigated. The light and dark shades represent the 68\% estimated error on the mean and one single realization, respectively. The DESI mask is applied to the simulations, which covers around $40\%$ of the sky. We find that the survey window effect affects the clustering power on $\ell < 200$ and the integral constraint modulates the clustering power on $\ell < 6$.
 
 \subsection{Parameter estimation}
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.85\textwidth]{hist_cl.pdf}
+\caption{The distribution of the first bin power spectra and its log transformation from the simulations with $\fnl=0$ (left) and $76.92$ (right). The log transformation alleviates the asymmetry in the distributions.}\label{fig:histcell}
+\end{figure*}
+
 Our parameter inference uses standard MCMC sampling. A constant clustering amplitude is assumed for the linear bias of our DESI LRG targets, $b(z) = b/D(z)$. In MCMC, we allow $\fnl$, $N_{\rm shot}$, and $b$ to vary, while all other cosmological parameters are fixed at the fiducial values (see \S \ref{ssec:mocks}). The galaxy power spectrum is divided into a discrete set of bandpower bins with $\Delta\ell=2$ between $\ell=2$ and $20$ and $\Delta \ell=10$ from $\ell=20$ to $300$. Each clustering mode is weighted by $2\ell+1$ when averaging over the modes in each bin.
 
 With the lognormal simulations, we find that the distribution of the power spectrum at the lowest bin, $2\leq \ell < 4$, is asymmetric and its standard deviation varies significantly from the simulations with $\fnl=0$ to those with $76.9$ (Figure \ref{fig:histcell}). Therefore, we attempt to fit the log transformed power spectrum, $\log C_{\ell}$, to make our $\fnl$ constraints less sensitive to the choice of covariance matrix. The parameter $\fnl$ is constrained by minimizing a negative likelihood defined as,
@@ -68,12 +75,6 @@ With the lognormal simulations, we find that the distribution of the power spect
 -2\ln\mathcal{L} = (\log \tilde{C}(\Theta)-\log \tilde{C})^{\dagger} \mathbb{C}^{-1} (\log \tilde{C}(\Theta)-\log \tilde{C}),
 \end{equation}
 where $\Theta$ represents a container for the parameters $\fnl$, $b$, and $N_{\rm shot}$; $\tilde{C}(\Theta)$ is the (binned) expected pseudo-power spectrum; $\tilde{C}$ is the (binned) measured pseudo-power spectrum; and $\mathbb{C}$ is the covariance matrix constructed from the lognormal simulations. Flat priors are implemented for all parameters.
-
-\begin{figure*}
-\centering
-\includegraphics[width=0.85\textwidth]{hist_cl.pdf}
-\caption{The distribution of the first bin power spectra and its log transformation from the simulations with $\fnl=0$ (left) and $76.92$ (right). The log transformation alleviates the asymmetry in the distributions.}\label{fig:histcell}
-\end{figure*}
 
 
 \subsection{Characterization of remaining systematics}
