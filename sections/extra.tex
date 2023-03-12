@@ -4,17 +4,7 @@ We investigate the dependence of statistical significance for the cross power sp
 \begin{figure}
 \centering
 \includegraphics[width=0.45\textwidth]{chi2lmax.pdf}
-\caption{The cross power spectrum $\chi^{2}$ between the DESI targets and imaging maps as a function of the highest mode $\ell_{\rm max}$ for the linear and nonlinear three maps imaging weights. The lowest mode is fixed at $\ell_{\rm min}=2$. Solid curve and dark (light) shade represent the median estimate and $68\%$ ($95\%$) confidence regions from the $\fnl=0$ mocks.}\label{fig:chi2cellextend}
-\end{figure}
-
-
-\section{Uncalibrated constraints from DR9}\label{sec:dr9uncalib}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.45\textwidth]{figures/mcmc_dr9methods1dnoshift.pdf}
-    \caption{Probability distribution of $\fnl$ from the DR9 LRG targets. The distributions are not debiased for over-correction.}
-    \label{fig:mcmcdr9noshift}
+\caption{The cross power spectrum $\chi^{2}$ between the LRG density and imaging systematic maps as a function of the highest mode $\ell_{\rm max}$ when the sample is cleaned with the linear (triangles) and nonlinear (squares) three maps. The lowest mode is fixed at $\ell_{\rm min}=2$. The solid curve and dark (light) shade represent the median value and $68\%$ ($95\%$) confidence regions, estimated from the $\fnl=0$ mocks.}\label{fig:chi2cellextend}
 \end{figure}
 
 
@@ -62,12 +52,12 @@ Clean $0$ & DECaLS South &  log$C_{\ell}$& $  0.67$& $  0.67$& $  0.13<\fnl<  1.
     \caption{68\% and 95\% confidence contours of fitting the mean power spectrum or its log transformation from the $\fnl=76.92$ mocks for the DESI footprint. Using the $\log C_{\ell}$ fitting yield constraints that are insensitive to the covariance used. The truth values are represented by vertical and horizontal lines.}\label{fig:mcmc_mocks100}
 \end{figure}
 
-\begin{figure}
+\begin{figure*}
     \centering
     \includegraphics[width=0.45\textwidth]{figures/bestfit_zero.pdf} 
     \includegraphics[width=0.45\textwidth]{figures/bestfit_po100.pdf}         
-    \caption{Top: 68\% and 95\% confidence contours for $\fnl=0$ (left) and $76.92$ (right) mocks. Using the $\log C_{\ell}$ fitting yield constraints that are insensitive to the covariance used. Bottom: best fit estimates from fitting 1000 lognormal mocks with $\fnl=0$ (left) and $76.92$ (right) in the DESI footprint. The truth values are represented by vertical and horizontal lines.\textcolor{olive}{up and down figures?}}\label{fig:bestfit_mocks}
-\end{figure}
+    \caption{Best fit estimates from fitting 1000 lognormal mocks with $\fnl=0$ (left) and $76.92$ (right) in the DESI footprint. The truth values are represented by vertical and horizontal lines. The truth values are represented by vertical and horizontal lines. \textcolor{olive}{up and down figures?}}\label{fig:bestfit_mocks}
+\end{figure*}
 
 
 
@@ -76,13 +66,13 @@ Clean $0$ & DECaLS South &  log$C_{\ell}$& $  0.67$& $  0.67$& $  0.13<\fnl<  1.
 
 \begin{table*}
   %\begin{center}
-    \caption{Best fit and marginalized estimates for $\fnl$ from fitting the mean power spectrum of the mocks before and after applying imaging weights. }   
+    \caption{Best fit and marginalized estimates for $\fnl$ from fitting the mean power spectrum of the mocks before and after corrections using the nonlinear approach with various combinations of the imaging systematic maps. The estimates are not accounted for over correction, and therefore are subject to mitigation systematics.}   
     \label{tab:contmocksmcmc}  
    \centerline{%
     \begin{tabular}{lllllll}
     \hline
     \hline
-   &  & 	  & & & $\fnl$ &  \\
+   &  & 	   & & $\fnl$ + Mitigation Systematics & & \\
    \cmidrule(r{.7cm}){3-6}    
 Mock / $\fnl$ & Method & Best fit  & Mean & $ 68\%$ CL & $ 95\%$ CL & $\chi^{2}$ \\
     \hline
@@ -106,12 +96,21 @@ Contaminated $76.92$ & Nine Maps        & $  4.59$& $  4.58$& $  4.26<\fnl<  4.9
 \end{table*}
 
 
-\begin{figure}
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/clmocks.pdf}
+    \caption{The mean power spectrum of the $\fnl =0$ and $76.9$ mocks with (dashed) and without (solid) imaging systematics before and after applying the nonlinear cleaning method with three, four, and nine maps.}
+\end{figure*}
+
+\begin{figure*}
 \centering
 \includegraphics[width=0.45\textwidth]{figures/mcmc_cont.pdf}
 \includegraphics[width=0.45\textwidth]{figures/mcmc_contnoshift.pdf}
-\caption{Probability distributions of $\fnl$ from the mean power spectrum of the $\fnl=0$ mocks before and after mitigation with nonlinear methods. Top: The mitigated posteriors are debiased for the over correction effect. Bottom: The distribtions of mitigated cases are biased because of over correction.}\label{fig:contmcmc}
-\end{figure}
+\includegraphics[width=0.45\textwidth]{figures/mcmcp_cont.pdf}
+\includegraphics[width=0.45\textwidth]{figures/mcmcp_contnoshift.pdf}
+\caption{Probability distributions of $\fnl$ from the mean power spectrum of the $\fnl=0$ (top) and $\fnl=76.9$ (bottom) mocks before and after mitigation with the nonlinear methods using three, four, and nine maps. Left: The posteriors are adjusted to account for the over correction effect. Right: The posteriors are subject to the over correction effect, and thus the scaling of $\fnl$ values is biased due to mitigation.}\label{fig:contmcmc}
+\end{figure*}
 
 
 % \section{Redshift distribution}
