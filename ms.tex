@@ -1,36 +1,6 @@
- %:
-%:
-%%% TO DO 
-% 1. Fig.5. add some statistics (skewness, kurtosis, etc) to test whether Gaussian. Add ideal N(mu, sigma) to the panels
-% 2. Add a constant to C_ell (trial and error) to see if log(C_ell+cte) is perfectly Gaussian, zero skewness and kurtosis, etc, higher moments
-% 3. Mock test in the presence of systematics: (include applying the most rigorous method on both the mocks and data)
-%Check the impact of n(z -> 0) on C_ell and fNL constraints
-%Try the main selection of LRGs
-%Increase the max ell for the cross power spectrum used in χ2
-%Test theory code with non-zero fNL mocks
-%Test covariance: DR9 fNL constraints using the fNL=100 covariance
-% You can check if the shifts in fNL are much different when it applied to mocks without any contamination as well.
-%It would also be interesting to take a close look at the weight map with and without the stellar density map, in particular for DECaLS SGC, which is where the effect appears to be quite strong.
-%Use Hui’s weights
-%Use Rongpu’s weights
-% look into analytical covariance, e.g., Gaussian
-% Mehdi,
-%:
-%In order to avoid the confirmation bias, we should not select the model with nstar as our best model, since we don’t have other indicators showing this model is more reasonable than the current default.
-%On the other hand, we don’t believe fnl is off by 30 from zero, trusting that the Planck cannot be that wrong. Then, we can assume the true cosmology based on the Planck and consider our analysis as an exercise to identify major known/unknown(?) systematics, so that we can be ready for the upcoming spectroscopic fnl. (edited) 
-%
-%
-%Mehdi Rezaie
-%  < 1 minute ago
-%Sounds like a good argument — we cannot justify using nStar based on the mean density and cross spectra chi-2 tests.
-%One other takeaway would be that our result does indeed motivate further investments and studies of the local stellar density and MW extinction if one wants to achieve a robust σ(fNL)~5 with DESI (or ~1 with LSST+CMB).
-%
-%In the SV3 LRG selection, the TS density is ~800 deg^-2 (in the main selection, the LRG density is ~600 deg^-2). I think some additional cuts, by removing a few percents, we can improve the purity of the selection. It’s worth talking about that with Rongpu. As we have the spectro catalog, I think that it is clearly possible. 
-%
-%Christophe. 
-
+%% ---- fNL with DESI Imaging LRGs
 \documentclass[fleqn, usenatbib]{mnras}
-\usepackage{style} % the settings are all here 
+\usepackage{style} % all stuff 
 \usepackage{booktabs,array} 
 \usepackage{lineno}
 \linenumbers

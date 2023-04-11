@@ -1,5 +1,5 @@
 \section{Scale dependent systematics}\label{sec:scalesys}
-We investigate the dependence of statistical significance for the cross power spectrum $\chi^{2}$ between the DESI LRG targets and imaging maps. We extend the highest harmonic mode from $\ell=20$ to $100$, which corresponds to density fluctuations on scales below $2$ degrees. As shown in Figure \ref{fig:chi2cellextend}, the solid line represents the median of the cross power spectrum $\chi^{2}$ measured from the $\fnl=0$ mocks as a function of highest mode, $\ell_{\rm max}$ increases from $20$ to $100$. The red circles and blue crosses show the chi2 values for our sample cleaned respectively with the linear and neural network approaches, both with \textit{three maps}.  This test supports that our cross spectrum $\chi^{2}$ values are stable. 
+Our fiducial cross power spectrum diagnostic uses harmonic modes up to $\ell=20$, which determines the smallest scale used for characterizing residual systematic errors. To investigate the statistical significance of the cross power spectrum $\chi^{2}$, we examine its dependence on the largest harmonic mode $\ell_{\rm max}$. We extend $\ell_{\rm max}=20$ to $100$, which corresponds to density fluctuations on scales smaller than $2$ degrees. Figure \ref{fig:chi2cellextend} shows the median of the cross power spectrum $\chi^{2}$ from the clean $\fnl=0$ mocks as the highest mode $\ell_{\rm max}$ increases from $20$ to $100$ (represented by the solid line). The red circles and blue crosses show the chi2 values for our sample cleaned respectively with the linear and neural network approaches, both with \textit{three maps}. Overall, we find that for all scales up to $\ell=100$, the nonlinear three maps approach yields consistent values with the clean mocks, whereas linear three maps exhibits significant remaining systematics at more than 95\% confidence.
 
 \begin{figure}
 \centering
@@ -7,11 +7,12 @@ We investigate the dependence of statistical significance for the cross power sp
 \caption{The cross power spectrum $\chi^{2}$ between the LRG density and imaging systematic maps as a function of the highest mode $\ell_{\rm max}$ when the sample is cleaned with the linear (triangles) and non-linear (squares) three maps. The lowest mode is fixed at $\ell_{\rm min}=2$. The solid curve and dark (light) shade represent the median value and $68\%$ ($95\%$) confidence regions, estimated from the $\fnl=0$ mocks.}\label{fig:chi2cellextend}
 \end{figure}
 
-
 \section{Lognormal mocks}
-Corner plots of the PNG parameter $\fnl$ and bias coefficient are shown in Fig. \ref{fig:mcmc_mocks0} for fitting the mean power spectrum of mocks, with and without $\fnl$. The best-fitting estimates, marginalized mean, $1\sigma$ and $2\sigma$ confidence intervals are summarized in Tab. \ref{tab:mocksmcmc}. Fig \ref{fig:mcmc_mocks0} (right) shows confidence contours for different combinations of target variable (e.g., either power spectrum or its log transform) and covariance matrix. First we attempt to understand the impact of covariance on confidence intervals. We fit the mean power spectrum of $\fnl=76.9$ mocks or its log transformation using covariance matrices constructed from the same set of mocks or from the $\fnl=0$ mocks. When covariance is consistent with mean, the difference between fitting power spectrum and log of it is only 2\%. If a wrong covariance is used for the log power, the effect is only $7\%$. However, when mean power spectrum of the $\fnl=76.9$ mocks is fit using the covariance matrix estimated from the $\fnl=0$ mocks, the constraints improve by a factor of $5$, simply due to a false higher signal to noise ratio. Therefore, we argue that fitting logarithm of power spectrum would remove the need for having $\fnl$-dependent covariance matrices and make the constraints less sensitive to covariance construction. Fig. \ref{fig:mcmc_mocks0} shows the confidence contours for $\fnl=0$ mocks when fit is done to the log of mean spectra of $\fnl=0$ mocks for the different regions. We find that the underlying true $\fnl$ value is recovered within $2\sigma$ confidence.
+We fit the mean power spectrum of the lognormal mocks to validate the modeling pipeline, and in particular the survey geometry and integral constraint treatments. We investigate the impact of covariance matrix on the inference of $\fnl$. Finally, we show the impact of imaging systematic mitigation and the over-subtraction effect when the cleaning methods are applied to the mocks. 
 
-Fig \ref{fig:bestfit_mocks} shows the best-fitting estimates for $b$ vs $\fnl$ for $\fnl=0$ and $=76.92$ mocks in the left and right, respectively. Truth values are represented via the dotted lines. The points are color-coded with the minimum $\chi^{2}$ from fit for each realization. The histograms of best-fitting $\fnl$ estimates are plotted in the background.
+\subsection{Clean mocks}
+The $68\%$ and $95\%$ probability contours on the PNG parameter $\fnl$ and bias coefficient $b$ are shown in Figure \ref{fig:mcmc_mocks0} and \ref{fig:mcmc_mocks100}, respectively, for the $\fnl=0$ and 76.9 mocks. The best-fitting, marginalized mean estimates, as well as the $1\sigma$ and $2\sigma$ confidence intervals of $\fnl$ are summarized in Table \ref{tab:mocksmcmc}. 
+
 
 \begin{table*}
   %\begin{center}
@@ -52,12 +53,25 @@ Clean $0$ & DECaLS South &  log$C_{\ell}$& $  0.67$& $  0.67$& $  0.13<\fnl<  1.
     \caption{68\% and 95\% confidence contours of fitting the mean power spectrum or its log transformation from the $\fnl=76.92$ mocks for the DESI footprint. Using the $\log C_{\ell}$ fitting yield constraints that are insensitive to the covariance used. The truth values are represented by vertical and horizontal lines.}\label{fig:mcmc_mocks100}
 \end{figure}
 
-\begin{figure*}
+Measuring the power spectrum from the entire DESI footprint reduces the cosmic variance and thus improves the constraining power. Figure \ref{fig:mcmc_mocks0} compares the constraints from fitting the log of the mean power spectrum of the mocks when it is measured from the DESI footprint to those obtained from the sub imaging surveys. We find that the underlying true $\fnl$ value is recovered within $95\%$ confidence, and that the contours for the DESI region are smaller by a factor of two. 
+
+The power spectrum of the mocks at low $\ell$ is very sensitive to the cosmic variance and the true value of $\fnl$. Consequently, a large value of $\fnl$ can induce a very large power on low $\ell$, and thus significantly change the covariance matrix. We find that applying the log transformation on the power spectrum makes the result more robust against the choice of the covariance matrix. Figure \ref{fig:mcmc_mocks100} shows the confidence contours when we fit either the power spectrum or its log transform of the $\fnl=76.9$ mocks, and use different covariance matrices. We consider the $\fnl=0$ and $76.9$ mocks to construct the covariance from one set and use it to fit the mean power spectrum of the other set. When the covariance matrix is constructed from the same set of mocks used for the mean power spectrum, we find that the difference in $\fnl$ constraints between fitting the power spectrum and its log transformation is negligible at only 2\%. If we use the $\fnl=0$ mocks to estimate the covariance, and fit the log power spectrum of the $\fnl=76.9$ mocks, we find that the error on $\fnl$ increases only by $7\%$. However, when the mean power spectrum of the $\fnl=76.9$ mocks is fit using the covariance matrix estimated from the $\fnl=0$ mocks, the constraints tighten by a factor of $5$ due to a higher signal to noise ratio. Therefore, we argue that fitting the log power spectrum can help mitigate the need for having $\fnl$-dependent covariance matrices and make the constraints less sensitive to covariance construction.
+
+\begin{figure}
     \centering
     \includegraphics[width=0.45\textwidth]{figures/bestfit_zero.pdf} 
     \includegraphics[width=0.45\textwidth]{figures/bestfit_po100.pdf}         
-    \caption{best-fitting estimates from fitting 1000 lognormal mocks with $\fnl=0$ (left) and $76.92$ (right) in the DESI footprint. The truth values are represented by vertical and horizontal lines. The truth values are represented by vertical and horizontal lines.}\label{fig:bestfit_mocks}
-\end{figure*}
+    \caption{best-fitting estimates from fitting 1000 lognormal mocks with $\fnl=0$ (top) and $76.92$ (bottom) in the DESI footprint. The truth values are represented by vertical and horizontal lines. The truth values are represented by vertical and horizontal lines.}\label{fig:bestfit_mocks}
+\end{figure}
+
+
+Fig \ref{fig:bestfit_mocks} shows the best-fitting estimates for $b$ vs $\fnl$ for $\fnl=0$ and $=76.92$ mocks in the top and bottom panels, respectively. Truth values are represented via the dotted lines. The points are color-coded with the minimum $\chi^{2}$ from fit for each realization. The histograms of best-fitting $\fnl$ estimates are plotted in the background. For the $\fnl=0$ mocks, the best-fitting estimates are more symmetric. To understand this behaviour, we consider the first derivative of the likelihood (Equation \ref{eq:likelihood}), which is proportional to the first derivative of the log power spectrum. By simplifying the integrals involved in $C_{\ell}$, we have $C_{\ell} = A_{0, \ell} + A_{1,\ell} \fnl + A_{2, \ell} \fnl^{2}$ where $A_{123,\ell}$ are $\ell$-dependent terms. Then, the derivative of the likelihood is equivalent to
+\begin{equation}
+    \frac{d}{d\fnl}\log(C_{\ell}) = \frac{A_{1, \ell}+2A_{2, \ell}\fnl}{A_{0, \ell} + A_{1,\ell} \fnl + A_{2, \ell} \fnl^{2}}.
+\end{equation}
+For infinitesimal values of $\fnl$, the derivative becomes independent from $\fnl$ while for large values of $\fnl$ is decreases as $2/\fnl$, which implies for the $\fnl=0$ mocks, it is more likely that the likelihood is skewed toward negative values.
+
+
 
 
 
@@ -94,8 +108,6 @@ Contaminated $76.92$ & Nine Maps        & $  4.59$& $  4.58$& $  4.26<\fnl<  4.9
     \end{tabular}
     }
 \end{table*}
-
-
 
 \begin{figure*}
     \centering
