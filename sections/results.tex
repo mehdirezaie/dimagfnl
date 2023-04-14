@@ -71,7 +71,7 @@ Now we proceed to perform some robustness tests and assess how sensitive the $\f
 
 \item \textbf{Imaging quality (\textit{imag. cut})}: Pixels with poor photometry are removed from our sample by applying the following cuts on imaging; $E[B-V]<0.1$, $nStar < 3000$, ${\rm depth}_{g} > 23.2$, ${\rm depth}_{r} > 22.6$, ${\rm depth}_{z} > 22.5$, ${\rm psfsize}_{g}<2.5$, ${\rm psfsize}_{r}<2.5$, and ${\rm psfsize}_{z}<2$. Although these cuts remove $8\%$ of the survey mask, there is a negligible impact on the best-fitting $\fnl$ from fitting the DESI power spectrum. However, when each region is fit individually, the BASS+MzLS constraint shift toward higher values of $\fnl$ by approximately $\Delta \fnl \sim 10$, whereas the constraints from DECaLS North and DECaLS South do not change significantly. 
 
-\item \textbf{Covariance matrix (\textit{cov})}: We fit the power spectrum of our sample cleaned with \textit{non-linear three maps} correction, but use the covariance matrix constructed from the $\fnl=76.92$ mocks. With the alternative covariance, a $12\%$ increase in the $\sigma \fnl$ is observed. We also find that the best-fitting and marginalized mean estimates of $\fnl$ increase by $10-11\%$. Overall, we find that the differences are not significant in comparison to the statistical precision.
+\item \textbf{Covariance matrix (\textit{cov})}: We fit the power spectrum of our sample cleaned with \textit{non-linear three maps} correction, but use the covariance matrix constructed from the $\fnl=76.9$ mocks. With the alternative covariance, a $12\%$ increase in the $\sigma \fnl$ is observed. We also find that the best-fitting and marginalized mean estimates of $\fnl$ increase by $10-11\%$. Overall, we find that the differences are not significant in comparison to the statistical precision.
 
 \item \textbf{External maps (\textit{CALIBZ+HI})}: The neural network five maps correction includes the additional maps for HI and CALIBZ. With this correction, the best-fitting $\fnl$ increases from $41.02$ to $55.46$ for DECaLS North and from $31.24$ to $33.79$ for DECaLS South, which might suggest that adding HI and CALIBZ increases the input noise, and thus negatively impacts the performance of the neural network model. This test is not performed on BASS+MzLS due to a lack of coverage from the CALIBZ map. 
 
@@ -100,7 +100,7 @@ DESI (imag. cut)          & Nonlinear Three Maps& $ 29$& $ 31$& $ 19<\fnl< 42$& 
 DESI (comp. cut)          & Nonlinear Three Maps& $ 28$& $ 29$& $ 18<\fnl< 40$& $  9<\fnl< 53$ &   34.5\\
 DESI                      & Nonlinear Four Maps& $ 17$& $ 18$& $  78<\fnl< 27$& $ -2<\fnl< 38$ &   35.2\\
 DESI                      & Nonlinear Nine Maps& $ -6$& $ -9$& $-21<\fnl<  2$& $-34<\fnl< 12$ &   39.5\\
-DESI                     & Nonlinear Three Maps+$f_{\rm NL}=76.92$ Cov& $ 32$& $ 33$& $ 21<\fnl< 45$& $ 11<\fnl< 59$ &   33.5\\
+DESI                     & Nonlinear Three Maps+$f_{\rm NL}=76.9$ Cov& $ 32$& $ 33$& $ 21<\fnl< 45$& $ 11<\fnl< 59$ &   33.5\\
 \hline
 BASS+MzLS                 & Nonlinear Three Maps& $ 15$& $ 19$& $ -1<\fnl< 39$& $-19<\fnl< 64$ &   35.6\\
 BASS+MzLS                 & Nonlinear Four Maps& $ 13$& $ 15$& $ -5<\fnl< 36$& $-25<\fnl< 59$ &   34.7\\
