@@ -22,12 +22,12 @@ We use the Early Data Assembly Version 1 (EDA V1) to construct the redshift dist
 
 
 \subsection{Spurious bump in NGC}\label{ssec:ndecalsbump}
-We realize that the spurious feature at $\ell \sim 10-20$ is removed in the DECaLS South region after mitigation, but it remains in the BASS+MzLS and DECaLS North. We use the neural networks trained on the DECaLS South with three maps to mitigate the galaxy density in the DECaLS North region, and then measure the power spectrum. Figure \ref{fig:clSonN} shows the power spectrum before treatment (No Weight) and after the nonlinear three maps and nine maps methods for comparison. We find that whatever causing this bump is different between the DECaLS North and South.
+As shown in Figure \ref{fig:mcmc_dr9elmin} (top panel), we realize that the spurious feature at $\ell \sim 10-20$ is removed in the DECaLS South region after mitigation, but it remains in the BASS+MzLS and DECaLS North. We use the neural networks trained on the DECaLS South with three and nine maps to mitigate the galaxy density in the DECaLS North region, and then measure the power spectrum. Figure \ref{fig:clSonN} shows the power spectrum before treatment (No Weight) and after the nonlinear three maps and nine maps methods for comparison. We find that whatever causing the bump is different between the DECaLS North and South.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.45\textwidth]{figures/cl_SonN.pdf}
-    \caption{The unbinned measured power spectrum of the DESI LRG targets in the DECaLS North region before and after various mitigations.}
+    \caption{The unbinned measured power spectrum of the DESI LRG targets in the DECaLS North region before and after various mitigations using the neural network approach.}
     \label{fig:clSonN}
 \end{figure}
 
