@@ -25,8 +25,7 @@ to the aggressive treatment removing large-scale clustering information. For com
 
 
 \begin{table*}
-    \caption{The calibrated best-fitting, marginalized mean, and marginalized $68\%$ ($95\%$) confidence estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for imaging systematic effects. The lowest mode is $\ell_{\rm min}=2$.}
-    \label{tab:dr9methodcalib}
+    \caption{\mr{WIHTOUT MAG BIAS} The calibrated best-fitting, marginalized mean, and marginalized $68\%$ ($95\%$) confidence estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for imaging systematic effects. The lowest mode is $\ell_{\rm min}=2$.}
    \centerline{%     
     \begin{tabular}{llllllll}
     \hline
@@ -43,6 +42,28 @@ DESI & Nonlinear Nine Maps& $ 50$& $ 42$& $ 13<\fnl< 69$& $-16<\fnl< 92$ &   39.
     \end{tabular}
 }
 \end{table*}
+
+
+\begin{table*}
+    \caption{The calibrated best-fitting, marginalized mean, and marginalized $68\%$ ($95\%$) confidence estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for imaging systematic effects. The lowest mode is $\ell_{\rm min}=2$.}
+    \label{tab:dr9methodcalib}
+   \centerline{%     
+    \begin{tabular}{llllllll}
+    \hline
+    \hline
+   &  & 	  & & $\fnl$ &  &  \\
+   \cmidrule(r{.7cm}){3-6}
+Footprint      & Method & 	Best fit  & Mean & $ 68\%$ CL & $ 95\%$ CL & $\chi^{2}$/dof \\
+    \hline
+DESI                      & No Weight   & $   118$& $   121$& $   102<\fnl<   140$& $    86<\fnl<   161$ &   45.1/34\\
+DESI                      & Nonlinear Three Maps& $    46$& $    47$& $    33<\fnl<    61$& $    21<\fnl<    76$ &   33.9/34\\
+DESI                      & Nonlinear Four Maps& $    46$& $    47$& $    33<\fnl<    62$& $    19<\fnl<    78$ &   34.4/34\\
+DESI                      & Nonlinear Nine Maps& $    34$& $    24$& $   -10<\fnl<    58$& $   -39<\fnl<    84$ &   39.1/34\\
+   \hline
+    \end{tabular}
+}
+\end{table*}
+
 
 
 \begin{figure}
@@ -79,8 +100,7 @@ Now we proceed to perform some robustness tests and assess how sensitive the $\f
 \end{itemize}
 
 \begin{table*}
-    \caption{The uncalibrated best-fitting and marginalized mean estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for systematics. The estimates are not calibrated for over-correction, and thus are subject to mitigation systematics. The number of degrees of freedom is 34 (37 data points - 3 parameters). The lowest mode is $\ell=2$ and the covariance matrix is from the $\fnl=0$ clean mocks (no mitigation) except for the case with '+cov' in which the covariance matrix is from the $\fnl=76.9$ clean mocks (no mitigation).}
-    \label{tab:dr9method}
+    \caption{\mr{WITHOUT MAG BIAS} The uncalibrated best-fitting and marginalized mean estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for systematics. The estimates are not calibrated for over-correction, and thus are subject to mitigation systematics. The number of degrees of freedom is 34 (37 data points - 3 parameters). The lowest mode is $\ell=2$ and the covariance matrix is from the $\fnl=0$ clean mocks (no mitigation) except for the case with '+cov' in which the covariance matrix is from the $\fnl=76.9$ clean mocks (no mitigation).}
    \centerline{%     
     \begin{tabular}{llllllll}
     \hline
@@ -122,6 +142,60 @@ DECaLS South (comp. cut)  & Nonlinear Three Maps& $ 30$& $ 32$& $ 13<\fnl< 52$& 
    \hline
     \end{tabular}}
 \end{table*}
+
+
+
+\begin{table*}
+    \caption{The uncalibrated best-fitting and marginalized mean estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for systematics. The estimates are not calibrated for over-correction, and thus are subject to mitigation systematics. The number of degrees of freedom is 34 (37 data points - 3 parameters). The lowest mode is $\ell=2$ and the covariance matrix is from the $\fnl=0$ clean mocks (no mitigation) except for the case with '+cov' in which the covariance matrix is from the $\fnl=76.9$ clean mocks (no mitigation).}
+    \label{tab:dr9method}
+   \centerline{%     
+    \begin{tabular}{llllllll}
+    \hline
+    \hline
+   &  & 	  & & $\fnl$ + Mitigation Systematics &  &  \\
+   \cmidrule(r{.7cm}){3-6}
+Footprint                               & Method & 	Best fit  & Mean & $ 68\%$ CL & $ 95\%$ CL & $\chi^{2}$ \\
+    \hline
+\textbf{DESI}                      & \textbf{No Weight}   & $   \bf{118}$& $   \bf{121}$& $   \bf{102<\fnl<   140}$& $    \bf{86<\fnl<   161}$ &   \bf{45.1}\\
+DESI                      & Linear Two Maps& $    49$& $    51$& $    37<\fnl<    65$& $    25<\fnl<    80$ &   37.9\\
+\textbf{DESI}                      & \textbf{Linear Three Maps}& $    \textbf{36}$& $    \textbf{37}$& $    \bf{25<\fnl<50}$& $    \bf{14<\fnl<    64}$ &   \bf{38.6}\\
+DESI                      & Linear Eight Maps& $    35$& $    37$& $    24<\fnl<    49$& $    14<\fnl<    63$ &   40.4\\
+\bf{DESI}                      & \bf{Nonlinear Three Maps}& $    \bf{27}$& $    \bf{28}$& $    \bf{17<\fnl<    40}$& $     \bf{6<\fnl<    53}$ &   \bf{33.9}\\
+DESI (imag. cut)          & Nonlinear Three Maps& $    28$& $    30$& $    17<\fnl<    42$& $     6<\fnl<    56$ &   35.4\\
+DESI (comp. cut)          & Nonlinear Three Maps& $    27$& $    28$& $    16<\fnl<    40$& $     6<\fnl<    53$ &   33.9\\
+DESI                      & Nonlinear Four Maps& $    14$& $    15$& $     5<\fnl<    26$& $    -6<\fnl<    38$ &   34.4\\
+DESI                      & Nonlinear Nine Maps& $   -13$& $   -17$& $   -31<\fnl<    -3$& $   -44<\fnl<     9$ &   39.1\\
+DESI                     & Nonlinear Three Maps+$f_{\rm NL}=76.92$ Cov& $    30$& $    31$& $    18<\fnl<    44$& $     7<\fnl<    59$ &   32.8\\
+\hline
+\bf{BASS+MzLS}                 & \bf{Nonlinear Three Maps}& $    \bf{13}$& $    \bf{16}$& $    \bf{-6<\fnl<    38}$& $   \bf{-28<\fnl<64}$ &   \bf{34.9}\\
+BASS+MzLS                 & Nonlinear Four Maps& $    10$& $    12$& $   -11<\fnl<    34$& $   -35<\fnl<    59$ &   34.1\\
+BASS+MzLS                 & Nonlinear Nine Maps& $    -9$& $   -13$& $   -37<\fnl<    10$& $   -59<\fnl<    32$ &   36.4\\
+BASS+MzLS (imag. cut)     & Nonlinear Three Maps& $    23$& $    26$& $     1<\fnl<    51$& $   -23<\fnl<    81$ &   35.8\\
+BASS+MzLS (comp. cut)     & Nonlinear Three Maps& $    14$& $    18$& $    -5<\fnl<    41$& $   -27<\fnl<    68$ &   35.2\\
+\hline
+\bf{DECaLS North}              & \bf{Nonlinear Three Maps}& $    \bf{41}$& $    \bf{45}$& $    \bf{21<\fnl<    69}$& $    \bf{-1<\fnl<    98}$ &   \bf{40.8}\\
+DECaLS North              & Nonlinear Four Maps& $    30$& $    32$& $    10<\fnl<    56$& $   -18<\fnl<    83$ &   40.9\\
+DECaLS North              & Nonlinear Five Maps& $    56$& $    62$& $    36<\fnl<    88$& $    15<\fnl<   121$ &   38.3\\
+DECaLS North              & Nonlinear Nine Maps& $    -4$& $   -13$& $   -40<\fnl<    13$& $   -64<\fnl<    36$ &   44.6\\
+DECaLS North (no DEC cut) & Nonlinear Three Maps& $    41$& $    45$& $    22<\fnl<    68$& $     1<\fnl<    96$ &   40.4\\
+DECaLS North (imag. cut)  & Nonlinear Three Maps& $    43$& $    48$& $    22<\fnl<    75$& $    -1<\fnl<   107$ &   34.9\\
+DECaLS North (comp. cut)  & Nonlinear Three Maps& $    40$& $    44$& $    20<\fnl<    68$& $    -2<\fnl<    97$ &   41.2\\
+\hline
+\bf{DECaLS South}              & \bf{Nonlinear Three Maps}& $    \bf{30}$& $    \bf{31}$& $    \bf{11<\fnl<    53}$& $   \bf{-28<\fnl<    76}$ &   \bf{30.2}\\
+DECaLS South              & Nonlinear Four Maps& $   -42$& $    -5$& $   -44<\fnl<    27$& $   -70<\fnl<    49$ &   33.4\\
+DECaLS South              & Nonlinear Five Maps& $    33$& $    36$& $    15<\fnl<    58$& $    -7<\fnl<    84$ &   30.7\\
+DECaLS South              & Nonlinear Nine Maps& $   -43$& $   -40$& $   -58<\fnl<   -21$& $   -75<\fnl<     3$ &   31.3\\
+DECaLS South (no DEC cut) & Nonlinear Three Maps& $    44$& $    46$& $    29<\fnl<    64$& $    14<\fnl<    85$ &   23.7\\
+DECaLS South (imag. cut)  & Nonlinear Three Maps& $    26$& $    15$& $   -19<\fnl<    47$& $   -84<\fnl<    72$ &   30.0\\
+DECaLS South (comp. cut)  & Nonlinear Three Maps& $    29$& $    28$& $     8<\fnl<    52$& $   -41<\fnl<    75$ &   29.7\\
+   \hline
+    \end{tabular}}
+\end{table*}
+
+
+
+
+
 \begin{figure}
     \centering
     \includegraphics[width=0.45\textwidth]{figures/mcmc_dr9methods1dnoshift.pdf}
