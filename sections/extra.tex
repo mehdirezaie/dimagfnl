@@ -11,7 +11,7 @@ Our fiducial cross power spectrum diagnostic (equation \ref{eq:cx_chi2}) uses ha
 
 
 \subsection{Redshift uncertainties}\label{ssec:nzuncer}
-We use the Early Data Assembly Version 1 (EDA V1) to construct the redshift distribution for the DESI LRG targets. We find that the change in the maximum likelihood estimate of $\fnl$ is negligible, $\Delta \fnl=-1$. Figure \ref{fig:cl_nz} shows the measured power spectrum of the DESI targets and the corresponding best fit theory curves. The variations in $dN/dz$ do not significicantly alter the conclusion of our paper.
+We use the Early Data Assembly Version 1 (EDA V1) to construct the redshift distribution for the DESI LRG targets. We find that the change in the maximum likelihood estimate of $\fnl$ is negligible, $\Delta \fnl=-1$, \mr{compared to the statistical precision of our measurements}. Figure \ref{fig:cl_nz} shows the measured power spectrum of the DESI targets and the corresponding best fit theory curves. The variations in $dN/dz$ do not significicantly alter the conclusion of our paper.
 \begin{figure}
 \raggedleft
 \includegraphics[width=0.42\textwidth]{figures/nz_lrg_eda.pdf}
@@ -22,7 +22,7 @@ We use the Early Data Assembly Version 1 (EDA V1) to construct the redshift dist
 
 
 \subsection{Spurious bump in NGC}\label{ssec:ndecalsbump}
-As shown in Figure \ref{fig:mcmc_dr9elmin} (top panel), we realize that the spurious feature at $\ell \sim 10-20$ is removed in the DECaLS South region after mitigation, but it remains in the BASS+MzLS and DECaLS North. We use the neural networks trained on the DECaLS South with three and nine maps to mitigate the galaxy density in the DECaLS North region, and then measure the power spectrum. Figure \ref{fig:clSonN} shows the power spectrum before treatment (No Weight) and after the nonlinear three maps and nine maps methods for comparison. We find that whatever causing the bump is different between the DECaLS North and South. The best-fit estimates for $\fnl$ from the DR9 DECaLS North using the neural network correction with three maps (NN trained on DECaLS North), three maps (NN trained on DECaLS South), and nine maps (NN trained on DECaLS South) are $41$, $37$, and $72$, respectively.
+As shown in Figure \ref{fig:mcmc_dr9elmin} (top panel), we realize that the spurious feature at $\ell \sim 10-20$ is removed in the DECaLS South region after mitigation, but it remains in the BASS+MzLS and DECaLS North. We use the neural networks trained on the DECaLS South with three and nine maps to mitigate the galaxy density in the DECaLS North region, and then measure the power spectrum. Figure \ref{fig:clSonN} shows the power spectrum before treatment (No Weight) and after the nonlinear three maps and nine maps methods for comparison. We find that whatever causing the bump is different between the DECaLS North and South. The best-fit estimates for $\fnl$ from the DR9 DECaLS North using the neural network correction with three maps (NN trained on DECaLS North), three maps (NN trained on DECaLS South), and nine maps (NN trained on DECaLS South) are $41$, \mr{$36$}, and \mr{$75$}, respectively. \mr{The best-fit estimate $\fnl$ from the same data without correction ('No Weight') is 94.}
 
 \begin{figure}
     \centering
@@ -41,7 +41,7 @@ The $68\%$ and $95\%$ probability contours on the PNG parameter $\fnl$ and bias 
 
 \begin{table*}
   %\begin{center}
-    \caption{best-fitting and marginalized mean estimates for $\fnl$ from fitting the mean power spectrum of the mocks. Degree of freedom is 34 (37 data points - 3 parameters).}   
+    \caption{best-fitting and marginalized mean estimates for $\fnl$ from fitting the mean power spectrum of the mocks. \mr{The covariance is scaled to represent the error on the mean power spectrum.} Degree of freedom is 34 (37 data points - 3 parameters).}   
     \label{tab:mocksmcmc}  
    \centerline{%
     \begin{tabular}{llllllll}
@@ -110,7 +110,7 @@ We find that the imaging treatment has removed some of the true clustering signa
 
 \begin{table*}
   %\begin{center}
-    \caption{best-fitting and marginalized estimates for $\fnl$ from fitting the mean power spectrum of the mocks before and after corrections using the non-linear approach with various combinations of the imaging systematic maps. The estimates are not accounted for over-correction, and therefore are subject to mitigation systematics.}   
+    \caption{best-fitting and marginalized estimates for $\fnl$ from fitting the mean power spectrum of the mocks before and after corrections using the non-linear approach with various combinations of the imaging systematic maps. \mr{The covariance is scaled to represent the error on the mean power spectrum.} The estimates are not accounted for over-correction, and therefore are subject to mitigation systematics.}   
     \label{tab:contmocksmcmc}  
    \centerline{%
     \begin{tabular}{lllllll}
