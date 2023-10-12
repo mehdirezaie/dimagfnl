@@ -25,7 +25,7 @@ to the aggressive treatment removing large-scale clustering information. For com
 
 
 \begin{table*}
-    \caption{\mr{WIHTOUT MAG BIAS} The calibrated best-fitting, marginalized mean, and marginalized $68\%$ ($95\%$) confidence estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for imaging systematic effects. The lowest mode is $\ell_{\rm min}=2$.}
+    \caption{\mr{Without mag bias for referee review only.} The calibrated best-fitting, marginalized mean, and marginalized $68\%$ ($95\%$) confidence estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for imaging systematic effects. The lowest mode is $\ell_{\rm min}=2$.}
    \centerline{%     
     \begin{tabular}{llllllll}
     \hline
@@ -45,7 +45,7 @@ DESI & Nonlinear Nine Maps& $ 50$& $ 42$& $ 13<\fnl< 69$& $-16<\fnl< 92$ &   39.
 
 
 \begin{table*}
-    \caption{The calibrated best-fitting, marginalized mean, and marginalized $68\%$ ($95\%$) confidence estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for imaging systematic effects. The lowest mode is $\ell_{\rm min}=2$.}
+    \caption{The calibrated best-fitting, marginalized mean, and marginalized $68\%$ ($95\%$) confidence estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for imaging systematic effects. The lowest mode is $\ell_{\rm min}=2$\mr{, $p=1$, and $s=0.945$.}}
     \label{tab:dr9methodcalib}
    \centerline{%     
     \begin{tabular}{llllllll}
@@ -80,7 +80,7 @@ Now we proceed to perform some robustness tests and assess how sensitive the $\f
 
 \begin{itemize}[itemindent=*]
 
-\item \textbf{Linear methods}: Even though the linear three maps approach shows significant remaining systematics (Figure \ref{fig:chi2test} and Table \ref{tab:chi2test}), we obtain identical constraints from \textit{linear eight maps} and \textit{linear three maps}, respectively, \mr{$24(14)<\fnl<49(63)$ and $25(14)<\fnl<50(64)$} at $68\%(95\%)$ confidence. 
+\item \textbf{Linear methods}: Even though the linear three maps approach shows significant remaining systematics (Figure \ref{fig:chi2test} and Table \ref{tab:chi2test}), we obtain identical constraints from \textit{linear eight maps} and \textit{linear three maps}, respectively, \mr{$24(14)<\fnl<49(63)$ and $25(14)<\fnl<50(64)$} at $68\%(95\%)$ confidence. \mr{The probability of $\fnl>0$ for the linear methods are $99.9$. Any attempt to account for the over-correction would increase these probabilities to a greater extend. The greater $\fnl$ signal in the data using the linear methods are attributed to increased systematic contamination.}
 
 \item \textbf{Imaging regions}: We compare how our constraints from fitting the power spectrum of the whole DESI footprint compares to that from the power spectrum of each imaging region individually, namely BASS+MzLS, DECaLS North, and DECaLS South. Figure~\ref{fig:mcmc_dr9reg} shows the $68\%$ and $95\%$ probability contours on $\fnl$ and $b$ from each individual region, compared with that from DESI. The cleaning method here is \textit{non-linear three maps}, and the covariance matrices are estimated from the $\fnl=0$ mocks. The bias in DECaLS North is lower than the ones from DECaLS South and BASS+MzLS, which might indicate some remaining systematic effects that could not be mitigated with the available imaging systematic maps. This is because given the negative correlation between $b$ and $\fnl$, a larger value of $\fnl$ due to excess clustering power needs to be compensated by a smaller value of $b$. Overall, we find that the constraints from analyzing each imaging survey separately are consistent with each other and DESI within $68\%$ confidence. \mout{Ignoring the over-correction effect, we find that the results from the DECaLS North region to be the only one that finds PNG nonzero at greater than 95\%, which motivates follow-up studies with the spectroscopic sample of LRGs in DECaLS North.}
 
@@ -98,13 +98,13 @@ Now we proceed to perform some robustness tests and assess how sensitive the $\f
 
 \item \textbf{Scale dependence (\textit{varying $\ell_{\rm min}$})}: We raise the value of the lowest harmonic mode $\ell_{\rm min}$ used for the likelihood evaluation during MCMC. This is equivalent to utilizing smaller spatial scales in the measurements of the power spectrum. By doing so, we anticipate a reduction in the impact of imaging systematics on $\fnl$ inference as lower $\ell$ modes are more likely to be contaminated. Figure \ref{fig:mcmc_dr9elmin} illustrates the power spectra before and after the correction with \textit{non-linear three maps} in the top panel. The bottom panel shows the marginalized mean and $68\%$ error on $\fnl$ with \textit{non-linear three maps} for the DESI, BASS+MzLS, DECaLS North, and DECaLS South regions. We discover that a slight upward shift in the mean estimates of $\fnl$ on scales ranging from $12$ to $18$ for DECaLS North and BASS+MzLS when we utilized a higher $\ell_{\rm min}$. This outcome might imply that the imaging systematic maps do not contain enough information to help the cleaning method null out the contaminating signal in the NGC. We also find that the bump is resilient against an alternative correction, in which we apply the neural networks trained on the DECaLS South to the DECaLS North region (see \ref{ssec:ndecalsbump}). Overall, this result is contrary to what one might predict if a significant systematic-induced spike existed at the very low $\ell$\mr{, or if we had an extremely large-scale systematic leakage from the $\ell=1$ mode}. As a result, it suggests that the underlying issue is more subtle than originally anticipated.
 
-\mr{\item \textbf{Theoretical systematics}: Our analysis is simplified by fixing the values of $p$ and $s$ to their pre-determined and estimated values. As a robustness check, we explore the sensitivity of the $\fnl$ posterior to various values of $p$, ranging between $0.55$ and $1.6$, and $s$ from $0.75$ to $1.25$. Overall, as illustrated in Figure \ref{fig:fnl_magbias} and summarized in Table \ref{table:dr9ps}, we find that the $\fnl$ posterior to be quite insensitive to the value of $s$, and both the best fitting estimate and the error increase as a function of $p$; however the overall impact on the signal to noise and $P(\fnl > 0)$ is shown to be insignificant.}
+\mr{\item \textbf{Theoretical systematics}: Our analysis is simplified by fixing the values of $p$ and $s$ to their pre-determined and estimated values. As a robustness check, we explore the sensitivity of the $\fnl$ posterior to various values of $p$, ranging between $0.55$ and $1.6$, and $s$ from $0.75$ to $1.25$. Overall, as illustrated in Figure \ref{fig:fnl_magbias} and summarized in Table \ref{tab:dr9ps}, we find that the $\fnl$ posterior to be quite insensitive to the value of $s$, and both the best fitting estimate and the error increase as a function of $p$; however the overall impact on the signal to noise and $P(\fnl > 0)$ is shown to be insignificant.}
 \end{itemize}
 
 
 
 \begin{table*}
-    \caption{\mr{WITHOUT MAG BIAS} The uncalibrated best-fitting and marginalized mean estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for systematics. The estimates are not calibrated for over-correction, and thus are subject to mitigation systematics. The number of degrees of freedom is 34 (37 data points - 3 parameters). The lowest mode is $\ell=2$ and the covariance matrix is from the $\fnl=0$ clean mocks (no mitigation) except for the case with '+cov' in which the covariance matrix is from the $\fnl=76.9$ clean mocks (no mitigation).}
+    \caption{\mr{Without mag bias for referee review only.} The uncalibrated best-fitting and marginalized mean estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for systematics. The estimates are not calibrated for over-correction, and thus are subject to mitigation systematics. The number of degrees of freedom is 34 (37 data points - 3 parameters). The lowest mode is $\ell=2$ and the covariance matrix is from the $\fnl=0$ clean mocks (no mitigation) except for the case with '+cov' in which the covariance matrix is from the $\fnl=76.9$ clean mocks (no mitigation).}
    \centerline{%     
     \begin{tabular}{llllllll}
     \hline
@@ -150,7 +150,7 @@ DECaLS South (comp. cut)  & Nonlinear Three Maps& $ 30$& $ 32$& $ 13<\fnl< 52$& 
 
 
 \begin{table*}
-    \caption{The uncalibrated best-fitting and marginalized mean estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for systematics. The estimates are not calibrated for over-correction, and thus are subject to mitigation systematics. The number of degrees of freedom is 34 (37 data points - 3 parameters). The lowest mode is $\ell=2$ and the covariance matrix is from the $\fnl=0$ clean mocks (no mitigation) except for the case with '+ Cov' in which the covariance matrix is from the $\fnl=76.9$ clean mocks (no mitigation).}
+    \caption{The uncalibrated best-fitting and marginalized mean estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for systematics. The estimates are not calibrated for over-correction, and thus are subject to mitigation systematics. The number of degrees of freedom is 34 (37 data points - 3 parameters). The lowest mode is $\ell=2$\mr{, $p=1$,} and the covariance matrix is from the $\fnl=0$ clean mocks (no mitigation) except for the case with '+ Cov' in which the covariance matrix is from the $\fnl=76.9$ clean mocks (no mitigation). \mr{We set $s=0.945$ for DESI, $0.943$ for DECaLS North (and South), and $0.951$ for BASS+MzLS.}}
     \label{tab:dr9method}
    \centerline{%     
     \begin{tabular}{llllllll}
@@ -222,23 +222,24 @@ DECaLS South (comp. cut)  & Nonlinear Three Maps& $    29$& $    28$& $     8<\f
 \includegraphics[width=0.45\textwidth]{figures/fnl_p.pdf}
 \includegraphics[width=0.45\textwidth]{figures/fnl_p2.pdf}
 \includegraphics[width=0.45\textwidth]{figures/fnl_magbias.pdf}
-\caption{\mr{Best fit estimates and $68\%$ ($95\%$) error on $\fnl$ from fitting the DESI DR9 LRG sample using the non-linear three maps cleaning approach. We find a weak dependence on $p$ but negligible impact on $s$.}}\label{fig:fnl_magbias}
+\caption{\mr{Best fitting estimates and $68\%$ ($95\%$) error on $\fnl$ from the DESI DR9 LRG sample with the non-linear three maps cleaning approach. The constraints do not change while varying $s$ unlike $p$, which shows noticeable sensitivity. However, the signal to noise remains insensitive to $p$ as well.}}\label{fig:fnl_magbias}
 \end{figure}
 
 
 
 
 \begin{table*}
-    \caption{The uncalibrated best-fitting and marginalized mean estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets using various values for hyper-parameters, $p$ and $s$. In each case we fix one hyper-parameter to its fiducial value ($p=1$ and $s=0.945$) while changing the other. The estimates are not calibrated for over-correction, and thus are subject to mitigation systematics. The number of degrees of freedom is 34 (37 data points - 3 parameters). The lowest mode is $\ell=2$ and the covariance matrix is from the $\fnl=0$ clean mocks (no mitigation).}
+    \caption{Same as Table \ref{tab:dr9method} for various values for hyper-parameters, $p$ and $s$. In each case we fix one hyper-parameter to its fiducial value ($p=1$ and $s=0.945$) while changing the other. }
     \label{tab:dr9ps}
    \centerline{%     
-    \begin{tabular}{llllllll}
+    \begin{tabular}{llllll}
     \hline
     \hline
-   &  & 	  & & $\fnl$ + Mitigation Systematics &  &  \\
-   \cmidrule(r{.7cm}){3-6}
-Footprint                               & Method & 	Best fit  & Mean & $ 68\%$ CL & $ 95\%$ CL & $\chi^{2}$ \\
-0.55                                    & $    19$& $    20$& $    12<\fnl<    28$& $     5<\fnl<    37$ &   33.9\\
+   &  & 	  & $\fnl$ + Mitigation Systematics&  &    \\
+   \cmidrule(r{.7cm}){2-5}
+Hyperparameter & 	Best fit  & Mean & $ 68\%$ CL & $ 95\%$ CL & $\chi^{2}$ \\
+\hline
+$p=$ 0.55                                    & $    19$& $    20$& $    12<\fnl<    28$& $     5<\fnl<    37$ &   33.9\\
 0.7                                     & $    21$& $    22$& $    13<\fnl<    31$& $     5<\fnl<    41$ &   33.9\\
 0.9                                     & $    25$& $    26$& $    15<\fnl<    37$& $     6<\fnl<    49$ &   33.9\\
 1.0                                     & $    27$& $    28$& $    17<\fnl<    40$& $     6<\fnl<    53$ &   33.9\\
@@ -246,7 +247,7 @@ Footprint                               & Method & 	Best fit  & Mean & $ 68\%$ C
 1.4                                     & $    45$& $    48$& $    28<\fnl<    67$& $    11<\fnl<    90$ &   33.9\\
 1.6                                     & $    66$& $    70$& $    40<\fnl<    99$& $    15<\fnl<   134$ &   33.9\\
 \hline
-0.75                                    & $    28$& $    30$& $    18<\fnl<    41$& $     8<\fnl<    54$ &   34.1\\
+$s=$ 0.75                                    & $    28$& $    30$& $    18<\fnl<    41$& $     8<\fnl<    54$ &   34.1\\
 0.80                                    & $    28$& $    29$& $    17<\fnl<    41$& $     7<\fnl<    54$ &   34.1\\
 0.85                                    & $    27$& $    29$& $    18<\fnl<    41$& $     8<\fnl<    54$ &   34.0\\
 0.90                                    & $    27$& $    29$& $    17<\fnl<    41$& $     7<\fnl<    53$ &   34.0\\
