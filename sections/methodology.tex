@@ -40,12 +40,12 @@ where $b$ is the linear bias (dashed curve in Figure \ref{fig:nz}), $D$ represen
 \begin{equation}
 W_{\mu}(z) = (5s-2)\frac{3H^{2}_{0}\Omega_{m}(1+z)}{2c^{2}k^{2}} \int_{z}^{\infty} dz^{\prime}\frac{dN}{dz} \frac{r(z^{\prime}) - r(z)}{r(z^{\prime})r(z)},
 \end{equation}
-\mr{where $\Omega_{m}$ is the matter density, $H_{0}$ is the Hubble constant\footnote{$H_{0}=100~({\rm km}~{\rm s}^{-1})/(h^{-1}{\rm Mpc})$ and $k$ is in unit of $h {\rm Mpc}^{-1}$}, and the magnification bias slope $s$ is the response of the number density to achromatic changes in the brightness of targets.} The PNG-induced scale-dependent shift is given by \citep{slosar2008constraints}
+\mr{where $\Omega_{m}$ is the matter density, $H_{0}$ is the Hubble constant\footnote{$H_{0}=100~({\rm km}~{\rm s}^{-1})/(h^{-1}{\rm Mpc})$ and $k$ is in unit of $h {\rm Mpc}^{-1}$}, and the magnification bias slope $s$ is the response of the number density to achromatic changes in the brightness of targets. We fix $s$ in our analysis to the values determined by finite differences, which entails shifting all magnitudes by an infinitesimal amount and re-running the color-mag selection. For a fiber-flux selected sample like ours, the estimation of $s$ requires a careful characterisation of the impact of magnification on each target brightness and its shape parameters given the morphology of each target, as described in \cite{zhou2023desi}. For our sample, the parameter $s$ is found to vary slightly in the different imaging regions: $s=0.951\pm 0.011$ for BASS+MzLS, $s=0.943 \pm 0.007$ for DECaLS North+DECaLS South, and $s=0.945\pm 0.006$ for DESI\footnote{Private communication with Dr. Rongpu Zhou.}.} The PNG-induced scale-dependent shift is given by \citep{slosar2008constraints}
 \begin{equation}
 \Delta b = b_{\phi}(z) \fnl \frac{3 \Omega_{m} H^{2}_{0}}{2 k^{2}T(k)D(z) c^{2}} \frac{g(\infty)}{g(0)},
 \label{eq:scaledepbias}
 \end{equation}
-where $T(k)$ is the transfer function, and $g(\infty)/g(0) \sim 1.3$ with $g(z)\equiv (1+z) D(z)$ is the growth suppression due to non-zero $\Lambda$ because of our normalization of $D$ \citep[see, e.g.,][]{2010JCAP...07..013R, 2019MNRAS.485.4160M}. We assume the universality relation which directly relates $b_\phi$ to $b$ via $b_{\phi} = 2 \delta_{c}(b - p)$ with $\delta_{c}= 1.686$ representing the critical density for spherical collapse \citep{fillmore1984self}. We fix $p=1$ in our analysis and marginalize over b \citep[see, also,][]{slosar2008constraints,2010JCAP...07..013R,2013MNRAS.428.1116R}. \mr{We fix the slope of the number counts parameter $s$ in our analysis to the values determined by finite differences, which entails shifting all magnitudes by an infinitesimal amount and re-running the color-mag selection. For a fiber-flux selected sample like ours, the estimation of $s$ requires a careful characterisation of the impact of magnification on each target brightness and its shape parameters given the morphology of each target, as described in \cite{zhou2023desi}. For our sample, the parameter $s$ is found to vary slightly in the different imaging regions: $s=0.951\pm 0.011$ for BASS+MzLS, $s=0.943 \pm 0.007$ for DECaLS North+DECaLS South, and $s=0.945\pm 0.006$ for DESI\footnote{Private communication with Dr. Rongpu Zhou.}.} 
+where $T(k)$ is the transfer function, and $g(\infty)/g(0) \sim 1.3$ with $g(z)\equiv (1+z) D(z)$ is the growth suppression due to non-zero $\Lambda$ because of our normalization of $D$ \citep[see, e.g.,][]{2010JCAP...07..013R, 2019MNRAS.485.4160M}. We assume the universality relation which directly relates $b_\phi$ to $b$ via $b_{\phi} = 2 \delta_{c}(b - p)$ with $\delta_{c}= 1.686$ representing the critical density for spherical collapse \citep{fillmore1984self}. We fix $p=1$ in our analysis and marginalize over b \citep[see, also,][]{slosar2008constraints,2010JCAP...07..013R,2013MNRAS.428.1116R}. 
 
 \begin{figure}
 \centering
@@ -72,6 +72,7 @@ where $\tilde{C}^{\rm window}$ is the survey mask power spectrum, i.e., the sphe
 \begin{figure}
     \centering
     \includegraphics[width=0.45\textwidth]{figures/mask_2pf.pdf}
+    \includegraphics[width=0.45\textwidth]{figures/cl_conv.pdf}
     \caption{\mr{The survey mask correlation functions for the imaging regions forming the DESI footprint. The inset shows the correlations specifically for separations between $100$ and $180$ degrees.}}
     \label{fig:mask2pf}
 \end{figure}

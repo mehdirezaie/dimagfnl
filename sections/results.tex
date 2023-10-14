@@ -25,7 +25,7 @@ to the aggressive treatment removing large-scale clustering information. For com
 
 
 \begin{table*}
-    \caption{\mr{Without mag bias for referee review only.} The calibrated best-fitting, marginalized mean, and marginalized $68\%$ ($95\%$) confidence estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for imaging systematic effects. The lowest mode is $\ell_{\rm min}=2$.}
+    \caption{\mr{``Without mag bias for referee review only.''} The calibrated best-fitting, marginalized mean, and marginalized $68\%$ ($95\%$) confidence estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for imaging systematic effects. The lowest mode is $\ell_{\rm min}=2$.}
    \centerline{%     
     \begin{tabular}{llllllll}
     \hline
@@ -104,7 +104,7 @@ Now we proceed to perform some robustness tests and assess how sensitive the $\f
 
 
 \begin{table*}
-    \caption{\mr{Without mag bias for referee review only.} The uncalibrated best-fitting and marginalized mean estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for systematics. The estimates are not calibrated for over-correction, and thus are subject to mitigation systematics. The number of degrees of freedom is 34 (37 data points - 3 parameters). The lowest mode is $\ell=2$ and the covariance matrix is from the $\fnl=0$ clean mocks (no mitigation) except for the case with '+cov' in which the covariance matrix is from the $\fnl=76.9$ clean mocks (no mitigation).}
+    \caption{\mr{``Without mag bias for referee review only.''} The uncalibrated best-fitting and marginalized mean estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for systematics. The estimates are not calibrated for over-correction, and thus are subject to mitigation systematics. The number of degrees of freedom is 34 (37 data points - 3 parameters). The lowest mode is $\ell=2$ and the covariance matrix is from the $\fnl=0$ clean mocks (no mitigation) except for the case with '+cov' in which the covariance matrix is from the $\fnl=76.9$ clean mocks (no mitigation).}
    \centerline{%     
     \begin{tabular}{llllllll}
     \hline
@@ -229,35 +229,34 @@ DECaLS South (comp. cut)  & Nonlinear Three Maps& $    29$& $    28$& $     8<\f
 
 
 \begin{table*}
-    \caption{Same as Table \ref{tab:dr9method} for various values for hyper-parameters, $p$ and $s$. In each case we fix one hyper-parameter to its fiducial value ($p=1$ and $s=0.945$) while changing the other. }
+    \caption{\mr{The calibrated best-fitting and marginalized mean estimates for $\fnl$ using the non-linear three maps method and various values of $p$ and $s$. In each case we fix one hyper-parameter to its fiducial value (e.g., $p=1$ and $s=0.945$) while changing the other.}}
     \label{tab:dr9ps}
    \centerline{%     
     \begin{tabular}{llllll}
     \hline
     \hline
-   &  & 	  & $\fnl$ + Mitigation Systematics&  &    \\
+   &  & 	  & $\fnl$ &  &    \\
    \cmidrule(r{.7cm}){2-5}
-Hyperparameter & 	Best fit  & Mean & $ 68\%$ CL & $ 95\%$ CL & $\chi^{2}$ \\
+Hyperparameter & 	Best fit  & Mean & $ 68\%$ CL & $ 95\%$ CL & $\chi^{2}$ (dof=$34$) \\
 \hline
-$p=$ 0.55                                    & $    19$& $    20$& $    12<\fnl<    28$& $     5<\fnl<    37$ &   33.9\\
-0.7                                     & $    21$& $    22$& $    13<\fnl<    31$& $     5<\fnl<    41$ &   33.9\\
-0.9                                     & $    25$& $    26$& $    15<\fnl<    37$& $     6<\fnl<    49$ &   33.9\\
-1.0                                     & $    27$& $    28$& $    17<\fnl<    40$& $     6<\fnl<    53$ &   33.9\\
-1.2                                     & $    34$& $    36$& $    21<\fnl<    50$& $     8<\fnl<    67$ &   33.9\\
-1.4                                     & $    45$& $    48$& $    28<\fnl<    67$& $    11<\fnl<    90$ &   33.9\\
-1.6                                     & $    66$& $    70$& $    40<\fnl<    99$& $    15<\fnl<   134$ &   33.9\\
+$p=$ 0.55                                    & $    36$& $    37$& $    28<\fnl<    47$& $    19<\fnl<    57$ &   33.9\\
+0.7                                     & $    38$& $    40$& $    29<\fnl<    50$& $    20<\fnl<    62$ &   33.9\\
+0.9                                     & $    43$& $    44$& $    32<\fnl<    57$& $    21<\fnl<    71$ &   33.9\\
+1.0                                     & $    46$& $    47$& $    33<\fnl<    61$& $    21<\fnl<    76$ &   33.9\\
+1.2                                     & $    54$& $    56$& $    38<\fnl<    73$& $    23<\fnl<    92$ &   33.9\\
+1.4                                     & $    66$& $    70$& $    47<\fnl<    93$& $    26<\fnl<   119$ &   33.9\\
+1.6                                     & $    91$& $    96$& $    61<\fnl<   130$& $    32<\fnl<   171$ &   33.9\\
 \hline
-$s=$ 0.75                                    & $    28$& $    30$& $    18<\fnl<    41$& $     8<\fnl<    54$ &   34.1\\
-0.80                                    & $    28$& $    29$& $    17<\fnl<    41$& $     7<\fnl<    54$ &   34.1\\
-0.85                                    & $    27$& $    29$& $    18<\fnl<    41$& $     8<\fnl<    54$ &   34.0\\
-0.90                                    & $    27$& $    29$& $    17<\fnl<    41$& $     7<\fnl<    53$ &   34.0\\
-0.945                                   & $    27$& $    28$& $    17<\fnl<    40$& $     6<\fnl<    53$ &   33.9\\
-1.00                                    & $    27$& $    28$& $    17<\fnl<    40$& $     6<\fnl<    54$ &   33.9\\
-1.05                                    & $    27$& $    28$& $    16<\fnl<    40$& $     6<\fnl<    54$ &   33.8\\
-1.10                                    & $    27$& $    28$& $    16<\fnl<    40$& $     5<\fnl<    54$ &   33.8\\
-1.15                                    & $    26$& $    28$& $    16<\fnl<    40$& $     5<\fnl<    53$ &   33.7\\
-1.20                                    & $    26$& $    28$& $    15<\fnl<    40$& $     5<\fnl<    54$ &   33.7\\
-1.25                                    & $    26$& $    27$& $    15<\fnl<    40$& $     4<\fnl<    53$ &   33.7\\
-   \hline
+$s=$ 0.75                                    & $    46$& $    49$& $    35<\fnl<    62$& $    23<\fnl<    77$ &   34.1\\
+0.80                                    & $    46$& $    48$& $    34<\fnl<    62$& $    23<\fnl<    77$ &   34.1\\
+0.85                                    & $    46$& $    48$& $    34<\fnl<    62$& $    23<\fnl<    77$ &   34.0\\
+0.90                                    & $    46$& $    48$& $    34<\fnl<    61$& $    22<\fnl<    76$ &   34.0\\
+0.945                                   & $    46$& $    47$& $    33<\fnl<    61$& $    21<\fnl<    76$ &   33.9\\
+1.00                                    & $    46$& $    47$& $    33<\fnl<    61$& $    21<\fnl<    77$ &   33.9\\
+1.05                                    & $    45$& $    47$& $    33<\fnl<    61$& $    21<\fnl<    77$ &   33.8\\
+1.10                                    & $    45$& $    47$& $    33<\fnl<    61$& $    20<\fnl<    77$ &   33.8\\
+1.15                                    & $    45$& $    46$& $    32<\fnl<    60$& $    19<\fnl<    76$ &   33.7\\
+1.20                                    & $    45$& $    46$& $    32<\fnl<    61$& $    19<\fnl<    77$ &   33.7\\
+1.25                                    & $    44$& $    46$& $    31<\fnl<    60$& $    18<\fnl<    76$ &   33.7
     \end{tabular}}
 \end{table*}
