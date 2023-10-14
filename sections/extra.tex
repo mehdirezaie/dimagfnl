@@ -1,5 +1,14 @@
 \section{Extra robustness tests}
 
+\subsection{Survey window convolution}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/cl_conv.pdf}
+    \caption{\mr{The survey mask correlation functions for the imaging regions forming the DESI footprint. The inset shows the correlations specifically for separations between $100$ and $180$ degrees.}}
+    \label{fig:window_conv}
+\end{figure}
+
 \subsection{Scale dependent systematics}\label{sec:scalesys}
 Our fiducial cross power spectrum diagnostic (equation \ref{eq:cx_chi2}) uses harmonic modes up to $\ell=20$, which determines the smallest scale used for characterizing residual systematic errors. To investigate the statistical significance of the cross power spectrum's $\chi^{2}$, we examine its dependence on the largest harmonic mode $\ell_{\rm max}$. We extend $\ell_{\rm max}$ from $20$ to $100$, where the latter scale corresponds to density fluctuations on scales smaller than $2$ degrees. Figure \ref{fig:chi2cellextend} shows the median of the cross power spectrum's $\chi^{2}$ from the clean $\fnl=0$ mocks as the highest mode $\ell_{\rm max}$ increases from $20$ to $100$ (represented by the solid line). The red circles and blue crosses show the $\chi^{2}$ values for our sample cleaned respectively with the linear and neural network approaches, both with three maps. Overall, we find that for all scales up to $\ell=100$, the nonlinear three maps approach yields consistent values with the clean mocks, whereas the linear three maps approach exhibits significant remaining systematics at more than 95\% confidence.
 
