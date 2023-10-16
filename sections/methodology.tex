@@ -40,7 +40,7 @@ where $b$ is the linear bias (dashed curve in Figure \ref{fig:nz}), $D$ represen
 \begin{equation}
 W_{\mu}(z) = (5s-2)\frac{3H^{2}_{0}\Omega_{m}(1+z)}{2c^{2}k^{2}} \int_{z}^{\infty} dz^{\prime}\frac{dN}{dz} \frac{r(z^{\prime}) - r(z)}{r(z^{\prime})r(z)},
 \end{equation}
-\mr{where $\Omega_{m}$ is the matter density, $H_{0}$ is the Hubble constant\footnote{$H_{0}=100~({\rm km}~{\rm s}^{-1})/(h^{-1}{\rm Mpc})$ and $k$ is in unit of $h {\rm Mpc}^{-1}$}, $c$ is the speed of light, and $s$ is the response of the number density of galaxies to achromatic changes in the brightness. The parameter $s$ is estimated by shifting all magnitudes by an infinitesimal amount and re-running the color-mag selection. Our LRG targets are selected based on the fiber flux, whose response to magnification is different from the total flux and depends on the shape parameters for each morphology type \citep{zhou2023desi}. The parameter $s$ for our sample is found to vary slightly in the different imaging regions: $s=0.951\pm 0.011$ for BASS+MzLS, $s=0.943 \pm 0.007$ for DECaLS North+DECaLS South, and $s=0.945\pm 0.006$ for DESI\footnote{Private communication with Dr. Rongpu Zhou.}.} The PNG-induced scale-dependent shift is given by \citep{slosar2008constraints}
+\mr{where $\Omega_{m}$ is the matter density, $H_{0}$ is the Hubble constant\footnote{$H_{0}=100~({\rm km}~{\rm s}^{-1})/(h^{-1}{\rm Mpc})$ and $k$ is in unit of $h {\rm Mpc}^{-1}$}, $c$ is the speed of light, and $s$ is the response of the number density of galaxies to achromatic changes in the brightness. The parameter $s$ is estimated through shifting all magnitudes by an infinitesimal amount and re-running the color-mag selection. Our LRG targets are selected based on the fiber flux, whose response to magnification is different from the total flux and depends on the shape parameters for each morphology type \citep{zhou2023desi}. The parameter $s$ for our sample is found to vary slightly in the different imaging regions: $s=0.951\pm 0.011$ for BASS+MzLS, $s=0.943 \pm 0.007$ for DECaLS North+DECaLS South, and $s=0.945\pm 0.006$ for DESI\footnote{Private communication with Dr. Rongpu Zhou.}, and therefore we fix $s$ to the central values in our analysis.} The PNG-induced scale-dependent shift is given by \citep{slosar2008constraints}
 \begin{equation}
 \Delta b = b_{\phi}(z) \fnl \frac{3 \Omega_{m} H^{2}_{0}}{2 k^{2}T(k)D(z) c^{2}} \frac{g(\infty)}{g(0)},
 \label{eq:scaledepbias}
@@ -62,7 +62,7 @@ We convert this convolution in the spherical harmonic space into a multiplicatio
 \begin{align}
     \tilde{C}^{\rm model}_{\ell} &= 2\pi \int \hat{\omega}^{\rm model}\hat{\omega}^{\rm window}~P_{\ell}(\cos\theta) d\cos\theta.
 \end{align}
-\mr{Figure \ref{fig:mask2pf} illustrates ${\hat \omega}^{\rm window}$ for the different masks representing the DESI footprint and other imaging sub-regions.} The integral constraint is another systematic effect which is induced since the mean galaxy density is estimated from the observed galaxy density, and therefore is biased by the limited sky coverage \citep{peacock1991large}. To account for the integral constraint, the survey mask power spectrum is used to introduce a scale-dependent correction factor that needs to be subtracted from the power spectrum as,
+\mr{Figure \ref{fig:mask2pf} illustrates ${\hat \omega}^{\rm window}$ for the different masks representing the DESI footprint and its imaging sub-regions. The smaller the region the sooner the mask correlation drops to zero (see \textit{area} in Table \ref{tab:imaging}).} The integral constraint is another systematic effect which is induced since the mean galaxy density is estimated from the observed galaxy density, and therefore is biased by the limited sky coverage \citep{peacock1991large}. To account for the integral constraint, the survey mask power spectrum is used to introduce a scale-dependent correction factor that needs to be subtracted from the power spectrum as,
 \begin{equation}
      \tilde{C}^{\rm model, IC}_{\ell} = \tilde{C}^{\rm model}_{\ell} - \tilde{C}^{\rm model}_{\ell=0} \left(\frac{\tilde{C}^{\rm window}_{\ell}}{\tilde{C}^{\rm window}_{\ell=0}}\right),
 \end{equation}
@@ -71,7 +71,7 @@ where $\tilde{C}^{\rm window}$ is the survey mask power spectrum, i.e., the sphe
 \begin{figure}
     \centering
     \includegraphics[width=0.45\textwidth]{figures/mask_2pf.pdf}
-    \caption{\mr{The survey mask correlation functions for the imaging regions forming the DESI footprint. The inset shows the correlations specifically for separations between $100$ and $180$ degrees.}}
+    \caption{\mr{The survey mask correlation functions for the imaging regions forming the DESI footprint as a function of angular separation. The inset shows the correlations specifically for angles between $100$ and $180$ degrees.}}
     \label{fig:mask2pf}
 \end{figure}
 
@@ -81,6 +81,12 @@ The lognormal simulations are used to validate our survey window and integral co
 
 \subsection{Parameter estimation}
 
+\begin{figure*}
+\centering
+\includegraphics[width=0.85\textwidth]{hist_cl.pdf}
+\caption{The distribution of the first bin power spectra and its log transformation from the simulations with $\fnl=0$ (left) and $76.9$ (right). The log transformation largely removes the asymmetry in the distributions.}\label{fig:histcell}
+\end{figure*}
+
 Our parameter inference uses standard MCMC sampling. A constant clustering amplitude is assumed to determine the redshift evolution of the linear bias of our DESI LRG targets, $b(z) = b/D(z)$, which is supported by the HOD fits to the angular power spectrum \citep{zhou2021clustering}. In MCMC, we allow $\fnl$, $N_{\rm shot}$, and $b$ to vary, while all other cosmological parameters are fixed at the fiducial values (see \S \ref{ssec:mocks}). The galaxy power spectrum is divided into a discrete set of bandpower bins with $\Delta\ell=2$ between $\ell=2$ and $20$ and $\Delta \ell=10$ from $\ell=20$ to $300$. Each clustering mode is weighted by $2\ell+1$ when averaging over the modes in each bin.
 
 The expected large-scale power is highly sensitive to the value of $\fnl$ such that the the amplitude of the covariance for $C_{\ell}$ is influenced by the true value of $\fnl$, see also \cite{2013MNRAS.428.1116R} for a discussion. As illustrated in the top row of Figure \ref{fig:histcell}, we find that the distribution of the power spectrum at the lowest bin, $2\leq \ell < 4$, is highly asymmetric and its standard deviation varies significantly from the simulations with $\fnl=0$ to $76.9$. We can make the covariance matrix less sensitive to $\fnl$ by taking the log transformation of the power spectrum, $\log C_{\ell}$. As shown in the bottom panels in Figure \ref{fig:histcell}, the log transformation reduces the asymmetry and the difference in the standard deviations between the $\fnl=0$ and $76.9$ simulations. Therefore, we minimize the negative log likelihood defined as,
@@ -89,15 +95,10 @@ The expected large-scale power is highly sensitive to the value of $\fnl$ such t
 \end{equation}
 where $\Theta$ represents a container for the parameters $\fnl$, $b$, and $N_{\rm shot}$; $\tilde{C}(\Theta)$ is the (binned) expected pseudo-power spectrum; $\tilde{C}$ is the (binned) measured pseudo-power spectrum; and $\mathbb{C}$ is the covariance on $\log\tilde{C}$ constructed from the $\fnl=0$ log-normal simulations. Log-normal simulations have been commonly used and validated to estimate the covariance matrices for galaxy density fields, and non-linear effects are subdominant on the scales of interest to $\fnl$ \citep[see, e.g.,][]{2017MNRAS.466.1444C, 2021MNRAS.508.3125F}. We also test for the robustness of our results against an alternative covariance constructed from the $\fnl=76.9$ mocks. Flat priors are implemented for all parameters: $\fnl \in [-1000, 1000]$, $N_{\rm shot} \in [-0.001, 0.001]$, and $b \in [0, 5]$.
 
-\begin{figure*}
-\centering
-\includegraphics[width=0.85\textwidth]{hist_cl.pdf}
-\caption{The distribution of the first bin power spectra and its log transformation from the simulations with $\fnl=0$ (left) and $76.9$ (right). The log transformation largely removes the asymmetry in the distributions.}\label{fig:histcell}
-\end{figure*}
-
 
 \subsection{Characterization of remaining systematics}
 \label{ssec:characterization}
+
 One potential problem that can arise in the data-driven mitigation approach is \textit{over-correction}, which occurs when the corrections applied to the data remove the clustering signal and induce additional biases in the inferred parameter. The neural network approach is more prone to this issue compared to the linear approach due to its increased degrees of freedom. As illustrated in the bottom panel of Figure \ref{fig:pcc}, the significant correlations among the imaging systematic maps may pose additional challenges for modeling the spurious fluctuations in the galaxy density field. Specifically, using highly correlated imaging systematic maps increases the statistical noise in the imaging weights, which elevates the potential for over subtracting the clustering power. These over-correction effects are estimated to have a negligible impact on baryon acoustic oscillations \citep{merz2021clustering}; however, they can significantly modulate the galaxy power spectrum on large scales, and thus lead to biased $\fnl$ constraints \citep{rezaie2021primordial, mueller2022primordial}. Although not explored thoroughly, the over-correction issues could limit the detectability of primordial features in the galaxy power spectrum and that of parity violations in higher order clustering statistics \citep{beutler2019primordial, cahn2021test, philcox2022probing}. Therefore, it is crucial to develop, implement, and apply techniques to minimize and control over-correction in the hope of ensuring that the constraints are as accurate and reliable as possible; one such approach is to reduce the dimensionality of the problem. 
 
 Our goal is to reduce the correlations between the DESI LRG target density and the imaging systematic maps while controlling the over-correction effect. Below, we describe how we achieve this objective, by employing a series of simulations along with the residual systematics that we construct based on the cross power spectrum between the LRG density and imaging maps, and the mean LRG density as a function of imaging. We test different sets of the imaging systematic maps to identify the optimal set of the feature maps:
@@ -110,15 +111,13 @@ Our goal is to reduce the correlations between the DESI LRG target density and t
 \item \textbf{Nine maps}: Extinction, depth in $grzW1$, psfsize in $grz$, stellar density.
 \end{enumerate}
 
-It is imperative to note that these sets are selected prior to examining the auto power spectrum of the LRG sample and unblinding the $\fnl$ constraints, and that the auto power spectrum and $\fnl$ measurements are unblinded only after our mitigation methods passed our rigorous tests for residual systematics. 
-
-
-
 \begin{figure*}
 \centering
 \includegraphics[width=0.95\textwidth]{clx_mocks.pdf}
 \caption{The square of the cross power spectra between the DESI LRG targets and imaging systematic maps normalized by the auto power spectrum of the imaging systematic maps; see equation \ref{eq:cx}. The systematic maps considered are Galactic extinction (EBV), stellar density (nStar), depth in \textit{grzw1} (depth$_{grzw1}$), and seeing in \textit{grz} (psfsize$_{grz}$). The black curves display the cross spectra before imaging systematic correction. The red, blue and orange curves represent the results after applying the imaging weights from the linear models trained with \textit{eight maps}, \textit{two maps}, and \textit{three maps}. The green and pink curves display the results after applying the imaging weights from the nonlinear models trained with \textit{three maps} and \textit{four maps}. The dark and light shades represent the $97.5$ percentile from cross correlating the imaging systematic maps and the $\fnl=0$ and $76.9$ lognormal density fields, respectively.}\label{fig:clxmock}
 \end{figure*}
+
+It is imperative to note that these sets are selected prior to examining the auto power spectrum of the LRG sample and unblinding the $\fnl$ constraints, and that the auto power spectrum and $\fnl$ measurements are unblinded only after our mitigation methods passed our rigorous tests for residual systematics. 
 
 \begin{figure*}
 \centering
@@ -156,7 +155,7 @@ We identify extinction and depth in the z band as two primary potential contamin
 \subsubsection{Mean density contrast}
 We calculate the histogram of the mean density contrast relative to the $j^{\rm th}$ imaging property, $x_{j}$:
 \begin{equation}
-\delta_{x_{j}} = ({\overline{\rho}})^{-1} \frac{\sum_{i} \rho_{i} W_{i}}{\sum_{i} W_{i}},
+\delta_{x_{j}} = ({\overline{\rho}})^{-1} \frac{\sum_{i} \rho_{i} W_{i}}{\sum_{i} W_{i}} \mr{- 1},
 \end{equation}
 where $\overline{\rho}$ is the global mean galaxy density, $W_{i}$ is the survey window in pixel $i$, and the summations over $i$ are evaluated from the pixels in every bin of $x_{j}$. We compute the histograms against all nine imaging properties (see Figure \ref{fig:ng}). We use a set of eight equal-width bins for every imaging map, which results in a total of 72 bins. Then, we construct the total mean density contract as,
 \begin{equation}
@@ -198,13 +197,18 @@ The tests conducted here demonstrate the effectiveness of various cleaning appro
 
 \subsection{Calibration of over-correction}\label{ssec:calibration}
 
-The template-based mitigation of imaging systematics removes some of the true clustering signal, and the amount of the removed signal increases as more maps are used for the regression. We calibrate the over-correction effect using the mocks presented in \S \ref{sec:data}. We apply the neural network model to both the $\fnl=0$ and $76.9$ simulations, with and without imaging systematics, using various sets of imaging systematic maps. Specifically, we consider \textit{nonlinear three maps}, \textit{nonlinear four maps}, and \textit{nonlinear nine maps}. Then, we measure the power spectra from the mocks. We fit both the mean power spectrum and each individual power spectrum from the mocks. Figure \ref{fig:fnlbias} displays a comparison between the estimates of $\fnl$ before and after mitigation for the clean mocks. The best-fitting estimates are represented by the solid curves, and the individual spectra results are displayed as the scatter points. The results from fitting the mean power spectrum of the contaminated mocks are also shown via the dashed curves. We find nearly identical results for the biases caused by mitigation, whether or not the mocks have any contamination, which can be seen by observing the solid and dashed curves displayed on Figure \ref{fig:fnlbias} (see, also, Figure \ref{fig:clmocks}, for a comparison of the mean power spectrum). For clarity, the best-fitting estimates for the individual contaminated data are not shown in the figure.
+The template-based mitigation of imaging systematics removes some of the true clustering signal, and \mout{the amount of the removed signal increases as more maps are used for the regression.}\mr{mitigating with more maps should remove more modes and thus both bias the $\fnl$ estimation and the uncertainty.} We calibrate the over-correction effect using the mocks presented in \S \ref{sec:data}. \mr{One of the main advantages of having two sets of mocks with low and high power at low $\ell$ is that it gives a model for mapping the whole posterior and thus learning how the $\fnl$ constraints degrade as the imaging systematic correction gets greater.}  We apply the neural network model to both the $\fnl=0$ and $76.9$ simulations, with and without imaging systematics, using various sets of imaging systematic maps. Specifically, we consider \textit{nonlinear three maps}, \textit{nonlinear four maps}, and \textit{nonlinear nine maps}. Then, we measure the power spectra from the mocks. We fit both the mean power spectrum and each individual power spectrum from the mocks. \mr{The results are presented in Appendix \ref{ssec:contmocks}.}
+
+Figure \ref{fig:fnlbias} displays a comparison between the estimates of $\fnl$ before and after mitigation for the clean mocks. The best-fitting estimates \mr{from the mean of the mocks} are represented by the solid curves, and the individual spectra results are displayed as the scatter points. The results from fitting the mean power spectrum of the contaminated mocks are also shown via the dashed curves. We find nearly identical results for the biases caused by mitigation, whether or not the mocks have any contamination, which can be seen by observing the solid and dashed curves displayed on Figure \ref{fig:fnlbias} (see, also, Figure \ref{fig:clmocks}, for a comparison of the mean power spectrum). For clarity, the best-fitting estimates for the individual contaminated data are not shown in the figure.
 
 \begin{figure}
 \centering
 \includegraphics[width=0.45\textwidth]{figures/fnlbias}
 \caption{The \textit{No mitigated, clean} vs \textit{mitigated} $\fnl$ values from the $\fnl=0$ and $76.9$ mocks. The solid (dashed) lines represent the best-fitting estimates from fitting the mean power spectrum of the clean (contaminated) mocks. The scatter points show the best-fitting estimates from fitting the individual spectra for the clean mocks.}\label{fig:fnlbias}
 \end{figure}
+
+
+\mr{We find significant shifts in the best-fitting estimates of $\fnl$ from the fits to the mean spectra (summarized in Table \ref{tab:contmocksmcmc}). For $\fnl=0$, we obtain $\Delta \fnl=-12$ for nonlinear three maps, $-20$ for nonlinear three maps, and $-27$ for nonlinear nine maps. Whereas, bigger shifts are noticed for $\fnl=76.9$: we find $\Delta \fnl=-23$ for nonlinear three maps, $-39$ for nonlinear four maps, and $-72$ for nonlinear nine maps. \textbf{MR: TEST with FNL=0 ONLY.}}
 
 To calibrate our methods, we fit a linear curve to the $\fnl$ estimates from the mean power spectrum of the mocks, $f_{\rm NL, no~mitigation, clean} = m_{1} f_{\rm NL, mitigated} + m_{2}$. The $m_{1}$ and $m_{2}$ coefficients for nonlinear three, four, and nine maps are summarized in Table \ref{tab:debiasparams}. These coefficients represent the impact of the cleaning methods on the likelihood. The uncertainty in $\fnl$ after mitigation increases by $m_{1}-1$. Figure \ref{fig:fnlbias} also shows that the choice of our cleaning method can have significant implications for the accuracy of the measured $\fnl$, and careful consideration should be given to the selection of the primary imaging systematic maps and the calibration of the cleaning algorithms in order to minimize systematic uncertainties.
 
