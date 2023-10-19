@@ -19,10 +19,11 @@ The differences between various cleaning methods are significant on large scales
 
 
 \subsubsection{Calibrated constraints}
-All $\fnl$ constraints presented here are calibrated for the effect of over-correction using the lognormal simulations. Table \ref{tab:dr9methodcalib} describes the best-fitting and marginalized mean estimates of $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after cleaning with the non-linear approach given various combinations for the imaging systematic maps. Figure \ref{fig:mcmc_dr9} shows the marginalized probability distribution for $\fnl$ in the top panel, and the $68\%$ and $95\%$ probability contours for the linear bias parameter and $\fnl$ in the bottom panel, from our sample before and after applying various corrections for imaging systematics. Overall, we find the maximum likelihood estimates to be consistent among the various cleaning methods. We obtain \mr{$33 (21) < \fnl < 61(76)$} at $68\%(95\%)$ confidence with \mr{$\chi^{2}=33.9$} for \textit{non-linear three maps} with $34$ degrees of freedom. Accounted for over-correction, we obtain \mr{$33(19) < \fnl < 62(78)$ with $\chi^{2}=34.4$ using the \textit{non-linear four maps} method which includes the additional stellar density map}. With or without stellar density, the confidence intervals are consistent with each other and significantly off from zero PNG; specifically, the probability that $\fnl$ is greater than zero, $P(\fnl >0)=99.9$ per cent. We also apply a more aggressive systematics treatment that includes regression using the nonlinear approach against the full set of imaging maps we identified, nonlinear nine maps, and find that our maximum
-likelihood value changes \mout{only slightly} to \mr{$\fnl \sim 34$}, \mout{but} \mr{and} the uncertainty on $\fnl$ increases \mr{by more than a factor of two} due
-to the aggressive treatment removing large-scale clustering information. \mr{This is the only approach that yield results consistent with zero $\fnl$, in which using more maps have diminished the constraining power of the dataset.} For comparison, we obtain \mr{$102(86) < \fnl < 140(161)$} at $68\% (95\%)$ confidence with \mr{$\chi^{2}=45.1$} for the \textit{no weight} case.
+All $\fnl$ constraints presented here are calibrated for the effect of over-correction using the lognormal simulations. Table \ref{tab:dr9methodcalib} describes the best-fitting and marginalized mean estimates of $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after cleaning with the non-linear approach given various combinations for the imaging systematic maps. Figure \ref{fig:mcmc_dr9} shows the marginalized probability distribution for $\fnl$ in the top panel, and the $68\%$ and $95\%$ probability contours for the linear bias parameter and $\fnl$ in the bottom panel, from our sample before and after applying various corrections for imaging systematics. Overall, we find the maximum likelihood estimates to be consistent among the various cleaning methods. We obtain \mr{$33 (21) < \fnl < 61(76)$} at $68\%(95\%)$ confidence with \mr{$\chi^{2}=33.9$} for \textit{non-linear three maps} with $34$ degrees of freedom. Accounted for over-correction, we obtain \mr{$33(19) < \fnl < 62(78)$ with $\chi^{2}=34.4$ using the \textit{non-linear four maps} method which includes the additional stellar density map}. With or without stellar density, the confidence intervals are consistent with each other and significantly off from zero PNG; specifically, the probability that $\fnl$ is greater than zero, $P(\fnl >0)=99.9$ per cent. We also apply a more aggressive systematics treatment that includes regression using the nonlinear approach against the full set of imaging maps we identified, nonlinear nine maps, and find that \mr{zero $\fnl$ is recovered, as regressing against more maps has diminished the constraining power of the dataset. Specifically,} our maximum
+likelihood value changes \mout{only slightly} to \mr{$\fnl \sim 34$ with $\chi^{2}=39.5$}, \mout{but} \mr{and} the uncertainty on $\fnl$ increases \mr{by more than a factor of two, $-10(-39)<\fnl<58 (84)$,} due
+to the aggressive treatment removing large-scale clustering information. For comparison, we obtain \mr{$102(86) < \fnl < 140(161)$} at $68\% (95\%)$ confidence with \mr{$\chi^{2}=45.1$} for the \textit{no weight} case.
 
+\mr{Our analysis is simplified by fixing the values of $p$ and $s$ to their pre-determined and estimated values. We also explore the sensitivity of the $\fnl$ posterior for the nonlinear three maps method to various values of $p$, ranging between $0.55$ and $1.6$, and $s$ from $0.75$ to $1.25$. Overall, as illustrated in Figure \ref{fig:fnl_magbias} and summarized in Table \ref{tab:dr9ps}, we find that the $\fnl$ posterior to be quite insensitive to the value of $s$, and both the best fitting estimate of $\fnl$ and the error increase as a function of $p$; however the overall impact on the signal to noise and $P(\fnl > 0)$ is shown to be insignificant.}
 
 \begin{table*}
     \caption{\mr{``Without mag bias for referee review only.''} The calibrated best-fitting, marginalized mean, and marginalized $68\%$ ($95\%$) confidence estimates for $\fnl$ from fitting the power spectrum of the DESI LRG targets before and after correcting for imaging systematic effects. The lowest mode is $\ell_{\rm min}=2$.}
@@ -73,14 +74,54 @@ DESI                      & Nonlinear Nine Maps& $    34$& $    24$& $   -10<\fn
     \caption{The calibrated constrains from the DESI LRG targets. \textit{Top}: probability distribution for $\fnl$ marginalized over the shotnoise and bias. \textit{Bottom}: $68\%$ and $95\%$ probability distribution contours for the bias and $\fnl$ from the DESI LRG targets before and after applying non-linear cleaning methods. The lognormal mocks are used to calibrate these distributions for over-correction.}\label{fig:mcmc_dr9}
 \end{figure}
 
+\begin{figure}
+\raggedleft
+\includegraphics[width=0.45\textwidth]{figures/fnl_p.pdf}
+\includegraphics[width=0.437\textwidth]{figures/fnl_magbias.pdf}
+\caption{\mr{Best fitting estimates and $68\%$ ($95\%$) error on $\fnl$ from the DESI DR9 LRG sample with the non-linear three maps cleaning approach. The fiducial values are marked by stars. The constraints are stable against different values of $s$, but show noticeable sensitivity to $p$. As the value of $p$ increases the local PNG term decreases and thus the constraints get relaxed.}}\label{fig:fnl_magbias}
+\end{figure}
+
+\begin{table*}
+    \caption{\mr{The calibrated best-fitting and marginalized mean estimates for $\fnl$ using the non-linear three maps method and various values of $p$ and $s$. In each case we fix one hyper-parameter to its fiducial value (e.g., $p=1$ and $s=0.945$) while changing the other.}}
+    \label{tab:dr9ps}
+   \centerline{%     
+    \begin{tabular}{llllll}
+    \hline
+    \hline
+   &  & 	  & $\fnl$ &  &    \\
+   \cmidrule(r{.7cm}){2-5}
+Hyperparameter & 	Best fit  & Mean & $ 68\%$ CL & $ 95\%$ CL & $\chi^{2}$ (dof=$34$) \\
+\hline
+$p=$ 0.55                                    & $    36$& $    37$& $    28<\fnl<    47$& $    19<\fnl<    57$ &   33.9\\
+0.7                                     & $    38$& $    40$& $    29<\fnl<    50$& $    20<\fnl<    62$ &   33.9\\
+0.9                                     & $    43$& $    44$& $    32<\fnl<    57$& $    21<\fnl<    71$ &   33.9\\
+1.0                                     & $    46$& $    47$& $    33<\fnl<    61$& $    21<\fnl<    76$ &   33.9\\
+1.2                                     & $    54$& $    56$& $    38<\fnl<    73$& $    23<\fnl<    92$ &   33.9\\
+1.4                                     & $    66$& $    70$& $    47<\fnl<    93$& $    26<\fnl<   119$ &   33.9\\
+1.6                                     & $    91$& $    96$& $    61<\fnl<   130$& $    32<\fnl<   171$ &   33.9\\
+\hline
+$s=$ 0.75                                    & $    46$& $    49$& $    35<\fnl<    62$& $    23<\fnl<    77$ &   34.1\\
+0.80                                    & $    46$& $    48$& $    34<\fnl<    62$& $    23<\fnl<    77$ &   34.1\\
+0.85                                    & $    46$& $    48$& $    34<\fnl<    62$& $    23<\fnl<    77$ &   34.0\\
+0.90                                    & $    46$& $    48$& $    34<\fnl<    61$& $    22<\fnl<    76$ &   34.0\\
+0.945                                   & $    46$& $    47$& $    33<\fnl<    61$& $    21<\fnl<    76$ &   33.9\\
+1.00                                    & $    46$& $    47$& $    33<\fnl<    61$& $    21<\fnl<    77$ &   33.9\\
+1.05                                    & $    45$& $    47$& $    33<\fnl<    61$& $    21<\fnl<    77$ &   33.8\\
+1.10                                    & $    45$& $    47$& $    33<\fnl<    61$& $    20<\fnl<    77$ &   33.8\\
+1.15                                    & $    45$& $    46$& $    32<\fnl<    60$& $    19<\fnl<    76$ &   33.7\\
+1.20                                    & $    45$& $    46$& $    32<\fnl<    61$& $    19<\fnl<    77$ &   33.7\\
+1.25                                    & $    44$& $    46$& $    31<\fnl<    60$& $    18<\fnl<    76$ &   33.7
+    \end{tabular}}
+\end{table*}
+
 \subsubsection{Uncalibrated constraints: robustness tests}
-Figure \ref{fig:mcmcdr9noshift} shows the probability distributions of $\fnl$ for various treatments before accounting for the over-correction effect. The method with the largest flexibility and more number of imaging systematic maps is more likely to regress out the clustering signal aggressively and return biased $\fnl$ constraints. \mout{As expected, non-linear nine maps yields the smallest maximum likelihood estimate of \mr{$\fnl=-13$}}. Our non-linear three maps returns a best-fitting estimate of \mr{$\fnl=27$} with the $68\%(95\%)$ confidence of \mr{$17(6)<\fnl <40(53)$} and \mr{$\chi^{2}=33.9$}. With the stellar density map included, non-linear four maps yields a smaller best-fitting estimates of \mr{$\fnl=14$} with the error of \mr{$5(-6)<\fnl<26(38)$}. The non-linear nine maps gives an \mr{asymmetric} posterior with the marginalized mean \mr{$\fnl=-17$}, \mr{the smallest best-fitting} estimate \mr{of $\fnl=-13$} with the error of \mr{$-31(-44)<\fnl<-3(9)$}. \mr{The differences observed in the best fitting estimates can be associated to over-correction, similar to the effect observed in the mocks (see Figure \ref{fig:contmcmc}). Therefore, the uncalibrated values should be considered with caution. For the non-linear three maps approach, without accounting for over-correction, the probability that $\fnl$ is greater than zero, $P(\fnl >0)=99.4$ per cent.}
+Figure \ref{fig:mcmcdr9noshift} shows the probability distributions of $\fnl$ for various treatments before accounting for the over-correction effect. The method with the largest flexibility and more number of imaging systematic maps is more likely to regress out the clustering signal aggressively and return biased $\fnl$ constraints. \mout{As expected, non-linear nine maps yields the smallest maximum likelihood estimate of \mr{$\fnl=-13$}}. Our non-linear three maps returns a best-fitting estimate of \mr{$\fnl=27$} with the $68\%(95\%)$ confidence of \mr{$17(6)<\fnl <40(53)$} and \mr{$\chi^{2}=33.9$}. With the stellar density map included, non-linear four maps yields a smaller best-fitting estimates of \mr{$\fnl=14$} with the error of \mr{$5(-6)<\fnl<26(38)$}. The non-linear nine maps gives an \mr{asymmetric} posterior with the marginalized mean \mr{$\fnl=-17$}, \mr{and the smallest best-fitting} estimate \mr{of $\fnl=-13$} with the error of \mr{$-31(-44)<\fnl<-3(9)$}. \mr{The differences observed in the best fitting estimates can be associated to over-correction, similar to the effect observed in the mocks (see Figure \ref{fig:contmcmc}). Therefore, the uncalibrated values should be considered with caution. Without accounting for over-correction, while the non-linear four maps and non-linear nine maps recover zero $\fnl$ respectively within $95\%$ and $68\%$ confidence, the dataset with the non-linear three maps cleaning reveals that the probability of $\fnl$ being greater than zero is $99.5\%$.}
 
 Now we proceed to perform some robustness tests and assess how sensitive the $\fnl$ constraints are to the assumptions made in the analysis or the quality cuts applied to the data. For each case, we re-train the cleaning methods and derive new sets of imaging weights. Accordingly, for the cases where a new survey mask is applied to the data, we re-calculate the covariance matrices using the new survey mask to account for the changes in the survey window and integral constraint effects. Calibrating the mitigation biases for all of these experiments is beyond the scope of this work and redundant, as we are only interested in the relative shift in the $\fnl$ constraints after changing the assumptions. Therefore, the absolute scaling of the $\fnl$ constraints presented here are biased because of the over-correction effect. Table \ref{tab:dr9method} summarizes the uncalibrated $\fnl$ constraints from the DESI LRG targets. Our tests are as follows:
 
 \begin{itemize}[itemindent=*]
 
-\item \textbf{Linear methods}: Even though the linear three maps approach shows significant remaining systematics (Figure \ref{fig:chi2test} and Table \ref{tab:chi2test}), we obtain identical constraints from \textit{linear eight maps} and \textit{linear three maps}, respectively, \mr{$24(14)<\fnl<49(63)$ and $25(14)<\fnl<50(64)$} at $68\%(95\%)$ confidence. \mr{The probability of $\fnl>0$ for the linear methods are $99.9$. Any attempt to account for the over-correction would increase these probabilities to a greater extend. The greater $\fnl$ signal in the data using the linear methods are attributed to increased systematic contamination.}
+\item \textbf{Linear methods}: Even though the linear three maps approach shows significant remaining systematics (Figure \ref{fig:chi2test} and Table \ref{tab:chi2test}), we obtain identical constraints from \textit{linear eight maps} and \textit{linear three maps}, respectively, \mr{$24(14)<\fnl<49(63)$ and $25(14)<\fnl<50(64)$} at $68\%(95\%)$ confidence. \mr{For the linear treatment methods, the probability of $\fnl$ being greater than zero is remarkably high at $99.9$ per cent. Any attempt to account for the over-correction would elevate this probability. This overestimation of $\fnl$ in the data when using the linear methods can be attributed to an increase in systematic contamination.}
 
 \item \textbf{Imaging regions}: We compare how our constraints from fitting the power spectrum of the whole DESI footprint compares to that from the power spectrum of each imaging region individually, namely BASS+MzLS, DECaLS North, and DECaLS South. Figure~\ref{fig:mcmc_dr9reg} shows the $68\%$ and $95\%$ probability contours on $\fnl$ and $b$ from each individual region, compared with that from DESI. The cleaning method here is \textit{non-linear three maps}, and the covariance matrices are estimated from the $\fnl=0$ mocks. The bias in DECaLS North is lower than the ones from DECaLS South and BASS+MzLS, which might indicate some remaining systematic effects that could not be mitigated with the available imaging systematic maps. This is because given the negative correlation between $b$ and $\fnl$, a larger value of $\fnl$ due to excess clustering power needs to be compensated by a smaller value of $b$. Overall, we find that the constraints from analyzing each imaging survey separately are consistent with each other and DESI within $68\%$ confidence. \mout{Ignoring the over-correction effect, we find that the results from the DECaLS North region to be the only one that finds PNG nonzero at greater than 95\%, which motivates follow-up studies with the spectroscopic sample of LRGs in DECaLS North.}
 
@@ -97,8 +138,6 @@ Now we proceed to perform some robustness tests and assess how sensitive the $\f
 \item \textbf{Declination mask (\textit{no DEC cut})}: The fiducial mask removes the disconnected islands in DECaLS North and regions with DEC $<-30$ in DECaLS South, where there is a high likelihood of calibration issues as different standard stars are used for photometric calibrations. We analyze our sample without these cuts, and find that the best-fitting and marginalized $\fnl$ mean estimates from DECaLS South shift significantly to higher values of $\fnl$ by \mr{$\Delta \fnl \sim 15$}, which supports the case that there are remaining photometric systematics in the DECaLS South region below DEC $=-30$. On the other hand, the constraints from DECaLS North do not change significantly, indicating the islands do not induce significant contaminations.
 
 \item \textbf{Scale dependence (\textit{varying $\ell_{\rm min}$})}: We raise the value of the lowest harmonic mode $\ell_{\rm min}$ used for the likelihood evaluation during MCMC. This is equivalent to utilizing smaller spatial scales in the measurements of the power spectrum. By doing so, we anticipate a reduction in the impact of imaging systematics on $\fnl$ inference as lower $\ell$ modes are more likely to be contaminated. Figure \ref{fig:mcmc_dr9elmin} illustrates the power spectra before and after the correction with \textit{non-linear three maps} in the top panel. The bottom panel shows the marginalized mean and $68\%$ error on $\fnl$ with \textit{non-linear three maps} for the DESI, BASS+MzLS, DECaLS North, and DECaLS South regions. We discover that a slight upward shift in the mean estimates of $\fnl$ on scales ranging from $12$ to $18$ for DECaLS North and BASS+MzLS when we utilized a higher $\ell_{\rm min}$. This outcome might imply that the imaging systematic maps do not contain enough information to help the cleaning method null out the contaminating signal in the NGC. We also find that the bump is resilient against an alternative correction, in which we apply the neural networks trained on the DECaLS South to the DECaLS North region (see \ref{ssec:ndecalsbump}). Overall, this result is contrary to what one might predict if a significant systematic-induced spike existed at the very low $\ell$\mr{, or if we had an extremely large-scale systematic leakage from the $\ell=1$ mode}. As a result, it suggests that the underlying issue is more subtle than originally anticipated.
-
-\mr{\item \textbf{Theoretical systematics}: Our analysis is simplified by fixing the values of $p$ and $s$ to their pre-determined and estimated values. As a robustness check, we explore the sensitivity of the $\fnl$ posterior to various values of $p$, ranging between $0.55$ and $1.6$, and $s$ from $0.75$ to $1.25$. Overall, as illustrated in Figure \ref{fig:fnl_magbias} and summarized in Table \ref{tab:dr9ps}, we find that the $\fnl$ posterior to be quite insensitive to the value of $s$, and both the best fitting estimate and the error increase as a function of $p$; however the overall impact on the signal to noise and $P(\fnl > 0)$ is shown to be insignificant.}
 \end{itemize}
 
 
@@ -217,46 +256,3 @@ DECaLS South (comp. cut)  & Nonlinear Three Maps& $    29$& $    28$& $     8<\f
     \includegraphics[width=0.9\textwidth]{figures/fnl_elmin.pdf}  
     \caption{Top: The measured power spectrum of the DESI LRG targets before (solid curves) and after \textit{non-linear three maps} (scatter points) for the DESI, BASS+MzLS, DECaLS North, and DECaLS South regions. Bottom: The uncalibrated $\fnl$ constraints vs the lowest $\ell$ mode used for fitting $\fnl$. The points represent marginalized mean estimates of $\fnl$ and error bars represent $68$\% confidence estimated from the $\fnl=0$ mocks. The scaling of $\fnl$ is not calibrated to account for over-correction caused by mitigation.}\label{fig:mcmc_dr9elmin}
 \end{figure*}
-
-\begin{figure}
-\raggedleft
-\includegraphics[width=0.45\textwidth]{figures/fnl_p.pdf}
-\includegraphics[width=0.437\textwidth]{figures/fnl_magbias.pdf}
-\caption{\mr{Best fitting estimates and $68\%$ ($95\%$) error on $\fnl$ from the DESI DR9 LRG sample with the non-linear three maps cleaning approach. The fiducial values are marked by stars. The constraints are stable against different values of $s$, but show noticeable sensitivity to $p$. As the value of $p$ increases the local PNG term decreases and thus the constraints get relaxed.}}\label{fig:fnl_magbias}
-\end{figure}
-
-
-
-
-\begin{table*}
-    \caption{\mr{The calibrated best-fitting and marginalized mean estimates for $\fnl$ using the non-linear three maps method and various values of $p$ and $s$. In each case we fix one hyper-parameter to its fiducial value (e.g., $p=1$ and $s=0.945$) while changing the other.}}
-    \label{tab:dr9ps}
-   \centerline{%     
-    \begin{tabular}{llllll}
-    \hline
-    \hline
-   &  & 	  & $\fnl$ &  &    \\
-   \cmidrule(r{.7cm}){2-5}
-Hyperparameter & 	Best fit  & Mean & $ 68\%$ CL & $ 95\%$ CL & $\chi^{2}$ (dof=$34$) \\
-\hline
-$p=$ 0.55                                    & $    36$& $    37$& $    28<\fnl<    47$& $    19<\fnl<    57$ &   33.9\\
-0.7                                     & $    38$& $    40$& $    29<\fnl<    50$& $    20<\fnl<    62$ &   33.9\\
-0.9                                     & $    43$& $    44$& $    32<\fnl<    57$& $    21<\fnl<    71$ &   33.9\\
-1.0                                     & $    46$& $    47$& $    33<\fnl<    61$& $    21<\fnl<    76$ &   33.9\\
-1.2                                     & $    54$& $    56$& $    38<\fnl<    73$& $    23<\fnl<    92$ &   33.9\\
-1.4                                     & $    66$& $    70$& $    47<\fnl<    93$& $    26<\fnl<   119$ &   33.9\\
-1.6                                     & $    91$& $    96$& $    61<\fnl<   130$& $    32<\fnl<   171$ &   33.9\\
-\hline
-$s=$ 0.75                                    & $    46$& $    49$& $    35<\fnl<    62$& $    23<\fnl<    77$ &   34.1\\
-0.80                                    & $    46$& $    48$& $    34<\fnl<    62$& $    23<\fnl<    77$ &   34.1\\
-0.85                                    & $    46$& $    48$& $    34<\fnl<    62$& $    23<\fnl<    77$ &   34.0\\
-0.90                                    & $    46$& $    48$& $    34<\fnl<    61$& $    22<\fnl<    76$ &   34.0\\
-0.945                                   & $    46$& $    47$& $    33<\fnl<    61$& $    21<\fnl<    76$ &   33.9\\
-1.00                                    & $    46$& $    47$& $    33<\fnl<    61$& $    21<\fnl<    77$ &   33.9\\
-1.05                                    & $    45$& $    47$& $    33<\fnl<    61$& $    21<\fnl<    77$ &   33.8\\
-1.10                                    & $    45$& $    47$& $    33<\fnl<    61$& $    20<\fnl<    77$ &   33.8\\
-1.15                                    & $    45$& $    46$& $    32<\fnl<    60$& $    19<\fnl<    76$ &   33.7\\
-1.20                                    & $    45$& $    46$& $    32<\fnl<    61$& $    19<\fnl<    77$ &   33.7\\
-1.25                                    & $    44$& $    46$& $    31<\fnl<    60$& $    18<\fnl<    76$ &   33.7
-    \end{tabular}}
-\end{table*}
