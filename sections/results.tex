@@ -148,6 +148,20 @@ DECaLS South & Nonlinear 11 Maps        & $   -38$& $   -35$& $   -52<\fnl<   -1
     \label{fig:mcmcdr9noshift}
 \end{figure}
 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.45\textwidth]{figures/mcmc_dr9regions.pdf} 
+    \caption{The uncalibrated 2D constraints from the DESI LRG targets using the nonlinear nine maps treatment for each imaging survey compared with that for the whole DESI footprint. The dark and light shades represent the $68\%$ and $95\%$ confidence intervals, respectively.}\label{fig:mcmc_dr9reg}
+\end{figure}
+\begin{figure*}
+    \centering
+    \includegraphics[width=0.9\textwidth]{figures/cldr9_lowell.pdf}
+    \includegraphics[width=0.9\textwidth]{figures/fnl_elmin.pdf}  
+    \caption{Top: The measured power spectrum of the DESI LRG targets before (solid curves) and after \textit{non-linear \mr{nine} maps} (scatter points) for the DESI, BASS+MzLS, DECaLS North, and DECaLS South regions. The solid curve and grey shade respectively represent the mean power spectrum and $68\%$ error from the $\fnl=0$ mocks with the same angular mask for each region. Bottom: The uncalibrated $\fnl$ constraints vs the lowest $\ell$ mode used for fitting $\fnl$. The points represent the best fitting estimates of $\fnl$ and error bars represent $95$\% confidence. The scaling of $\fnl$ is not calibrated to account for over-correction caused by mitigation.}\label{fig:mcmc_dr9elmin}
+\end{figure*}
+
+
 Now we proceed to perform some robustness tests and assess how sensitive the $\fnl$ constraints are to the assumptions made in the analysis or the quality cuts applied to the data. For each case, we re-train the cleaning methods and derive new sets of imaging weights. Accordingly, for the cases where a new survey mask is applied to the data, we re-calculate the covariance matrices using the new survey mask to account for the changes in the survey window and integral constraint effects. Calibrating the mitigation biases for all of these experiments is beyond the scope of this work and redundant, as we are only interested in the relative shift in the $\fnl$ constraints after changing the assumptions. Therefore, the absolute scaling of the $\fnl$ constraints presented here are biased because of the over-correction effect. Table \ref{tab:dr9method} summarizes the uncalibrated $\fnl$ constraints from the DESI LRG targets. Our tests are as follows:
 
 \begin{itemize}[itemindent=*]
@@ -170,15 +184,3 @@ Now we proceed to perform some robustness tests and assess how sensitive the $\f
 
 \item \textbf{Scale dependence (\textit{varying $\ell_{\rm min}$})}: We raise the value of the lowest harmonic mode $\ell_{\rm min}$ used for the likelihood evaluation during MCMC. This is equivalent to utilizing smaller spatial scales in the measurements of the power spectrum. By doing so, we anticipate a reduction in the impact of imaging systematics on $\fnl$ inference as lower $\ell$ modes are more likely to be contaminated. Figure \ref{fig:mcmc_dr9elmin} illustrates the power spectra before and after the correction with \textit{non-linear \mr{nine} maps} in the top panel. The bottom panel shows the best fitting estimate and $95\%$ error on $\fnl$ with \textit{non-linear nine maps} for the DESI, BASS+MzLS, DECaLS North, and DECaLS South regions. We discover that a slight upward shift in the best fitting estimates of $\fnl$ on scales ranging from $10$ to $20$ for DECaLS North and BASS+MzLS when we utilized a higher $\ell_{\rm min}$. This outcome might imply that the imaging systematic maps do not contain enough information to help the cleaning method null out the contaminating signal in the NGC. We also find that the bump is resilient against an alternative correction, in which we apply the neural networks trained on the DECaLS South to the DECaLS North region (see \ref{ssec:ndecalsbump}). Overall, this result is contrary to what one might predict if a significant systematic-induced spike existed at the very low $\ell$\mr{, or if we had an extremely large-scale systematic leakage from the $\ell=1$ mode}. As a result, it suggests that the underlying issue is more subtle than originally anticipated.
 \end{itemize}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.45\textwidth]{figures/mcmc_dr9regions.pdf} 
-    \caption{The uncalibrated 2D constraints from the DESI LRG targets using the nonlinear nine maps treatment for each imaging survey compared with that for the whole DESI footprint. The dark and light shades represent the $68\%$ and $95\%$ confidence intervals, respectively.}\label{fig:mcmc_dr9reg}
-\end{figure}
-\begin{figure*}
-    \centering
-    \includegraphics[width=0.9\textwidth]{figures/cldr9_lowell.pdf}
-    \includegraphics[width=0.9\textwidth]{figures/fnl_elmin.pdf}  
-    \caption{Top: The measured power spectrum of the DESI LRG targets before (solid curves) and after \textit{non-linear \mr{nine} maps} (scatter points) for the DESI, BASS+MzLS, DECaLS North, and DECaLS South regions. The solid curve and grey shade respectively represent the mean power spectrum and $68\%$ error from the $\fnl=0$ mocks with the same angular mask for each region. Bottom: The uncalibrated $\fnl$ constraints vs the lowest $\ell$ mode used for fitting $\fnl$. The points represent the best fitting estimates of $\fnl$ and error bars represent $95$\% confidence. The scaling of $\fnl$ is not calibrated to account for over-correction caused by mitigation.}\label{fig:mcmc_dr9elmin}
-\end{figure*}
