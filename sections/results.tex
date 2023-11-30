@@ -24,7 +24,7 @@ We find that the excess clustering signal in the power spectrum of the DESI LRG 
 \raggedleft
 \includegraphics[width=0.45\textwidth]{figures/fnl_p.pdf}
 \includegraphics[width=0.437\textwidth]{figures/fnl_magbias.pdf}
-\caption{\mr{The best-fitting estimates of $\fnl$ and their corresponding $68\%$ ($95\%$) errors from the DESI LRG targets using the non-linear nine maps approach under various values of $p$ or $s$. The star symbol represents the fiducial analysis, where we fix $p=1$ and $s=0.945$.}}\label{fig:fnl_magbias}
+\caption{\mr{The best-fitting estimates of $\fnl$ and their corresponding $68\%$ ($95\%$) errors from the DESI LRG targets using the non-linear nine maps approach under various values of $p$ or $s$. The star symbol represents the fiducial analysis with $p=1$ and $s=0.945$.}}\label{fig:fnl_magbias}
 \end{figure}
 
 \begin{table*}
@@ -125,7 +125,7 @@ DECaLS North & Nonlinear Four Maps      & $    30$& $    32$& $    10<\fnl<    5
 DECaLS North (imag. cut) & Nonlinear Nine Maps& $   -16$& $   -20$& $   -47<\fnl<     7$& $   -70<\fnl<    31$ &   36.1\\
 DECaLS North (comp. cut) & Nonlinear Nine Maps& $   -17$& $   -20$& $   -46<\fnl<     5$& $   -68<\fnl<    28$ &   42.7\\
 DECaLS North (no DEC cut) & Nonlinear Nine Maps& $     0$& $   -13$& $   -43<\fnl<    15$& $   -67<\fnl<    38$ &   44.2\\
-DECaLS North & Nonlinear Nine++ Maps        & $    -2$& $    -7$& $   -32<\fnl<    16$& $   -54<\fnl<    39$ &   40.0\\
+DECaLS North & Nonlinear Eleven Maps        & $    -2$& $    -7$& $   -32<\fnl<    16$& $   -54<\fnl<    39$ &   40.0\\
    \hline
 DECaLS South & Nonlinear Three Maps     & $    30$& $    31$& $    11<\fnl<    53$& $   -28<\fnl<    76$ &   30.2\\
 DECaLS South & Nonlinear Four Maps      & $   -42$& $    -5$& $   -44<\fnl<    27$& $   -70<\fnl<    49$ &   33.4\\
@@ -133,7 +133,7 @@ DECaLS South & Nonlinear Four Maps      & $   -42$& $    -5$& $   -44<\fnl<    2
 DECaLS South (imag. cut) & Nonlinear Nine Maps& $   -57$& $   -55$& $   -76<\fnl<   -36$& $   -96<\fnl<    -8$ &   30.0\\
 DECaLS South (comp. cut) & Nonlinear Nine Maps& $   -42$& $   -40$& $   -58<\fnl<   -22$& $   -76<\fnl<    -1$ &   30.4\\
 DECaLS South (no DEC cut) & Nonlinear Nine Maps& $    -2$& $   -10$& $   -31<\fnl<    10$& $   -50<\fnl<    26$ &   26.1\\
-DECaLS South & Nonlinear Nine++ Maps        & $   -38$& $   -35$& $   -52<\fnl<   -16$& $   -70<\fnl<     5$ &   32.3\\    
+DECaLS South & Nonlinear Eleven Maps        & $   -38$& $   -35$& $   -52<\fnl<   -16$& $   -70<\fnl<     5$ &   32.3\\    
    \hline
     \end{tabular}}
 \end{table*}
@@ -177,7 +177,7 @@ Now we proceed to perform some robustness tests and assess how sensitive the $\f
 
 \item \textbf{Covariance matrix (\textit{cov})}: We fit the power spectrum of our sample cleaned with \textit{non-linear nine maps} correction, but use the covariance matrix constructed from the $\fnl=76.9$ mocks. With the alternative covariance, a \mr{$7\%$} increase in the 68\% error on $\fnl$, $\sigma(\fnl)$, is observed. We also find that the best-fitting and marginalized mean estimates of $\fnl$ increase slightly by \mr{$\Delta \fnl = 2$}. Overall, we find that the differences are not significant in comparison to the statistical precision.
 
-\item \textbf{External maps (\textit{CALIBZ+HI})}: The neural network \mr{nine++} maps correction includes the additional maps for the neutral column density (HI) and the z-band calibration error (CALIBZ). With this correction, the best-fitting $\fnl$ increases from \mr{$-4$ to $-2$} for DECaLS North and from \mr{$-43$ to $-38$} for DECaLS South, which might suggest that adding HI and CALIBZ increases the input noise, and thus negatively impacts the performance of the neural network model. This test is not performed on BASS+MzLS due to a lack of coverage from the CALIBZ map. 
+\item \textbf{External maps (\textit{CALIBZ+HI})}: The neural network \mr{eleven} maps correction includes the additional maps for the neutral column density (HI) and the z-band calibration error (CALIBZ). With this correction, the best-fitting $\fnl$ increases from \mr{$-4$ to $-2$} for DECaLS North and from \mr{$-43$ to $-38$} for DECaLS South, which might suggest that adding HI and CALIBZ increases the input noise, and thus negatively impacts the performance of the neural network model. This test is not performed on BASS+MzLS due to a lack of coverage from the CALIBZ map. 
 
 \item \textbf{Declination mask (\textit{no DEC cut})}: The fiducial mask removes the disconnected islands in DECaLS North and regions with DEC $<-30$ in DECaLS South, where there is a high likelihood of calibration issues as different standard stars are used for photometric calibrations. We analyze our sample without these cuts, and find that the best-fitting and marginalized $\fnl$ mean estimates from DECaLS South shift significantly to higher values of $\fnl$ by \mr{$\Delta \fnl \sim 41$}, which supports the case that there are remaining photometric systematics in the DECaLS South region below DEC $=-30$. On the other hand, the constraints from DECaLS North do not change significantly, indicating the islands do not induce significant contaminations.
 
