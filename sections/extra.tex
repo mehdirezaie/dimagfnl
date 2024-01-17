@@ -1,123 +1,3 @@
-\section{Remaining systematics}\label{sec:systests}
-
-\begin{figure*}
-\centering
-\includegraphics[width=0.95\textwidth]{clx_mocks.pdf}
-\caption{The square of the cross power spectra between the DESI LRG targets and imaging systematic maps normalized by the auto power spectrum of the imaging systematic maps; see equation \ref{eq:cx}. The systematic maps considered are Galactic extinction (EBV), stellar density (nStar), depth in \textit{grzw1} (depth$_{grzw1}$), and seeing in \textit{grz} (psfsize$_{grz}$). The black curves display the cross spectra before imaging systematic correction. The red, blue and orange curves represent the results after applying the imaging weights from the linear models trained with \textit{eight maps}, \textit{two maps}, and \textit{three maps}. The green and pink curves display the results after applying the imaging weights from the non-linear models trained with \textit{three maps} and \textit{four maps}. The dark and light shades represent the $97.5$ percentile from cross correlating the imaging systematic maps and the $\fnl=0$ and $76.9$ lognormal density fields, respectively.}\label{fig:clxmock}
-\end{figure*}
-
-\begin{figure*}
-\centering
-\includegraphics[width=0.95\textwidth]{nbar_mocks.pdf}
-\caption{The mean density contrast of the DESI LRG targets as a function of the imaging systematic maps: Galactic extinction (EBV), stellar density (nStar), depth in \textit{grzw1} (depth$_{grzw1}$), and seeing in \textit{grz} (psfsize$_{grz}$). The black curves display the results before imaging systematic correction. The red, blue and orange curves represent the relationships after applying the imaging weights from the linear models trained with \textit{two maps}, \textit{three maps}, and \textit{eight maps}, respectively. The green and pink curves display the results after applying the imaging weights from the non-linear models trained with \textit{three maps} and \textit{four maps}. The dark and light shades represent the $68\%$ dispersion of 1000 lognormal mocks with $\fnl=0$ and $76.9$, respectively.}\label{fig:nbarmock}
-\end{figure*}
-
-\subsection{Normalized cross power spectrum}
-
-We characterize the cross correlations between the galaxy density and imaging systematic maps by
-\begin{equation}
-\tilde{C}_{X, \ell} = [\tilde{C}_{x_{1}, \ell}, \tilde{C}_{x_{2}, \ell}, \tilde{C}_{x_{3}, \ell}, ..., \tilde{C}_{x_{9}, \ell}],
-\end{equation}
-where $\tilde{C}_{x_{i}, \ell}$ represents the the square of the cross power spectrum between the galaxy density and $i^{\rm th}$ imaging map, $x_{i}$, divided by the auto power spectrum of $x_{i}$:
-\begin{equation}\label{eq:cx}
-\tilde{C}_{x_{i}, \ell} = \frac{(\tilde{C}_{gx_{i}, \ell})^{2}}{\tilde{C}_{x_{i}x_{i},\ell}}.
-\end{equation}
-With this normalization, $\tilde{C}_{x_{i}, \ell}$ estimates the contribution of systematics at every multipole up to the linear order to the galaxy power spectrum. Then, the $\chi^{2}$ value for the cross power spectra is calculated via,
-\begin{equation}\label{eq:cx_chi2}
-\chi^{2} = \tilde{C}^{T}_{X, \ell} \mathbb{C}_{X}^{-1} \tilde{C}_{X, \ell},
-\end{equation}
-where the covariance matrix $\mathbb{C}_{X} = < \tilde{C}_{X, \ell} \tilde{C}_{X, \ell'} >$ is constructed from the lognormal mocks. \mr{We consider both sets with $\fnl=0$ and $76.9$, and for each mitigated case, the covariance is from the mocks that have received the same treatment}. These $\chi^{2}$ values are measured for every clean mock realization with the \textit{leave-one-out} technique and compared to the values observed in the DESI LRG targets with various imaging systematic corrections. Specifically, we use 999 realizations to estimate a covariance matrix and then apply the covariance matrix from the 999 realizations to measure the $\chi^{2}$ for the one remaining realization. This process is repeated for all 1000 realizations to construct a histogram for $\chi^{2}$. We only include the bandpower bins from $\ell=2$ to $20$ with $\Delta\ell=2$, which results in a total of 81 bins, and test for the robustness with higher $\ell$ modes in \ref{sec:scalesys}. 
-
-Figure \ref{fig:clxmock} shows $\tilde{C}_{X,\ell}$ from the DESI LRG targets before and after applying various corrections for imaging systematics. The dark and light shades show the 97.5$^{\rm th}$ percentile from the $\fnl=0$ and $76.9$ mocks, respectively\mr{, that have had no mitigation applied to them}. Without imaging weights (No Weight), the DESI LRG targets have the highest cross-correlations against extinction, stellar density, and depth in z. There are less significant correlations against depth in the g and r bands, and psfsize in the z band, which could be driven because of the inner correlations between the imaging systematic maps. First, we consider cleaning the DESI LRG targets with the linear model using two maps (extinction and depth in z) as identified from the Pearson correlation. Linear two maps is the least aggressive treatment method in terms of both the model flexibility and the number of input maps. With linear two maps, most of the cross correlation signals are reduced below statistical uncertainties, especially against extinction, stellar density, and depth. However, the cross correlations against psfsize in the r and z bands increase slightly on $6<\ell<20$ and $6<\ell<14$, respectively. This might be indicative of residual trends against psfsize.
-
-The linear three maps approach alleviates the cross correlation against psfsize in r, and it yields similar results to those obtained from \textit{linear nine maps}, which indicates most of the contaminations can be attributed to these three maps. Therefore, we identify extinction, depth in z, and psfsize in r (\textit{three maps}) as the primary sources of systematic effects in the DESI LRG targets. Then, we adapt \textit{neural network three maps} to model non-linear systematic effects. Compared with the linear three maps method, we find that non-linear three maps can reduce the cross correlations against both the r and z-band psfsize maps, which shows the benefit of using a non-linear approach. To further examine the robustness of our cleaning methods, we also show the cross correlations after cleaning the DESI LRG targets using all available property maps (non-linear nine maps). 
-
-\subsection{Mean galaxy density contrast}
-
-We calculate the histogram of the mean galaxy density contrast relative to the $j^{\rm th}$ imaging property, $x_{j}$:
-\begin{equation}
-\delta_{x_{j}} = ({\overline{\rho}})^{-1} \frac{\sum_{i} \rho_{i} W_{i}}{\sum_{i} W_{i}} \mr{- 1},
-\end{equation}
-where $\overline{\rho}$ is the global mean galaxy density, $W_{i}$ is the survey window in pixel $i$, and the summations over $i$ are evaluated from the pixels in every bin of $x_{j}$. We compute the histograms against all nine imaging properties (see Figure \ref{fig:ng}). We use a set of eight equal-width bins for every imaging map, which results in a total of 72 bins. Then, we construct the total mean density contract as,
-\begin{equation}
-\delta_{X} = [\delta_{x_{1}}, \delta_{x_{2}}, \delta_{x_{3}}, ..., \delta_{x_{9}}],
-\end{equation}
-and the total residual error as,
-\begin{equation}
-\chi^{2} = \delta_{X}^{T} \mathbb{C_{\delta}}^{-1} \delta_{X},
-\end{equation}
-where the covariance matrix $\mathbb{C}_{\delta} = < \delta_{X} \delta_{X}>$ is constructed from the lognormal mocks. Figure \ref{fig:nbarmock} shows the mean density contrast against the imaging properties for the DESI LRG targets. The dark and light shades represent the $1\sigma$ level fluctuations observed in 1000 lognormal density fields respectively with $\fnl=0$ and $76.9$ \mr{before mitigation}. The DESI LRG targets before treatment (No Weight) exhibits a strong trend around $10\%$ against the z-band depth which is consistent with the cross power spectrum. Additionally, there are significant spurious trends against extinction and stellar density at about $5-6\%$. The linear approach is able to mitigate most of the systematic fluctuations with only extinction and depth in the z-band as input; however, a new trend appears against the r-band psfsize map with the \textit{linear two maps} approach, which is indicative of the psfsize-related systematics in the DESI LRG targets. This finding is in agreement with that from the cross power spectrum test. With linear three maps, we still observe around $2\%$ residual spurious fluctuations in the low end of depth$_{z}$ and around $1\%$ in the high end of psfsize$_{z}$, which implies the presence of non-linear systematic effects. We find that the imaging weights from the non-linear model trained with the three identified maps (or four maps including the stellar density) are capable of reducing the fluctuations below $2\%$. Even with the non-linear three maps, we have about $1\%$ remaining systematic fluctuations against the z-band psfsize.  
-
-%\begin{figure}
-% \raggedright
-% \includegraphics[width=0.45\textwidth]{chi2test.pdf}
-% \includegraphics[width=0.44\textwidth]{chi2test2.pdf}
-% \caption{The remaining systematic error $\chi^{2}$ from the galaxy-imaging cross power spectrum (top) and the mean galaxy density contrast (bottom). The values observed in the DESI LRG targets before and after linear and non-linear treatments are represented via vertical lines, and the histograms are constructed from 1000 realizations of clean lognormal mocks with $\fnl=0$ and $76.9$.}\label{fig:chi2test}
-% \end{figure}
-
-\begin{figure*}
-    \centering
-    \includegraphics[width=\textwidth]{figures/chi2_tests.pdf}
-    \caption{\mr{The remaining systematic error $\chi^{2}$ from the mean galaxy density contrast (left) and the galaxy-imaging normalized cross power spectrum (right). The values observed in the DESI LRG targets after the non-linear treatments are represented via vertical lines using the $\fnl=0$ (solid) or $76.9$ (dashed) covariance, and the histograms are constructed from 1000 realizations of clean lognormal mocks with $\fnl=0$ (solid) and $76.9$ (dashed)}.}\label{fig:chi2test}
-\end{figure*}
-
-\subsection{Residual error $\chi^{2}$}
-We use the $\chi^{2}$ statistics to assess how significant these mean density and cross power spectrum fluctuations are in comparison to the clean mocks. Figure \ref{fig:chi2test} presents $\chi^{2}$ histograms for the mean density contrast (left) and the normalized cross spectrum (right) statistics obtained from the lognormal mocks with different $\fnl$ values. \mout{The $\chi^{2}$ tests are insensitive to $\fnl$, providing consistent distributions regardless of its value that was used for mock generation, and thus these tests help separate systematics from cosmology.} \mout{No mitigation is applied to the mocks, ensuring unbiased $\chi^{2}$ values.} The DESI LRG target $\chi^{2}$ values are compared via the vertical lines and summarized in Table \ref{tab:chi2test}. \mr{The solid and dashed vertical lines represent the values computed using the covariances based on the $\fnl=0$ and $76.9$ mocks, respectively. Regardless of the covariance, we find that the case without treatment (No Weight) exhibits serious contamination. For instance, the mean density and cross power errors are respectively $\chi^{2}=679.8$ and $20014.8$ (both with $p$-value $< 0.001$), using the $\fnl=0$ covariance. These $\chi^{2}$ values are significantly high given that the degree of freedom is $72$ for the mean density and $81$ for the cross power spectrum.}  \mr{After cleaning, the $\chi^{2}$ values are decreased dramatically for both the mean density and normalized cross spectrum tests. However, neither non-linear three maps nor non-linear four maps can reduce $\chi^{2}$ enough to be consistent with the mocks, indicating some residual error with $p$-values less than $0.005$ for the mean density test.} \mout{After cleaning, the cross power spectrum's $\chi^{2}$ is reduced. However, linear three maps approach fails to clean the data properly at $95\%$ confidence ($\chi^{2}=195.9$ and $p$-value $< 0.04$). Alternative non-linear three maps approach reduces $\chi^{2}$ significantly with $p$-value $=0.59$, supporting the need for non-linear cleaning. For this test, we only use multipoles for up to $\ell=20$, and we find no remaining systematic errors by investigating at higher multipoles (see Appendix \ref{sec:scalesys}). We observe similar performance in the mean density test. The \textit{linear two maps} weights reduce the $\chi^{2}$ from $679.8$ to $178.8$, but significant systematics remain ($p$-value $<0.001$). Applying the linear three maps approach lowers the error to $\chi^{2}=130$, yet systematics remain significant ($p$-value $<0.001$). Cleaning with linear eight maps results in $\chi^{2}=90$ and $p$-value $=0.08$, but using too many imaging maps increases the risk of removing the true clustering signal. Alternatively, using imaging weights from the \textit{non-linear three maps} approach yields $\chi^{2}=74.3$ and $p$-value $=0.39$. Adding the stellar density map (\textit{non-linear four maps}) slightly improves the results: $\chi^{2}=73.2$ and $p$-value $=0.42$.} The small impact on $\chi^{2}$ \mr{from including stellar density} suggests that the stellar density trend can be explained by extinction due to the correlation between these properties, such that in regions with high stellar density, there is likely to be a higher concentration of dust, which can cause greater extinction of light. \mr{In general, we observe that our most aggressive treatment, employing a non-linear method with nine maps, successfully meets the mean density test irrespective of the covariance, as indicated by $\chi^{2}=71.9$ ($p$-value = $>0.48$). It is essential to maintain a consistent covariance matrix, involving the same mitigation and ensuring consistency in $\fnl$ within the covariance. The sensitivity of the mean density $\chi^{2}$ to the $\fnl$ assumption in the covariance is notably lower, with greater reliance on the consistent mitigation method. Conversely, the normalized cross spectrum $\chi^{2}$ exhibits a higher dependency on the $\fnl$ assumption in the covariance. The normalized cross power spectrum $\chi^{2}$ only involves multipoles for up to $\ell=20$, which determines the smallest scale used for characterizing residual systematic errors. As a robustness test, we increase the largest $\ell$ used in the $\chi^{2}$ calculation from $20$ to $100$, where the latter scale corresponds to density fluctuations on angular scales smaller than $2$ degrees. But we find no remaining systematic errors. Figure \ref{fig:chi2cellextend} shows the median of the normalized cross power spectrum's $\chi^{2}$ from the clean $\fnl=0$ mocks after the nonlinear nine maps as the highest mode $\ell_{\rm max}$ increases from $20$ to $100$ (represented by the solid line). The pink circles show the $\chi^{2}$ values for the DESI LRG targets cleaned the nonlinear nine maps method. Overall, we find that for all scales up to $\ell=100$, the nonlinear three maps approach yields consistent values with the clean mocks, whereas the linear three maps approach exhibits significant remaining systematics at more than 95\% confidence. Since the non-linear three maps fails to pass the tests, we argue that none of the linear methods are effective in mitigating systematics. Therefore, based on the mean density test, the most motivated method is the non-linear method using nine maps.}
-
-\begin{table*}
-  \caption{Mean galaxy density contrast $\chi^{2}$ and normalized cross power spectrum $\chi^{2}$ and $p$-values that are inferred from the comparison to the $\fnl=0$ and $76.9$ clean mocks \mr{that have received the same mitigation. For the case of No Weight, we use the clean mocks without mitigation}.}\label{tab:chi2test}
-  \begin{tabular}{lcccc|cccc}
-    \hline
-    \hline
-    \multirow{3}{*}{} &&
-      \multicolumn{2}{c}{\textbf{Mean Galaxy Density Contrast (dof=72)}} & & &
-      \multicolumn{2}{c}{\textbf{Normalized Cross Power Spectrum (dof=81)}} \\
-    & \multicolumn{2}{c}{Covariance: $\fnl$=0} & \multicolumn{2}{c}{$\fnl$=76.9} & \multicolumn{2}{c}{$\fnl$=0} & \multicolumn{2}{c}{$\fnl$=76.9} \\
-    \hline
-    \textbf{Method} & $\chi^{2}$ & $p$-value & $\chi^{2}$ & $p$-value & $\chi^{2}$ & $p$-value & $\chi^{2}$ & $p$-value \\
-    \hline
-No Weight & 679.8 & < 0.001 & 405.2 & < 0.001 & 20014.8 & < 0.001 & 721.1 & < 0.001 \\
-Nonlinear Three Maps & 119.5 & 0.002 & 109.7 & 0.003 & 118.6 & 0.273 & 38.0 & 0.951 \\
-Nonlinear Four Maps & 118.2 & 0.001 & 115.9 & 0.001 & 124.6 & 0.240 & 43.3 & 0.921 \\
-Nonlinear Nine Maps & 71.9 & 0.487 & 74.9 & 0.392 & 195.1 & 0.047 & 62.2 & 0.767 \\
-    \hline
-  \end{tabular}
-\end{table*}
-
-
-\begin{table}
-  \caption{Mean density and cross power spectrum $\chi^{2}$ and $p$-values that are inferred from the comparison to the $\fnl=0$ clean mocks \mc{that have not had any mitigation applied to them. This table will be removed in the revised manuscript}.}\label{tab:chi2test}
-  \begin{tabular}{lcccc}
-    \hline
-    \hline
-    \multirow{2}{*}{\textbf{Method}} &
-      \multicolumn{2}{c}{\textbf{Mean Density}} &
-      \multicolumn{2}{c}{\textbf{Cross Spectrum}} \\
-    & $\chi^{2}$ & $p$-value & $\chi^{2}$ & $p$-value \\
-    \hline
-    
-   No Weight & 679.8 & < 0.001 & 20014.8 & < 0.001 \\
-   Linear Two Maps & 178.8 & < 0.001 & 375.1 & < 0.001 \\
-   Linear Three Maps & 130 & < 0.001  & 195.9 & 0.04 \\
-   Linear Eight Maps & 90 & 0.08  & 129.2 & 0.24 \\
-   Nonlinear Three Maps & 74.3 & 0.39  & 79.3 & 0.59 \\
-   Nonlinear Four Maps & 73.2 & 0.42  & 70.9 & 0.69\\  
-    \hline
-  \end{tabular}
-\end{table}
-
-
-\subsection{Scale dependent systematics}\label{sec:scalesys}
-\mout{Our fiducial cross power spectrum diagnostic (equation \ref{eq:cx_chi2}) uses harmonic modes up to $\ell=20$, which determines the smallest scale used for characterizing residual systematic errors. To investigate the statistical significance of the cross power spectrum's $\chi^{2}$, we examine its dependence on the largest harmonic mode $\ell_{\rm max}$. We extend $\ell_{\rm max}$ from $20$ to $100$, where the latter scale corresponds to density fluctuations on scales smaller than $2$ degrees. Figure \ref{fig:chi2cellextend} shows the median of the cross power spectrum's $\chi^{2}$ from the clean $\fnl=0$ mocks as the highest mode $\ell_{\rm max}$ increases from $20$ to $100$ (represented by the solid line). The red circles and blue crosses show the $\chi^{2}$ values for the DESI LRG targets cleaned respectively with the linear and neural network approaches, both with three maps. Overall, we find that for all scales up to $\ell=100$, the nonlinear three maps approach yields consistent values with the clean mocks, whereas the linear three maps approach exhibits significant remaining systematics at more than 95\% confidence.}
-
-\begin{figure}
-\centering
-\includegraphics[width=0.5\textwidth]{chi2lmax.pdf}
-\caption{The cross power spectrum's $\chi^{2}$ between the DESI LRG target density and imaging systematic maps as a function of the highest mode $\ell_{\rm max}$ when the sample is cleaned with the linear (triangles) and non-linear (squares) three maps. The lowest mode is fixed at $\ell_{\rm min}=2$. The solid curve and dark (light) shade represent the median value and $68\%$ ($95\%$) confidence regions, estimated from the $\fnl=0$ mocks.}\label{fig:chi2cellextend}
-\end{figure}
-
-The tests conducted here demonstrate the effectiveness of various cleaning approaches for the DESI LRG targets without revealing the measured power spectrum or $\fnl$ constraints. Results summarized in Table \ref{tab:chi2test} show that cleaning with non-linear three maps consistently produces $\chi^{2}$ values similar to clean mocks with reasonable $p$-values ($=0.39$ for mean density and $=0.59$ for cross power spectrum). On the other hand, the linear three maps approach fails to sufficiently mitigate systematics, as evidenced by low $p$-values ($< 0.001$ for mean density and $=0.04$ for cross power spectrum). Considering $p=0.05$ as a threshold for clean maps, the non-linear three maps approach is optimal, as adding more imaging systematic maps may exacerbate over-correction issues.
-
 % \begin{figure}
 % \includegraphics[width=0.5\textwidth]{chi2_scatter.pdf}
 % \caption{\mr{The remaining systematic error $\chi^{2}$ from the mean galaxy density contrast for mocks with $\fnl=0$ before (shown on horizontal scale) and after mitigation (shown on vertical scale) using the nonlinear three (orange), four (purple), and nine maps (pink) cleaning methods. The faded orange squares represent the values observed in the $\fnl=76.9$ mocks after nonlinear three maps. The values observed in the DESI LRG targets after the same treatments are shown with solid lines.}}\label{fig:chi2scatter}
@@ -132,6 +12,16 @@ The tests conducted here demonstrate the effectiveness of various cleaning appro
 
 
 \section{Extra robustness tests}
+
+\subsection{Scale dependent systematics}\label{sec:scalesys}
+Our fiducial cross power spectrum diagnostic (equation \ref{eq:cx_chi2}) uses harmonic modes up to $\ell=20$, which determines the smallest scale used for characterizing residual systematic errors. To investigate the statistical significance of the cross power spectrum's $\chi^{2}$, we examine its dependence on the largest harmonic mode $\ell_{\rm max}$. We extend $\ell_{\rm max}$ from $20$ to $100$, where the latter scale corresponds to density fluctuations on scales smaller than $2$ degrees. Figure \ref{fig:chi2cellextend} shows the median of the \mr{normalized} cross power spectrum's $\chi^{2}$ from the clean $\fnl=0$ mocks as the highest mode $\ell_{\rm max}$ increases from $20$ to $100$ (represented by the solid line). The pink circles represent the $\chi^{2}$ values for the DESI LRG targets cleaned with the non-linear nine maps method. Overall, we find that for all scales up to $\ell=100$, the nonlinear nine maps approach yields consistent values with the clean mocks.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{chi2lmax.pdf}
+\caption{The cross power spectrum's $\chi^{2}$ between the DESI LRG target density and imaging systematic maps as a function of the highest mode $\ell_{\rm max}$ when the sample is cleaned with the linear (triangles) and non-linear (squares) three maps. The lowest mode is fixed at $\ell_{\rm min}=2$. The solid curve and dark (light) shade represent the median value and $68\%$ ($95\%$) confidence regions, estimated from the $\fnl=0$ mocks.}\label{fig:chi2cellextend}
+\end{figure}
+
 
 \mr{\subsection{Survey window convolution}\label{ssec:windowconv}
 Here we calculate the mode-mode coupling matrix from the DESI mask. This matrix depends only on the survey geometry and can be described in terms of the window power spectrum \citep{hivon2002master},}
