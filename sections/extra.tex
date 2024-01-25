@@ -18,7 +18,7 @@ M_{\ell \ell^{\prime}} = \frac{2\ell^{\prime}+1}{4\pi} \sum_{\ell^{\prime\prime}
 0 & 0 & 0
 \end{pmatrix},
 \end{equation}
-\mr{where the last term in the right hand side represents the Wigner 3-j symbol (or Clebsch-Gordan coefficient), and is calculated using \textsc{SymPy} \citep{sympy2017}. We benchmark our code against the publicly available software, \textsc{NaMaster}\footnote{\href{https://github.com/LSSTDESC/NaMaster}{https://github.com/LSSTDESC/NaMaster}} \citep{2019MNRAS.484.4127A}. Figure \ref{fig:window_conv} illustrates the different approaches to account for the mode-mode coupling caused by the DESI survey window for two arbitrary values of $\fnl$. The red shade represents the 68\% dispersion of the $\fnl=76.9$ mocks.}
+\mr{where the last term in the right hand side represents the Wigner 3-j symbol (or Clebsch-Gordan coefficient), and is calculated using \textsc{SymPy} \citep{sympy2017}. We benchmark our code against the publicly available software, \textsc{NaMaster}\footnote{\href{https://github.com/LSSTDESC/NaMaster}{https://github.com/LSSTDESC/NaMaster}} \citep{2019MNRAS.484.4127A}. Figure \ref{fig:window_conv} illustrates the different approaches to account for the mode-mode coupling caused by the DESI survey window for two arbitrary values of $\fnl$. The red shade represents the 68\% dispersion of the $\fnl=76.9$ mocks. For $\fnl=0$, our \textit{config-space} convolution of the window agrees with the \textit{$\ell$-space} convolution approach of \textsc{NaMaster}. The config-space approach yields a noisy result for $\fnl=76.9$.}
 
 
 \begin{figure}
