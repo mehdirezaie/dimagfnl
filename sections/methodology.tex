@@ -64,7 +64,7 @@ We convert this convolution in the spherical harmonic space into a multiplicatio
 \begin{align}
     \tilde{C}^{\rm model}_{\ell} &= 2\pi \int \hat{\omega}^{\rm model}\hat{\omega}^{\rm window}~P_{\ell}(\cos\theta) d\cos\theta.
 \end{align}
-\mr{Figure \ref{fig:mask2pf} illustrates the survey mask correlation function ${\hat \omega}^{\rm window}$ for various masks representing the DESI footprint and its imaging sub-regions. Appendix \ref{ssec:windowconv} shows the validation of our method by comparing it to an alternative approach that computes the mode-mode coupling matrix ${\rm M}_{\ell \ell^{\prime}}$ and performs the convolution (Equation \ref{eq:mixm}) directly in $\ell$-space. We notice as the $\fnl$ deviates from zero, our approach introduces a noisy feature in the model, qualitatively in an unbiased manner. Figure \ref{fig:mcmc_mocks100} indeed demonstrates that our approach can recover the truth $\fnl$ in spite of the noisy feature.} 
+\mr{Figure \ref{fig:mask2pf} illustrates the survey mask correlation function ${\hat \omega}^{\rm window}$ for various masks representing the DESI footprint and its imaging sub-regions. Appendix \ref{ssec:windowconv} shows the validation of our method by comparing it to an alternative approach that computes the mode-mode coupling matrix ${\rm M}_{\ell \ell^{\prime}}$ and performs the convolution (Equation \ref{eq:mixm}) directly in $\ell$-space. We notice as the $\fnl$ deviates from zero, our approach introduces a noisy feature in the model, qualitatively in an unbiased manner ($\Delta \fnl < 1.1$). Figure \ref{fig:mcmc_mocks100} indeed demonstrates that our approach can recover the truth $\fnl$ in spite of the noisy feature.} 
 
 The integral constraint is another systematic effect which is induced since the mean galaxy density is estimated from the observed galaxy density, and therefore is biased by the limited sky coverage \citep{peacock1991large}. To account for the integral constraint, the survey mask power spectrum is used to introduce a scale-dependent correction factor that needs to be subtracted from the power spectrum as,
 \begin{equation}
@@ -197,26 +197,26 @@ Nonlinear Nine Maps & 71.9 & 0.487 & 74.9 & 0.392 & 195.1 & 0.047 & 62.2 & 0.767
 \end{table*}
 
 
-\begin{table}
-  \caption{Mean density and cross power spectrum $\chi^{2}$ and $p$-values that are inferred from the comparison to the $\fnl=0$ clean mocks \mc{that have not had any mitigation applied to them. This table will be removed in the revised manuscript}.}
-  \begin{tabular}{lcccc}
-    \hline
-    \hline
-    \multirow{2}{*}{\textbf{Method}} &
-      \multicolumn{2}{c}{\textbf{Mean Density}} &
-      \multicolumn{2}{c}{\textbf{Cross Spectrum}} \\
-    & $\chi^{2}$ & $p$-value & $\chi^{2}$ & $p$-value \\
-    \hline
+% \begin{table}
+%   \caption{Mean density and cross power spectrum $\chi^{2}$ and $p$-values that are inferred from the comparison to the $\fnl=0$ clean mocks \mc{that have not had any mitigation applied to them. This table will be removed in the revised manuscript}.}
+%   \begin{tabular}{lcccc}
+%     \hline
+%     \hline
+%     \multirow{2}{*}{\textbf{Method}} &
+%       \multicolumn{2}{c}{\textbf{Mean Density}} &
+%       \multicolumn{2}{c}{\textbf{Cross Spectrum}} \\
+%     & $\chi^{2}$ & $p$-value & $\chi^{2}$ & $p$-value \\
+%     \hline
     
-   No Weight & 679.8 & < 0.001 & 20014.8 & < 0.001 \\
-   Linear Two Maps & 178.8 & < 0.001 & 375.1 & < 0.001 \\
-   Linear Three Maps & 130 & < 0.001  & 195.9 & 0.04 \\
-   Linear Eight Maps & 90 & 0.08  & 129.2 & 0.24 \\
-   Nonlinear Three Maps & 74.3 & 0.39  & 79.3 & 0.59 \\
-   Nonlinear Four Maps & 73.2 & 0.42  & 70.9 & 0.69\\  
-    \hline
-  \end{tabular}
-\end{table}
+%    No Weight & 679.8 & < 0.001 & 20014.8 & < 0.001 \\
+%    Linear Two Maps & 178.8 & < 0.001 & 375.1 & < 0.001 \\
+%    Linear Three Maps & 130 & < 0.001  & 195.9 & 0.04 \\
+%    Linear Eight Maps & 90 & 0.08  & 129.2 & 0.24 \\
+%    Nonlinear Three Maps & 74.3 & 0.39  & 79.3 & 0.59 \\
+%    Nonlinear Four Maps & 73.2 & 0.42  & 70.9 & 0.69\\  
+%     \hline
+%   \end{tabular}
+% \end{table}
 
 
 
