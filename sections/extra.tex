@@ -1,7 +1,7 @@
 \section{Extra robustness tests}
 
 \subsection{Scale dependent systematics}\label{sec:scalesys}
-To investigate the statistical significance of the cross power spectrum's $\chi^{2}$, we examine its dependence on the largest harmonic mode $\ell_{\rm max}$. Our fiducial cross power spectrum diagnostic (equation \ref{eq:cx_chi2}) uses harmonic modes up to $\ell=20$, which determines the smallest scale used for characterizing residual systematic errors. We extend $\ell_{\rm max}$ from $20$ to $100$, where the latter scale corresponds to density fluctuations on scales smaller than $2$ degrees. Figure \ref{fig:chi2cellextend} shows the median of the \mr{normalized} cross power spectrum's $\chi^{2}$ from the clean $\fnl=0$ mocks \mr{after non-linear nine maps} as the highest mode $\ell_{\rm max}$ increases from $20$ to $100$ (represented by the solid line). The pink circles represent the $\chi^{2}$ values for the DESI LRG targets cleaned with the non-linear nine maps method. Overall, we find that for all scales up to $\ell=100$, the nonlinear nine maps approach yields consistent values with the clean mocks.
+To investigate the statistical significance of the cross power spectrum's $\chi^{2}$, we examine its dependence on the largest harmonic mode $\ell_{\rm max}$. Our fiducial cross power spectrum diagnostic (equation \ref{eq:cx_chi2}) uses harmonic modes up to $\ell=20$, which determines the smallest scale used for characterizing residual systematic errors. We extend $\ell_{\rm max}$ from $20$ to $100$, where the latter scale corresponds to density fluctuations on scales smaller than $2$ degrees. Figure \ref{fig:chi2cellextend} shows the median of the normalized cross power spectrum's $\chi^{2}$ from the clean $\fnl=0$ mocks after non-linear nine maps as the highest mode $\ell_{\rm max}$ increases from $20$ to $100$ (represented by the solid line). The pink circles represent the $\chi^{2}$ values for the DESI LRG targets cleaned with the non-linear nine maps method. Overall, we find that for all scales up to $\ell=100$, the nonlinear nine maps approach yields consistent values with the clean mocks.
 
 \begin{figure}
 \centering
@@ -10,21 +10,21 @@ To investigate the statistical significance of the cross power spectrum's $\chi^
 \end{figure}
 
 
-\mr{\subsection{Survey window convolution}\label{ssec:windowconv}
-Here we calculate the mode-mode coupling matrix from the DESI mask. This matrix depends only on the survey geometry and can be described in terms of the window power spectrum \citep{hivon2002master},}
+\subsection{Survey window convolution}\label{ssec:windowconv}
+Here we calculate the mode-mode coupling matrix from the DESI mask. This matrix depends only on the survey geometry and can be described in terms of the window power spectrum \citep{hivon2002master},
 \begin{equation}
 M_{\ell \ell^{\prime}} = \frac{2\ell^{\prime}+1}{4\pi} \sum_{\ell^{\prime\prime}} (2\ell^{\prime\prime}+1) \tilde{C}^{\rm window}_{\ell^{\prime\prime}} \begin{pmatrix}
 \ell & \ell^{\prime} & \ell^{\prime\prime}\\
 0 & 0 & 0
 \end{pmatrix},
 \end{equation}
-\mr{where the last term in the right hand side represents the Wigner 3-j symbol (or Clebsch-Gordan coefficient), and is calculated using \textsc{SymPy} \citep{sympy2017}. We benchmark our code against the publicly available software, \textsc{NaMaster}\footnote{\href{https://github.com/LSSTDESC/NaMaster}{https://github.com/LSSTDESC/NaMaster}} \citep{2019MNRAS.484.4127A}. Figure \ref{fig:window_conv} illustrates various approaches to address the mode-mode coupling resulting from the DESI survey window at two arbitrary values of $\fnl$. The red shade represents the 68\% dispersion of the $\fnl=76.9$ mocks. When $\fnl=0$, our \textit{config-space} convolution of the window aligns with the \textit{$\ell$-space} convolution approach. However, when $\fnl=76.9$, both the config-space and \textsc{NaMaster} $\ell$-space methods yield a convoluted power spectrum with noticeable noise-like numerical artifacts on large scales, therefore possibly in a $\fnl$-dependent manner. To assess the impact of these discrepancies on our $\fnl$ constraints, we fit the clustering of the DESI LRG targets, disregarding the integral constraint effect. The best-fitting estimates of $\fnl$ will be biased, but our focus is on understanding the relative impact on $\fnl$ between the two approaches. For both config-space and $\ell$-space methods, we obtain a similar minimum $\chi^{2}$ value of $39.6$ with $34$ degrees of freedom. Notably, the posterior width for the config-space approach is slightly larger than that of the $\ell$-space by $10\%$. The absolute difference in the best-fitting estimates of $\fnl$ between the two cases is less than $1.1$, considered negligible relative to the statistical precision of our measurements.}
+where the last term in the right hand side represents the Wigner 3-j symbol (or Clebsch-Gordan coefficient), and is calculated using \textsc{SymPy} \citep{sympy2017}. We benchmark our code against the publicly available software, \textsc{NaMaster}\footnote{\href{https://github.com/LSSTDESC/NaMaster}{https://github.com/LSSTDESC/NaMaster}} \citep{2019MNRAS.484.4127A}. Figure \ref{fig:window_conv} illustrates various approaches to address the mode-mode coupling resulting from the DESI survey window at two arbitrary values of $\fnl$. The red shade represents the 68\% dispersion of the $\fnl=76.9$ mocks. When $\fnl=0$, our \textit{config-space} convolution of the window aligns with the \textit{$\ell$-space} convolution approach. However, when $\fnl=76.9$, both the config-space and \textsc{NaMaster} $\ell$-space methods yield a convoluted power spectrum with noticeable noise-like numerical artifacts on large scales, therefore possibly in a $\fnl$-dependent manner. To assess the impact of these discrepancies on our $\fnl$ constraints, we fit the clustering of the DESI LRG targets, disregarding the integral constraint effect. The best-fitting estimates of $\fnl$ will be biased, but our focus is on understanding the relative impact on $\fnl$ between the two approaches. For both config-space and $\ell$-space methods, we obtain a similar minimum $\chi^{2}$ value of $39.6$ with $34$ degrees of freedom. Notably, the posterior width for the config-space approach is slightly larger than that of the $\ell$-space by $10\%$. The absolute difference in the best-fitting estimates of $\fnl$ between the two cases is less than $1.1$, considered negligible relative to the statistical precision of our measurements.
 
 
 \begin{figure}
     \centering
     \includegraphics[width=0.5\textwidth]{figures/cl_conv.pdf}
-    \caption{\mr{The model power spectrum before and after the survey geometry convolution for $\fnl=0$ and $76.9$ using the DESI survey mask. The bottom panel shows the residual error with respect to the \textsc{NaMaster} code. The shade represents the dispersion of the $\fnl=76.9$ mocks.}}
+    \caption{The model power spectrum before and after the survey geometry convolution for $\fnl=0$ and $76.9$ using the DESI survey mask. The bottom panel shows the residual error with respect to the \textsc{NaMaster} code. The shade represents the dispersion of the $\fnl=76.9$ mocks.}
     \label{fig:window_conv}
 \end{figure}
 
@@ -36,7 +36,7 @@ M_{\ell \ell^{\prime}} = \frac{2\ell^{\prime}+1}{4\pi} \sum_{\ell^{\prime\prime}
 \includegraphics[width=0.48\textwidth]{figures/cl_nz.pdf}\caption{Top: The redshift distribution of the DESI LRG targets from the EDA V1 and Denali. Bottom: The measured power spectrum of the DESI LRG targets and the best fit theory models using different redshift distributions.}\label{fig:cl_nz}
 \end{figure}
 
-We use the Early Data Assembly Version 1 (EDA V1) to construct the redshift distribution for the DESI LRG targets. We find that the change in the maximum likelihood estimate of $\fnl$ is negligible, \mr{$|\Delta \fnl | < 1$, compared to the statistical precision of our measurements}. Figure \ref{fig:cl_nz} shows the measured power spectrum of the DESI targets and the corresponding best fit theory curves. The variations in $dN/dz$ do not significicantly alter the conclusion of our paper.
+We use the Early Data Assembly Version 1 (EDA V1) to construct the redshift distribution for the DESI LRG targets. We find that the change in the maximum likelihood estimate of $\fnl$ is negligible, $|\Delta \fnl | < 1$, compared to the statistical precision of our measurements. Figure \ref{fig:cl_nz} shows the measured power spectrum of the DESI targets and the corresponding best fit theory curves. The variations in $dN/dz$ do not significicantly alter the conclusion of our paper.
 
 \subsection{Spurious bump in NGC}\label{ssec:ndecalsbump}
 
@@ -47,7 +47,7 @@ We use the Early Data Assembly Version 1 (EDA V1) to construct the redshift dist
     \label{fig:clSonN}
 \end{figure}
 
-As shown in Figure \ref{fig:mcmc_dr9elmin} (top panel), we realize that the spurious feature at $\ell \sim 10-20$ is removed in the DECaLS South region after mitigation, but it remains in the BASS+MzLS and DECaLS North. We use the neural networks trained on the DECaLS South with three and nine maps to mitigate the galaxy density in the DECaLS North region, and then measure the power spectrum. Figure \ref{fig:clSonN} shows the power spectrum before treatment (No Weight) and after the nonlinear three maps and nine maps methods for comparison. We find that whatever causing the bump is different between the DECaLS North and South. The best-fit estimates for $\fnl$ from the DR9 DECaLS North using the neural network correction with three maps (NN trained on DECaLS North), three maps (NN trained on DECaLS South), and nine maps (NN trained on DECaLS South) are $41$, \mr{$36$}, and \mr{$75$}, respectively. \mr{The solution without correction (No weight) results in a best fitting estimate of $\fnl=94$.}
+As shown in Figure \ref{fig:mcmc_dr9elmin} (top panel), we realize that the spurious feature at $\ell \sim 10-20$ is removed in the DECaLS South region after mitigation, but it remains in the BASS+MzLS and DECaLS North. We use the neural networks trained on the DECaLS South with three and nine maps to mitigate the galaxy density in the DECaLS North region, and then measure the power spectrum. Figure \ref{fig:clSonN} shows the power spectrum before treatment (No Weight) and after the nonlinear three maps and nine maps methods for comparison. We find that whatever causing the bump is different between the DECaLS North and South. The best-fit estimates for $\fnl$ from the DR9 DECaLS North using the neural network correction with three maps (NN trained on DECaLS North), three maps (NN trained on DECaLS South), and nine maps (NN trained on DECaLS South) are $41$, $36$, and $75$, respectively. The solution without correction (No weight) results in a best fitting estimate of $\fnl=94$.
 
 
 \section{Lognormal mocks}
@@ -82,7 +82,7 @@ The power spectrum of the mocks at low $\ell$ is very sensitive to the cosmic va
 
 
 \begin{table*}
-    \caption{The best-fitting and marginalized mean estimates for $\fnl$ from fitting the mean power spectrum of the mocks. \mr{The covariance is scaled to represent the error on the mean power spectrum.} The number of degrees of freedom is 34 (37 data points - 3 parameters).}   
+    \caption{The best-fitting and marginalized mean estimates for $\fnl$ from fitting the mean power spectrum of the mocks. The covariance is scaled to represent the error on the mean power spectrum. The number of degrees of freedom is 34 (37 data points - 3 parameters).}   
     \label{tab:mocksmcmc}  
    \centerline{%
     \begin{tabular}{llllllll}
@@ -127,8 +127,7 @@ We find that the imaging treatment has removed some of the true clustering signa
 
 
 \begin{table*}
-  %\begin{center}
-    \caption{The best-fitting and marginalized estimates for $\fnl$ from fitting the mean power spectrum of the mocks before and after corrections using the non-linear approach with various combinations of the imaging systematic maps. \mr{The covariance is scaled to represent the error on the mean power spectrum.} The estimates are not accounted for over-correction, and therefore are subject to mitigation systematics.}   
+    \caption{The best-fitting and marginalized estimates for $\fnl$ from fitting the mean power spectrum of the mocks before and after corrections using the non-linear approach with various combinations of the imaging systematic maps. The covariance is scaled to represent the error on the mean power spectrum. The estimates are not accounted for over-correction, and therefore are subject to mitigation systematics.}   
     \label{tab:contmocksmcmc}  
    \centerline{%
     \begin{tabular}{lllllll}
@@ -167,15 +166,3 @@ Using the calibration parameters presented in \S \ref{ssec:calibration}, we acco
 \includegraphics[width=0.45\textwidth]{figures/mcmcp_contnoshift.pdf}
 \caption{Probability distributions of $\fnl$ from the mean power spectrum of the $\fnl=0$ (top) and $\fnl=76.9$ (bottom) mocks before and after mitigation with the non-linear methods using three, four, and nine maps. The dashed (solid) curves show the distributions for the contaminated (clean) mocks. Left: The posteriors are adjusted to account for the over-correction effect. Right: The posteriors are subject to the over-correction effect, and thus the scaling of $\fnl$ values is biased due to mitigation.}\label{fig:contmcmc}
 \end{figure*}
-
-
-% \section{Redshift distribution}
-% Redshift distribution of LRGs is constructed from the DESI SV data release of Denali with the same selection. The fiducial distribution only covers the redshift range from 0.2 to 1.35. Below we test the impact of LRG dN/dz on the angular power spectrum.
-
-
-% \begin{figure}
-% \centering
-% \includegraphics[width=0.45\textwidth]{nztreat.pdf}
-% \includegraphics[width=0.45\textwidth]{cell_nz.pdf}
-% \caption{Top: Redshift distribution of LRGs. Bottom: Power spectrum given various dN/dz treatments for two arbitrary $\fnl$ values.}
-% \end{figure}
